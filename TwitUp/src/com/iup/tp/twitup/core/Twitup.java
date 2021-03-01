@@ -8,136 +8,147 @@ import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.ihm.TwitupMainView;
 import com.iup.tp.twitup.ihm.TwitupMock;
+import com.iup.tp.twitup.printer.Printer;
 
 /**
  * Classe principale l'application.
  * 
  * @author S.Lucas
  */
-public class Twitup {
-	/**
-	 * Base de données.
-	 */
-	protected IDatabase mDatabase;
+public class Twitup
+{
+  /**
+   * Base de données.
+   */
+  protected IDatabase mDatabase;
 
-	/**
-	 * Gestionnaire des entités contenu de la base de données.
-	 */
-	protected EntityManager mEntityManager;
+  /**
+   * Gestionnaire des entités contenu de la base de données.
+   */
+  protected EntityManager mEntityManager;
 
-	/**
-	 * Vue principale de l'application.
-	 */
-	protected TwitupMainView mMainView;
+  /**
+   * Vue principale de l'application.
+   */
+  protected TwitupMainView mMainView;
 
-	/**
-	 * Classe de surveillance de répertoire
-	 */
-	protected IWatchableDirectory mWatchableDirectory;
+  /**
+   * Classe de surveillance de répertoire
+   */
+  protected IWatchableDirectory mWatchableDirectory;
 
-	/**
-	 * Répertoire d'échange de l'application.
-	 */
-	protected String mExchangeDirectoryPath;
+  /**
+   * Répertoire d'échange de l'application.
+   */
+  protected String mExchangeDirectoryPath;
 
-	/**
-	 * Idnique si le mode bouchoné est activé.
-	 */
-	protected boolean mIsMockEnabled = false;
+  /**
+   * Idnique si le mode bouchoné est activé.
+   */
+  protected boolean mIsMockEnabled = false;
 
-	/**
-	 * Nom de la classe de l'UI.
-	 */
-	protected String mUiClassName;
+  /**
+   * Nom de la classe de l'UI.
+   */
+  protected String mUiClassName;
 
-	/**
-	 * Constructeur.
-	 */
-	public Twitup() {
-		// Init du look and feel de l'application
-		this.initLookAndFeel();
+  /**
+   * Constructeur.
+   */
+  public Twitup()
+  {
+    // Init du look and feel de l'application
+    this.initLookAndFeel();
 
-		// Initialisation de la base de données
-		this.initDatabase();
+    // Initialisation de la base de données
+    this.initDatabase();
 
-		if (this.mIsMockEnabled) {
-			// Initialisation du bouchon de travail
-			this.initMock();
-		}
+    if (this.mIsMockEnabled)
+    {
+      // Initialisation du bouchon de travail
+      this.initMock();
+    }
 
-		// Initialisation de l'IHM
-		this.initGui();
+    // Initialisation de l'IHM
+    this.initGui();
 
-		// Initialisation du répertoire d'échange
-		this.initDirectory();
-	}
+    // Initialisation du répertoire d'échange
+    this.initDirectory();
+  }
 
-	/**
-	 * Initialisation du look and feel de l'application.
-	 */
-	protected void initLookAndFeel() {
-	}
+  /**
+   * Initialisation du look and feel de l'application.
+   */
+  protected void initLookAndFeel()
+  {
 
-	/**
-	 * Initialisation de l'interface graphique.
-	 */
-	protected void initGui() {
-		// this.mMainView...
-	}
+  }
 
-	/**
-	 * Initialisation du répertoire d'échange (depuis la conf ou depuis un file
-	 * chooser). <br/>
-	 * <b>Le chemin doit obligatoirement avoir été saisi et être valide avant de
-	 * pouvoir utiliser l'application</b>
-	 */
-	protected void initDirectory() {
-	}
+  /**
+   * Initialisation de l'interface graphique.
+   */
+  protected void initGui()
+  {
+    Printer printer = new Printer();
+    this.mDatabase.addObserver(printer);
+    this.mMainView = new TwitupMainView();
+  }
 
-	/**
-	 * Indique si le fichier donné est valide pour servire de répertoire
-	 * d'échange
-	 * 
-	 * @param directory
-	 *            , Répertoire à tester.
-	 */
-	protected boolean isValideExchangeDirectory(File directory) {
-		// Valide si répertoire disponible en lecture et écriture
-		return directory != null && directory.exists() && directory.isDirectory() && directory.canRead()
-				&& directory.canWrite();
-	}
+  /**
+   * Initialisation du répertoire d'échange (depuis la conf ou depuis un file chooser). <br/>
+   * <b>Le chemin doit obligatoirement avoir été saisi et être valide avant de pouvoir utiliser l'application</b>
+   */
+  protected void initDirectory()
+  {}
 
-	/**
-	 * Initialisation du mode bouchoné de l'application
-	 */
-	protected void initMock() {
-		TwitupMock mock = new TwitupMock(this.mDatabase, this.mEntityManager);
-		mock.showGUI();
-	}
+  /**
+   * Indique si le fichier donné est valide pour servire de répertoire d'échange
+   * 
+   * @param directory
+   *          , Répertoire à tester.
+   */
+  protected boolean isValideExchangeDirectory(File directory)
+  {
+    // Valide si répertoire disponible en lecture et écriture
+    return directory != null && directory.exists() && directory.isDirectory() && directory.canRead()
+        && directory.canWrite();
+  }
 
-	/**
-	 * Initialisation de la base de données
-	 */
-	protected void initDatabase() {
-		mDatabase = new Database();
-		mEntityManager = new EntityManager(mDatabase);
-	}
+  /**
+   * Initialisation du mode bouchoné de l'application
+   */
+  protected void initMock()
+  {
+    TwitupMock mock = new TwitupMock(this.mDatabase, this.mEntityManager);
+    mock.showGUI();
+  }
 
-	/**
-	 * Initialisation du répertoire d'échange.
-	 * 
-	 * @param directoryPath
-	 */
-	public void initDirectory(String directoryPath) {
-		mExchangeDirectoryPath = directoryPath;
-		mWatchableDirectory = new WatchableDirectory(directoryPath);
-		mEntityManager.setExchangeDirectory(directoryPath);
+  /**
+   * Initialisation de la base de données
+   */
+  protected void initDatabase()
+  {
+    mDatabase = new Database();
+    mEntityManager = new EntityManager(mDatabase);
+  }
 
-		mWatchableDirectory.initWatching();
-		mWatchableDirectory.addObserver(mEntityManager);
-	}
+  /**
+   * Initialisation du répertoire d'échange.
+   * 
+   * @param directoryPath
+   */
+  public void initDirectory(String directoryPath)
+  {
+    mExchangeDirectoryPath = directoryPath;
+    mWatchableDirectory = new WatchableDirectory(directoryPath);
+    mEntityManager.setExchangeDirectory(directoryPath);
 
-	public void show() {
-		// ... setVisible?
-	}
+    mWatchableDirectory.initWatching();
+    mWatchableDirectory.addObserver(mEntityManager);
+  }
+
+  public void show()
+  {
+    this.mMainView.showView();
+  }
 }
