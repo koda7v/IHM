@@ -4,6 +4,10 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -85,9 +89,15 @@ public class SignInView extends JPanel
    */
   protected static final String KEY_SIGNIN_BUTTON_TITLE = "KEY_SIGNIN_BUTTON_TITLE";
 
+  /**
+   * Liste des observeurs du composant.
+   */
+  protected List<IObserverSignView> observers;
+
   public SignInView()
   {
     this.initComponent();
+    this.observers = new ArrayList<IObserverSignView>();
   }
 
   /**
@@ -110,8 +120,54 @@ public class SignInView extends JPanel
 
     this.add(contentPane);
 
-    this.revalidate();
-    this.repaint();
+  }
+
+  /**
+   * Ajoute l'observeur en paramètre dans la liste des observeurs.
+   * 
+   * @param observer
+   *          Observeur à ajouter.
+   */
+  public void addObserver(IObserverSignView observer)
+  {
+    if (observer != null)
+    {
+      observers.add(observer);
+    }
+  }
+
+  /**
+   * Enlève l'observeur en paramètre de la liste des observeurs.
+   * 
+   * @param observer
+   *          Observeur à enlever.
+   */
+  public void removeObserver(IObserverSignView observer)
+  {
+    if (observer != null)
+    {
+      observers.remove(observer);
+    }
+  }
+
+  protected void notifyValidateButtonPressed()
+  {
+    List<IObserverSignView> copyObservers = new ArrayList<>(this.observers);
+
+    for (IObserverSignView observer : copyObservers)
+    {
+      observer.notifyValidateButtonPressed(this.getTextFieldPseudo().getText(), this.getTextFieldMDP().getText());
+    }
+  }
+
+  protected void notifyCancelButtonPressed()
+  {
+    List<IObserverSignView> copyObservers = new ArrayList<>(this.observers);
+
+    for (IObserverSignView observer : copyObservers)
+    {
+      observer.notifyCancelButtonPressed();
+    }
   }
 
   /**
@@ -157,7 +213,29 @@ public class SignInView extends JPanel
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
 
     TwitButton buttonValidate = new TwitButton(ConstantLoader.getInstance().getText(KEY_VALIDATE_BUTTON_TITLE));
+    buttonValidate.addActionListener(new ActionListener()
+    {
+
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        notifyValidateButtonPressed();
+
+      }
+    });
+
     TwitButton buttonCancel = new TwitButton(ConstantLoader.getInstance().getText(KEY_CANCEL_BUTTON_TITLE));
+
+    buttonCancel.addActionListener(new ActionListener()
+    {
+
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        notifyCancelButtonPressed();
+
+      }
+    });
 
     panel.add(buttonValidate, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 10, 40, 10), 0, 0));
@@ -180,6 +258,26 @@ public class SignInView extends JPanel
         new Insets(0, 0, 50, 0), 0, 0));
 
     return panel;
+  }
+
+  public JTextField getTextFieldPseudo()
+  {
+    return textFieldPseudo;
+  }
+
+  public void setTextFieldPseudo(JTextField textFieldPseudo)
+  {
+    this.textFieldPseudo = textFieldPseudo;
+  }
+
+  public JTextField getTextFieldMDP()
+  {
+    return textFieldMDP;
+  }
+
+  public void setTextFieldMDP(JTextField textFieldMDP)
+  {
+    this.textFieldMDP = textFieldMDP;
   }
 
 }

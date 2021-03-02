@@ -204,7 +204,7 @@ public class Twitup implements IHomeObserver
 
   public void showSignInViews()
   {
-    this.signInComponent = new SignInComponent();
+    this.signInComponent = new SignInComponent(this.mDatabase);
     this.mMainView.showPanel(this.signInComponent.getSignInView());
   }
 
