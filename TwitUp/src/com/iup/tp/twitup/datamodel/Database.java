@@ -114,6 +114,7 @@ public class Database implements IDatabase
   {
     // Ajout de l'utilisateur
     this.mUsers.add(userToAdd);
+    System.out.println(userToAdd.getName());
 
     // Notification des observateurs
     for (IDatabaseObserver observer : mObservers)

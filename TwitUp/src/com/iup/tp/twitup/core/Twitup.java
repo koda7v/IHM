@@ -17,6 +17,7 @@ import com.iup.tp.twitup.ihm.home.observer.IHomeObserver;
 import com.iup.tp.twitup.ihm.signIn.ISignInControllerObserver;
 import com.iup.tp.twitup.ihm.signIn.SignInComponent;
 import com.iup.tp.twitup.ihm.signup.SignUpComponent;
+import com.iup.tp.twitup.ihm.signup.observer.ISignUpControllerObserver;
 import com.iup.tp.twitup.printer.Printer;
 
 /**
@@ -24,7 +25,7 @@ import com.iup.tp.twitup.printer.Printer;
  * 
  * @author S.Lucas
  */
-public class Twitup implements IHomeObserver, ISignInControllerObserver
+public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUpControllerObserver
 {
   /**
    * Base de données.
@@ -199,8 +200,9 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver
 
   public void showSignUpViews()
   {
-    this.signUpComponent = new SignUpComponent();
+    this.signUpComponent = new SignUpComponent(this.mDatabase);
     this.mMainView.showPanel(this.signUpComponent.getSignUpView());
+    this.signUpComponent.addSignUpControllerObserver(this);
   }
 
   public void showSignInViews()
@@ -233,6 +235,13 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver
 
   @Override
   public void notifyCancelButtonPressed()
+  {
+    this.showHomeComponent();
+
+  }
+
+  @Override
+  public void notifyCancelButton()
   {
     this.showHomeComponent();
 

@@ -92,8 +92,9 @@ public class HomeView extends JPanel
         new Insets(0, 0, 0, 0), 0, 0));
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
     JPanel homeImage = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_HOME),
-        new Dimension(screenSize.height / 3, screenSize.height / 3));
+        new Dimension(screenSize.width / 3, screenSize.height / 3));
 
     panel.add(homeImage, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));

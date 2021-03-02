@@ -1,5 +1,8 @@
 package com.iup.tp.twitup.ihm.signup;
 
+import com.iup.tp.twitup.datamodel.IDatabase;
+import com.iup.tp.twitup.ihm.signup.observer.ISignUpControllerObserver;
+
 public class SignUpComponent
 {
   protected SignUpModel signUpModel;
@@ -8,11 +11,18 @@ public class SignUpComponent
 
   protected SignUpController signUpController;
 
-  public SignUpComponent()
+  public SignUpComponent(IDatabase base)
   {
     this.signUpModel = new SignUpModel();
     this.signUpView = new SignUpView();
-    this.signUpController = new SignUpController();
+    this.signUpController = new SignUpController(base, this.signUpModel);
+
+    this.signUpView.addSignUpViewObserver(this.signUpController);
+  }
+
+  public void addSignUpControllerObserver(ISignUpControllerObserver observer)
+  {
+    this.signUpController.addObserver(observer);
   }
 
   public SignUpView getSignUpView()
