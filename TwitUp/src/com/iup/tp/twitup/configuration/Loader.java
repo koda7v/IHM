@@ -1,8 +1,13 @@
 package com.iup.tp.twitup.configuration;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Properties;
+
+import javax.imageio.ImageIO;
 
 /**
  * 
@@ -66,6 +71,66 @@ public abstract class Loader
     }
 
     return text;
+  }
+
+  /**
+   * Récupération d'une image à partir d'une clef. Une image par défaut est choisie si l'image demandée n'est pas
+   * accessible.
+   * 
+   * @param key
+   *          Une chaîne de caractères qui va permettre la récupération d'une image précise dépendant du paramètre.
+   * @return Une image.
+   */
+  public Image getImage(String key)
+  {
+    Image result = null;
+
+    if (fileProperties.containsKey(key))
+    {
+      try
+      {
+        String imagePath = fileProperties.getProperty(key);
+        URL imageUrl = getClass().getClassLoader().getResource(imagePath).toURI().toURL();
+        result = ImageIO.read(imageUrl);
+
+      }
+      catch (Exception e)
+      {
+        result = null;
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Récupération d'une couleur à partir d'une clef. La couleur rouge de JavaSwing est choisie par défault si la couleur
+   * demandée n'est pas accessible ou n'est dans un format acceptable.
+   * 
+   * @param key
+   *          Clé définissant la couleur a sélectionner.
+   * @return La couleur associée à la clé si possible, couleur rouge de JavaSwing sinon.
+   */
+  public Color getColor(String key)
+  {
+    Color result = Color.RED;
+
+    if (fileProperties.containsKey(key))
+    {
+      try
+      {
+        result = Color.decode(fileProperties.getProperty(key));
+      }
+      catch (NumberFormatException e)
+      {
+        System.out.println("Problème couleur");
+      }
+    }
+    else
+    {
+      System.out.println("Problème coleur");
+    }
+
+    return result;
   }
 
 }

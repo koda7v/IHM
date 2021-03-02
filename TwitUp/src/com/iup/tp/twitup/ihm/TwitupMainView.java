@@ -1,6 +1,9 @@
 package com.iup.tp.twitup.ihm;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,11 +18,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import com.iup.tp.twitup.configuration.Constant;
 import com.iup.tp.twitup.configuration.ConstantLoader;
+import com.iup.tp.twitup.ihm.home.HomeComponent;
 
 /**
  * Classe de la vue principale de l'application.
@@ -27,11 +29,22 @@ import com.iup.tp.twitup.configuration.ConstantLoader;
 public class TwitupMainView extends JFrame
 {
 
+  /**
+   * Chemin du dossier d'échange.
+   */
   protected String directoryPath;
+
+  /**
+   * Panneau de contenu principal de la fenêtre.
+   */
+  protected JPanel contentPane;
+
+  protected HomeComponent homeComponent;
 
   public TwitupMainView()
   {
     this.initGUI();
+
   }
 
   protected void initGUI()
@@ -47,23 +60,12 @@ public class TwitupMainView extends JFrame
                      (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.getSize().height / 2));
 
     this.setJMenuBar(this.createMenuBar());
-
-    this.setLookAndFeel();
+    contentPane = new JPanel(new GridBagLayout());
+    this.setContentPane(contentPane);
+    this.showHomeComponent();
     this.chooser();
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-  }
-
-  protected void setLookAndFeel()
-  {
-    try
-    {
-      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    }
-    catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e)
-    {
-      // handle exception
-    }
   }
 
   protected JMenuBar createMenuBar()
@@ -153,7 +155,38 @@ public class TwitupMainView extends JFrame
 
   public void showView()
   {
+    this.showHomeComponent();
     this.setVisible(true);
+  }
+
+  /**
+   * Supprime l'ancien contenu de la fenêtre et affiche celui envoyé en paramètre.
+   */
+  public void showPanel(JPanel panel)
+  {
+    contentPane.removeAll();
+    contentPane.add(panel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
+        new Insets(0, 0, 0, 0), 0, 0));
+
+    contentPane.repaint();
+    contentPane.revalidate();
+  }
+
+  /**
+   * Actualise le composant.
+   */
+  public void componentRepaint(JPanel panel)
+  {
+    this.setJMenuBar(this.createMenuBar());
+    this.showPanel(panel);
+    this.revalidate();
+    this.repaint();
+  }
+
+  public void showHomeComponent()
+  {
+    this.homeComponent = new HomeComponent();
+    this.showPanel(this.homeComponent.getHomeView());
   }
 
   public String getDirectoryPath()

@@ -3,6 +3,8 @@ package com.iup.tp.twitup.core;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.IDatabase;
@@ -88,7 +90,14 @@ public class Twitup
    */
   protected void initLookAndFeel()
   {
-
+    try
+    {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    }
+    catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e)
+    {
+      // handle exception
+    }
   }
 
   /**
@@ -107,7 +116,15 @@ public class Twitup
    */
   protected void initDirectory()
   {
-    this.initDirectory(this.mMainView.getDirectoryPath());
+    String path = this.mMainView.getDirectoryPath();
+    if (path != null)
+    {
+      File file = new File(this.mMainView.getDirectoryPath());
+      if (isValideExchangeDirectory(file))
+      {
+        this.initDirectory(this.mMainView.getDirectoryPath());
+      }
+    }
   }
 
   /**
