@@ -2,6 +2,8 @@ package com.iup.tp.twitup.core;
 
 import java.io.File;
 
+import javax.swing.JFileChooser;
+
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
@@ -53,6 +55,11 @@ public class Twitup
   protected String mUiClassName;
 
   /**
+   * File chooser
+   */
+  protected JFileChooser chooser;
+
+  /**
    * Constructeur.
    */
   public Twitup()
@@ -99,7 +106,9 @@ public class Twitup
    * <b>Le chemin doit obligatoirement avoir été saisi et être valide avant de pouvoir utiliser l'application</b>
    */
   protected void initDirectory()
-  {}
+  {
+    this.initDirectory(this.mMainView.getDirectoryPath());
+  }
 
   /**
    * Indique si le fichier donné est valide pour servire de répertoire d'échange
@@ -139,6 +148,7 @@ public class Twitup
    */
   public void initDirectory(String directoryPath)
   {
+    System.out.println(directoryPath);
     mExchangeDirectoryPath = directoryPath;
     mWatchableDirectory = new WatchableDirectory(directoryPath);
     mEntityManager.setExchangeDirectory(directoryPath);
@@ -151,4 +161,5 @@ public class Twitup
   {
     this.mMainView.showView();
   }
+
 }

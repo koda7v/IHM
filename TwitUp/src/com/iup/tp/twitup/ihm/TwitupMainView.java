@@ -26,12 +26,15 @@ import com.iup.tp.twitup.configuration.ConstantLoader;
  */
 public class TwitupMainView extends JFrame
 {
+
+  protected String directoryPath;
+
   public TwitupMainView()
   {
     this.initGUI();
   }
 
-  public void initGUI()
+  protected void initGUI()
   {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     ImageIcon logo = new ImageIcon(getClass().getClassLoader()
@@ -46,12 +49,11 @@ public class TwitupMainView extends JFrame
     this.setJMenuBar(this.createMenuBar());
     this.setLookAndFeel();
     this.chooser();
-
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
   }
 
-  public void setLookAndFeel()
+  protected void setLookAndFeel()
   {
     try
     {
@@ -63,7 +65,7 @@ public class TwitupMainView extends JFrame
     }
   }
 
-  public JMenuBar createMenuBar()
+  protected JMenuBar createMenuBar()
   {
     JMenuBar menu = new JMenuBar();
 
@@ -136,15 +138,13 @@ public class TwitupMainView extends JFrame
   public JFileChooser chooser()
   {
     JFileChooser chooser = new JFileChooser();
-//    FileNameExtensionFilter filter = new FileNameExtensionFilter("description", ".jpg");
     chooser.setDialogTitle(ConstantLoader.getInstance().getText(Constant.KEY_FILECHOOSER_TITLE));
     chooser.setAcceptAllFileFilterUsed(true);
     chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//    chooser.setFileFilter(filter);
     int returnVal = chooser.showOpenDialog(this);
     if (returnVal == JFileChooser.APPROVE_OPTION)
     {
-      System.out.println("Fichier choisis : " + chooser.getSelectedFile().getName());
+      this.directoryPath = chooser.getSelectedFile().getPath();
     }
 
     return chooser;
@@ -154,4 +154,15 @@ public class TwitupMainView extends JFrame
   {
     this.setVisible(true);
   }
+
+  public String getDirectoryPath()
+  {
+    return directoryPath;
+  }
+
+  public void setDirectoryPath(String directoryPath)
+  {
+    this.directoryPath = directoryPath;
+  }
+
 }
