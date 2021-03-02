@@ -14,6 +14,7 @@ import com.iup.tp.twitup.ihm.TwitupMainView;
 import com.iup.tp.twitup.ihm.TwitupMock;
 import com.iup.tp.twitup.ihm.home.HomeComponent;
 import com.iup.tp.twitup.ihm.home.observer.IHomeObserver;
+import com.iup.tp.twitup.ihm.signIn.SignInComponent;
 import com.iup.tp.twitup.ihm.signup.SignUpComponent;
 import com.iup.tp.twitup.printer.Printer;
 
@@ -66,7 +67,7 @@ public class Twitup implements IHomeObserver
 
   protected HomeComponent homeComponent;
 
-//  protected SignInComponent signInComponent;
+  protected SignInComponent signInComponent;
 
   protected SignUpComponent signUpComponent;
 
@@ -203,8 +204,8 @@ public class Twitup implements IHomeObserver
 
   public void showSignInViews()
   {
-//    this.signInComponent = new SignInComponent();
-//    this.mMainView.showPanel(this.signInComponent.getSignInView());
+    this.signInComponent = new SignInComponent();
+    this.mMainView.showPanel(this.signInComponent.getSignInView());
   }
 
   @Override
