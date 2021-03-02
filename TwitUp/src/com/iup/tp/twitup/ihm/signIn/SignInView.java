@@ -89,6 +89,8 @@ public class SignInView extends JPanel
    */
   protected static final String KEY_SIGNIN_BUTTON_TITLE = "KEY_SIGNIN_BUTTON_TITLE";
 
+  protected static final String KEY_FORM_BACKGROUND_COLOR = "KEY_FORM_BACKGROUND_COLOR";
+
   /**
    * Liste des observeurs du composant.
    */
@@ -106,12 +108,13 @@ public class SignInView extends JPanel
   protected void initComponent()
   {
     this.setLayout(new GridBagLayout());
+    this.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
 
     this.contentPane = new JPanel(new GridBagLayout());
     this.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
 
     contentPane.add(title(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 20, 20));
     contentPane.add(createPanelFormSignIn(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -178,7 +181,7 @@ public class SignInView extends JPanel
   protected JPanel createPanelFormSignIn()
   {
     JPanel panel = new JPanel(new GridBagLayout());
-    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
+    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_FORM_BACKGROUND_COLOR));
 
     labelPseudo = new JLabel(ConstantLoader.getInstance().getText(KEY_TAG_BUTTON_TITLE));
     labelPseudo.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -210,7 +213,7 @@ public class SignInView extends JPanel
   protected JPanel createButtons()
   {
     JPanel panel = new JPanel(new GridBagLayout());
-    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
+    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_FORM_BACKGROUND_COLOR));
 
     TwitButton buttonValidate = new TwitButton(ConstantLoader.getInstance().getText(KEY_VALIDATE_BUTTON_TITLE));
     buttonValidate.addActionListener(new ActionListener()
@@ -249,10 +252,10 @@ public class SignInView extends JPanel
   {
 
     JPanel panel = new JPanel(new GridBagLayout());
+    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_FORM_BACKGROUND_COLOR));
 
-    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
     titleLabel = new JLabel(ConstantLoader.getInstance().getText(KEY_SIGNIN_BUTTON_TITLE));
-    titleLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+    titleLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 
     panel.add(titleLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 50, 0), 0, 0));
