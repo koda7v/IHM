@@ -148,7 +148,6 @@ public class Twitup
    */
   public void initDirectory(String directoryPath)
   {
-    System.out.println(directoryPath);
     mExchangeDirectoryPath = directoryPath;
     mWatchableDirectory = new WatchableDirectory(directoryPath);
     mEntityManager.setExchangeDirectory(directoryPath);

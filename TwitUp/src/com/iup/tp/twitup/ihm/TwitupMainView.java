@@ -47,6 +47,7 @@ public class TwitupMainView extends JFrame
                      (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.getSize().height / 2));
 
     this.setJMenuBar(this.createMenuBar());
+
     this.setLookAndFeel();
     this.chooser();
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
