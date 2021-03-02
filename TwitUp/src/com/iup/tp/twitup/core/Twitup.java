@@ -14,6 +14,7 @@ import com.iup.tp.twitup.ihm.TwitupMainView;
 import com.iup.tp.twitup.ihm.TwitupMock;
 import com.iup.tp.twitup.ihm.home.HomeComponent;
 import com.iup.tp.twitup.ihm.home.observer.IHomeObserver;
+import com.iup.tp.twitup.ihm.signIn.ISignInControllerObserver;
 import com.iup.tp.twitup.ihm.signIn.SignInComponent;
 import com.iup.tp.twitup.ihm.signup.SignUpComponent;
 import com.iup.tp.twitup.printer.Printer;
@@ -23,7 +24,7 @@ import com.iup.tp.twitup.printer.Printer;
  * 
  * @author S.Lucas
  */
-public class Twitup implements IHomeObserver
+public class Twitup implements IHomeObserver, ISignInControllerObserver
 {
   /**
    * Base de données.
@@ -206,6 +207,7 @@ public class Twitup implements IHomeObserver
   {
     this.signInComponent = new SignInComponent(this.mDatabase);
     this.mMainView.showPanel(this.signInComponent.getSignInView());
+    this.signInComponent.addSignInControllerObserver(this);
   }
 
   @Override
@@ -226,6 +228,13 @@ public class Twitup implements IHomeObserver
         System.out.println("La vue ne sait pas quoi afficher");
         break;
     }
+
+  }
+
+  @Override
+  public void notifyCancelButtonPressed()
+  {
+    this.showHomeComponent();
 
   }
 

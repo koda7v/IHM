@@ -15,6 +15,12 @@ public class SignInComponent
     this.controller = new SignInController(mDatabase, model);
 
     this.view.addObserver(controller);
+
+  }
+
+  public void addSignInControllerObserver(ISignInControllerObserver observer)
+  {
+    this.controller.addObserver(observer);
   }
 
   public SignInView getSignInView()
