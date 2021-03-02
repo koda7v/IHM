@@ -127,7 +127,7 @@ public abstract class Loader
     }
     else
     {
-      System.out.println("Problème coleur");
+      System.out.println("Problème couleur");
     }
 
     return result;

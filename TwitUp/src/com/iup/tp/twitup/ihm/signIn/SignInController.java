@@ -52,8 +52,9 @@ public class SignInController implements IObserverSignView
   {
     model.setPseudo(pseudo);
     model.setMdp(mdp);
+
     System.out.println("J'ai cliqué sur le bonton Valider!");
-    if (formValid())
+    if (this.formValid())
     {
       System.out.println("J'ai cliqué sur le bonton Valider et c'est valide !!!");
     }
@@ -81,6 +82,8 @@ public class SignInController implements IObserverSignView
   {
     for (User user : base.getUsers())
     {
+      System.out.println("mon pseudo" + model.getPseudo());
+      System.out.println("mon mdp" + model.getMdp());
       if (user.getUserPassword() == model.getPseudo() || user.getUserTag() == model.getMdp())
       {
         return true;
