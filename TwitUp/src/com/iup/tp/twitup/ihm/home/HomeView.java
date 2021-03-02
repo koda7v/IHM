@@ -7,12 +7,17 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.ihm.ImagePanel;
+import com.iup.tp.twitup.ihm.home.observer.IHomeViewObserver;
 import com.iup.tp.twitup.ihm.widget.TwitButton;
 
 public class HomeView extends JPanel
@@ -37,9 +42,16 @@ public class HomeView extends JPanel
 
   protected static final String KEY_SIGNIN_BUTTON_TITLE = "KEY_SIGNIN_BUTTON_TITLE";
 
+  protected TwitButton buttonSignUp;
+
+  protected TwitButton buttonSigngIn;
+
+  protected List<IHomeViewObserver> observers;
+
   public HomeView()
   {
     this.initContent();
+    this.observers = new ArrayList<>();
   }
 
   protected void initContent()
@@ -57,6 +69,14 @@ public class HomeView extends JPanel
     this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 
+  }
+
+  public void addIHomeViewObserver(IHomeViewObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.add(observer);
+    }
   }
 
   protected JPanel createPanelOverview()
@@ -87,8 +107,27 @@ public class HomeView extends JPanel
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
 
     TwitButton buttonSignUp = new TwitButton(ConstantLoader.getInstance().getText(KEY_SIGNUP_BUTTON_TITLE));
-    TwitButton buttonSignIn = new TwitButton(ConstantLoader.getInstance().getText(KEY_SIGNIN_BUTTON_TITLE));
+    buttonSignUp.addActionListener(new ActionListener()
+    {
 
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        HomeView.this.selectChoice(ConstantLoader.getInstance().getText(KEY_SIGNUP_BUTTON_TITLE));
+
+      }
+    });
+    TwitButton buttonSignIn = new TwitButton(ConstantLoader.getInstance().getText(KEY_SIGNIN_BUTTON_TITLE));
+    buttonSignIn.addActionListener(new ActionListener()
+    {
+
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        HomeView.this.selectChoice(ConstantLoader.getInstance().getText(KEY_SIGNIN_BUTTON_TITLE));
+
+      }
+    });
     panel.add(buttonSignUp, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 40, 0), 0, 0));
 
@@ -96,6 +135,19 @@ public class HomeView extends JPanel
         new Insets(40, 0, 0, 0), 0, 0));
 
     return panel;
+  }
+
+  public void selectChoice(String choice)
+  {
+    this.notifyChoiceMainView(choice);
+  }
+
+  public void notifyChoiceMainView(String choice)
+  {
+    for (IHomeViewObserver currentObserver : observers)
+    {
+      currentObserver.notificationChoiceView(choice);
+    }
   }
 
 }

@@ -21,13 +21,17 @@ import javax.swing.SwingConstants;
 
 import com.iup.tp.twitup.configuration.Constant;
 import com.iup.tp.twitup.configuration.ConstantLoader;
-import com.iup.tp.twitup.ihm.home.HomeComponent;
 
 /**
  * Classe de la vue principale de l'application.
  */
 public class TwitupMainView extends JFrame
 {
+
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 6552375517600057708L;
 
   /**
    * Chemin du dossier d'échange.
@@ -39,12 +43,9 @@ public class TwitupMainView extends JFrame
    */
   protected JPanel contentPane;
 
-  protected HomeComponent homeComponent;
-
   public TwitupMainView()
   {
     this.initGUI();
-
   }
 
   protected void initGUI()
@@ -62,7 +63,6 @@ public class TwitupMainView extends JFrame
     this.setJMenuBar(this.createMenuBar());
     contentPane = new JPanel(new GridBagLayout());
     this.setContentPane(contentPane);
-    this.showHomeComponent();
     this.chooser();
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -155,7 +155,6 @@ public class TwitupMainView extends JFrame
 
   public void showView()
   {
-    this.showHomeComponent();
     this.setVisible(true);
   }
 
@@ -181,12 +180,6 @@ public class TwitupMainView extends JFrame
     this.showPanel(panel);
     this.revalidate();
     this.repaint();
-  }
-
-  public void showHomeComponent()
-  {
-    this.homeComponent = new HomeComponent();
-    this.showPanel(this.homeComponent.getHomeView());
   }
 
   public String getDirectoryPath()

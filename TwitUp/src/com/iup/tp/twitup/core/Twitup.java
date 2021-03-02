@@ -12,6 +12,9 @@ import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.ihm.TwitupMainView;
 import com.iup.tp.twitup.ihm.TwitupMock;
+import com.iup.tp.twitup.ihm.home.HomeComponent;
+import com.iup.tp.twitup.ihm.home.observer.IHomeObserver;
+import com.iup.tp.twitup.ihm.signup.SignUpComponent;
 import com.iup.tp.twitup.printer.Printer;
 
 /**
@@ -19,7 +22,7 @@ import com.iup.tp.twitup.printer.Printer;
  * 
  * @author S.Lucas
  */
-public class Twitup
+public class Twitup implements IHomeObserver
 {
   /**
    * Base de données.
@@ -60,6 +63,12 @@ public class Twitup
    * File chooser
    */
   protected JFileChooser chooser;
+
+  protected HomeComponent homeComponent;
+
+//  protected SignInComponent signInComponent;
+
+  protected SignUpComponent signUpComponent;
 
   /**
    * Constructeur.
@@ -108,6 +117,7 @@ public class Twitup
     Printer printer = new Printer();
     this.mDatabase.addObserver(printer);
     this.mMainView = new TwitupMainView();
+    this.showHomeComponent();
   }
 
   /**
@@ -176,6 +186,46 @@ public class Twitup
   public void show()
   {
     this.mMainView.showView();
+  }
+
+  public void showHomeComponent()
+  {
+    this.homeComponent = new HomeComponent();
+    this.homeComponent.addObserver(this);
+    this.mMainView.showPanel(this.homeComponent.getHomeView());
+  }
+
+  public void showSignUpViews()
+  {
+    this.signUpComponent = new SignUpComponent();
+    this.mMainView.showPanel(this.signUpComponent.getSignUpView());
+  }
+
+  public void showSignInViews()
+  {
+//    this.signInComponent = new SignInComponent();
+//    this.mMainView.showPanel(this.signInComponent.getSignInView());
+  }
+
+  @Override
+  public void notificationSwapView(Integer value)
+  {
+    // 1 : Sign up
+    // 2 : Sign in
+    switch (value)
+    {
+      case 1:
+        this.showSignUpViews();
+        break;
+      case 2:
+        this.showSignInViews();
+        break;
+
+      default:
+        System.out.println("La vue ne sait pas quoi afficher");
+        break;
+    }
+
   }
 
 }
