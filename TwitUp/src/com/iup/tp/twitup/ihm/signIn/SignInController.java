@@ -84,7 +84,7 @@ public class SignInController implements IObserverSignView
     {
       System.out.println("mon pseudo" + model.getPseudo());
       System.out.println("mon mdp" + model.getMdp());
-      if (user.getUserPassword() == model.getPseudo() || user.getUserTag() == model.getMdp())
+      if (user.getUserTag().equals(model.getPseudo()) && user.getUserPassword().equals(model.getMdp()))
       {
         return true;
       }
