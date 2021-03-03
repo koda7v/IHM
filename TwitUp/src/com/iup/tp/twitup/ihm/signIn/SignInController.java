@@ -53,7 +53,6 @@ public class SignInController implements IObserverSignView
     model.setPseudo(pseudo);
     model.setMdp(mdp);
 
-    System.out.println("J'ai cliqué sur le bonton Valider!");
     if (this.formValid())
     {
       System.out.println("J'ai cliqué sur le bonton Valider et c'est valide !!!");

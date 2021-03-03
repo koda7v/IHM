@@ -1,4 +1,4 @@
-package com.iup.tp.twitup.ihm.twitt;
+package com.iup.tp.twitup.ihm.hometwitt.twitt;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

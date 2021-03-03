@@ -1,4 +1,4 @@
-package com.iup.tp.twitup.ihm.twitt;
+package com.iup.tp.twitup.ihm.hometwitt.twitt;
 
 public class TwittComponent
 {
