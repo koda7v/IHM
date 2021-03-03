@@ -10,8 +10,8 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
-import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittView;
+import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittComponent;
+import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittView;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.observer.ITwittListModelObserver;
 
 public class TwittViewList extends JPanel implements ITwittListModelObserver
@@ -35,7 +35,7 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
   }
 
   @Override
-  public void twittComponentAdded(TwittComponent twittComponent)
+  public void twittComponentAdded(CreationTwittComponent twittComponent)
   {
     this.repaintContentPane();
   }
@@ -70,11 +70,11 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
    */
   protected void placeComponents()
   {
-    List<TwittComponent> twittComponentList = twittListModel.getTwittComponentList();
+    List<CreationTwittComponent> twittComponentList = twittListModel.getTwittComponentList();
     for (int i = 0; i < twittComponentList.size(); i++)
     {
 
-      TwittView twittView = twittComponentList.get(i).getView();
+      CreationTwittView twittView = twittComponentList.get(i).getTwittView();
 
       this.contentPane.add(twittView, new GridBagConstraints(0, i, 1, 1, 1, 0, GridBagConstraints.CENTER,
           GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));

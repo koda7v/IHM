@@ -1,6 +1,6 @@
 package com.iup.tp.twitup.ihm.hometwitt.twittlist.observer;
 
-import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
+import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittComponent;
 
 public interface ITwittListModelObserver
 {
@@ -11,5 +11,5 @@ public interface ITwittListModelObserver
    * @param correspondenceComponent
    *          Nouveau composant d'un twitt.
    */
-  public void twittComponentAdded(TwittComponent twittComponent);
+  public void twittComponentAdded(CreationTwittComponent twittComponent);
 }

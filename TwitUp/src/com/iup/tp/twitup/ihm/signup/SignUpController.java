@@ -66,7 +66,16 @@ public class SignUpController implements ISignUpViewObserver
     this.signUpModel.setMdp(mdp);
 
     this.base.addUser(this.createUser());
+    this.notifySwapViewToHomeTwitt();
 
+  }
+
+  public void notifySwapViewToHomeTwitt()
+  {
+    for (ISignUpControllerObserver currentObserver : observers)
+    {
+      currentObserver.swapViewToHomeTwitt();
+    }
   }
 
 }

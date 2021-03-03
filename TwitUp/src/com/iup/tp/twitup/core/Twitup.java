@@ -14,6 +14,7 @@ import com.iup.tp.twitup.ihm.TwitupMainView;
 import com.iup.tp.twitup.ihm.TwitupMock;
 import com.iup.tp.twitup.ihm.home.HomeComponent;
 import com.iup.tp.twitup.ihm.home.observer.IHomeObserver;
+import com.iup.tp.twitup.ihm.hometwitt.HomeTwittComponent;
 import com.iup.tp.twitup.ihm.signIn.ISignInControllerObserver;
 import com.iup.tp.twitup.ihm.signIn.SignInComponent;
 import com.iup.tp.twitup.ihm.signup.SignUpComponent;
@@ -72,6 +73,8 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
   protected SignInComponent signInComponent;
 
   protected SignUpComponent signUpComponent;
+
+  protected HomeTwittComponent homeTwittComponent;
 
   /**
    * Constructeur.
@@ -212,6 +215,12 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
     this.signInComponent.addSignInControllerObserver(this);
   }
 
+  public void showHomeTwittViews()
+  {
+    this.homeTwittComponent = new HomeTwittComponent();
+    this.mMainView.showPanel(this.homeTwittComponent.getHomeTwittView());
+  }
+
   @Override
   public void notificationSwapView(Integer value)
   {
@@ -244,6 +253,13 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
   public void notifyCancelButton()
   {
     this.showHomeComponent();
+
+  }
+
+  @Override
+  public void swapViewToHomeTwitt()
+  {
+    this.showHomeTwittViews();
 
   }
 

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.iup.tp.twitup.datamodel.Twit;
-import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
+import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.observer.ITwittListModelObserver;
 
 public class TwittModelList
@@ -15,7 +15,7 @@ public class TwittModelList
   /**
    * Map des composants de tweets avec leurs tweets associées.
    */
-  protected Map<Twit, TwittComponent> twittComponentMap;
+  protected Map<Twit, CreationTwittComponent> twittComponentMap;
 
   /**
    * Liste des observeurs du modèle.
@@ -61,7 +61,7 @@ public class TwittModelList
    * @param twittComponent
    *          Composant de twitt ajouté.
    */
-  public void notifyTwittComponentAdded(TwittComponent twittComponent)
+  public void notifyTwittComponentAdded(CreationTwittComponent twittComponent)
   {
     List<ITwittListModelObserver> copyObservers = new ArrayList<>(this.observers);
 
@@ -79,7 +79,7 @@ public class TwittModelList
    * @param twittComponent
    *          Composant associé au twitt.
    */
-  protected void addTwittComponent(Twit twit, TwittComponent twittComponent)
+  protected void addTwittComponent(Twit twit, CreationTwittComponent twittComponent)
   {
     twittComponentMap.put(twit, twittComponent);
     this.notifyTwittComponentAdded(twittComponent);
@@ -90,9 +90,9 @@ public class TwittModelList
    * 
    * @return Liste des composants de tweets.
    */
-  public List<TwittComponent> getTwittComponentList()
+  public List<CreationTwittComponent> getTwittComponentList()
   {
-    List<TwittComponent> correspondenceComponentList = new ArrayList<>(twittComponentMap.values());
+    List<CreationTwittComponent> correspondenceComponentList = new ArrayList<>(twittComponentMap.values());
     return correspondenceComponentList;
   }
 }
