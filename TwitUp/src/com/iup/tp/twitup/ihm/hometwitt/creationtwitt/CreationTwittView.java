@@ -8,12 +8,15 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
+import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.observer.ICreationTwittViewObserver;
 import com.iup.tp.twitup.ihm.widget.TwitButton;
 
 public class CreationTwittView extends JPanel
@@ -63,8 +66,11 @@ public class CreationTwittView extends JPanel
 
   protected JTextArea areaTwitt;
 
+  protected List<ICreationTwittViewObserver> observers;
+
   public CreationTwittView()
   {
+    this.observers = new ArrayList<>();
     this.initContent();
   }
 
@@ -88,6 +94,42 @@ public class CreationTwittView extends JPanel
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+  }
+
+  public void addCreationViewObserver(ICreationTwittViewObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.add(observer);
+    }
+  }
+
+  public void removeCreationViewObserver(ICreationTwittViewObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.remove(observer);
+    }
+  }
+
+  public void notificationValidate()
+  {
+    for (ICreationTwittViewObserver currentObserver : observers)
+    {
+      currentObserver.notificationCreationValidate(this.areaTwitt.getText());
+    }
+    this.cleanTwitt();
+  }
+
+  public void notificatioCancel()
+  {
+    this.cleanTwitt();
+  }
+
+  protected void cleanTwitt()
+  {
+    this.areaTwitt.selectAll();
+    this.areaTwitt.replaceSelection("");
   }
 
   protected JPanel createPanelTitle()
@@ -132,7 +174,7 @@ public class CreationTwittView extends JPanel
       @Override
       public void actionPerformed(ActionEvent e)
       {
-        //
+        CreationTwittView.this.notificationValidate();
 
       }
     });
@@ -144,7 +186,7 @@ public class CreationTwittView extends JPanel
       @Override
       public void actionPerformed(ActionEvent e)
       {
-        //
+        CreationTwittView.this.notificatioCancel();
 
       }
     });

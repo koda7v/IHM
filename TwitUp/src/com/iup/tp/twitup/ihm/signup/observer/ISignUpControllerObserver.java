@@ -4,5 +4,5 @@ public interface ISignUpControllerObserver
 {
   public void notifyCancelButton();
 
-  public void swapViewToHomeTwitt();
+  public void swapViewToHomeTwitt(String tag);
 }

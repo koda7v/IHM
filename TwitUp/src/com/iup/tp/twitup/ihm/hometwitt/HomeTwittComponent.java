@@ -2,6 +2,8 @@ package com.iup.tp.twitup.ihm.hometwitt;
 
 import javax.swing.JPanel;
 
+import com.iup.tp.twitup.datamodel.IDatabase;
+import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.TwittComponentList;
 
@@ -18,8 +20,15 @@ public class HomeTwittComponent
 
   protected TwittComponentList twittComponentList;
 
-  public HomeTwittComponent()
+  protected IDatabase base;
+
+  protected User user;
+
+  public HomeTwittComponent(IDatabase base, User user)
   {
+    this.base = base;
+    this.user = user;
+
     this.initTwittComponent();
     this.initTwittListComponent();
 
@@ -31,7 +40,7 @@ public class HomeTwittComponent
 
   public void initTwittComponent()
   {
-    this.twittComponent = new CreationTwittComponent();
+    this.twittComponent = new CreationTwittComponent(this.base, this.user);
   }
 
   public void initTwittListComponent()

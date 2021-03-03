@@ -8,6 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.IDatabase;
+import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
 import com.iup.tp.twitup.ihm.TwitupMainView;
@@ -75,6 +76,8 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
   protected SignUpComponent signUpComponent;
 
   protected HomeTwittComponent homeTwittComponent;
+
+  protected User userConnected;
 
   /**
    * Constructeur.
@@ -189,6 +192,17 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
     mWatchableDirectory.addObserver(mEntityManager);
   }
 
+  protected void setUserConnected(String tag)
+  {
+    for (User currentUser : this.mDatabase.getUsers())
+    {
+      if (currentUser.getUserTag().equals(tag))
+      {
+        this.userConnected = currentUser;
+      }
+    }
+  }
+
   public void show()
   {
     this.mMainView.showView();
@@ -217,7 +231,7 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
 
   public void showHomeTwittViews()
   {
-    this.homeTwittComponent = new HomeTwittComponent();
+    this.homeTwittComponent = new HomeTwittComponent(this.mDatabase, this.userConnected);
     this.mMainView.showPanel(this.homeTwittComponent.getHomeTwittView());
   }
 
@@ -257,8 +271,10 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
   }
 
   @Override
-  public void swapViewToHomeTwitt()
+  public void swapViewToHomeTwitt(String tag)
   {
+    this.setUserConnected(tag);
+    System.out.println("user connected : " + this.userConnected.getName());
     this.showHomeTwittViews();
 
   }

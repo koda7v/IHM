@@ -74,7 +74,7 @@ public class SignUpController implements ISignUpViewObserver
   {
     for (ISignUpControllerObserver currentObserver : observers)
     {
-      currentObserver.swapViewToHomeTwitt();
+      currentObserver.swapViewToHomeTwitt(this.signUpModel.getTag());
     }
   }
 
