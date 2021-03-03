@@ -126,6 +126,7 @@ public class TwittView extends JPanel
     this.textLabel = new JTextArea(ConstantLoader.getInstance().getText(model.getText()));
     this.textLabel.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
     this.textLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
+    this.textLabel.setEditable(false);
 
     panel.add(textLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 50, 0), 0, 0));
