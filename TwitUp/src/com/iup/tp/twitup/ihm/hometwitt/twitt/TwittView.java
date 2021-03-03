@@ -35,21 +35,6 @@ public class TwittView extends JPanel
   private JTextArea textLabel;
 
   /**
-   * Couleur de fond bleu
-   */
-  protected static final String KEY_COLOR_HOME_LEFT = "KEY_COLOR_HOME_LEFT";
-
-  /**
-   * Couleur de fond blanche
-   */
-  protected static final String KEY_COLOR_HOME_RIGHT = "KEY_COLOR_HOME_RIGHT";
-
-  /**
-   * Model d'un twitt
-   */
-  protected Twit model;
-
-  /**
    * Nom du user
    */
   protected JLabel nameLabel;
@@ -63,6 +48,21 @@ public class TwittView extends JPanel
    * Pseudo du user
    */
   private JLabel pseudoLabel;
+
+  /**
+   * Model d'un twitt
+   */
+  protected Twit model;
+
+  /**
+   * Couleur de fond bleu
+   */
+  protected static final String KEY_COLOR_HOME_LEFT = "KEY_COLOR_HOME_LEFT";
+
+  /**
+   * Couleur de fond blanche
+   */
+  protected static final String KEY_COLOR_HOME_RIGHT = "KEY_COLOR_HOME_RIGHT";
 
   public TwittView(Twit model)
   {
@@ -79,12 +79,17 @@ public class TwittView extends JPanel
   {
     this.setLayout(new GridBagLayout());
     this.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
+    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
     this.contentPane = new JPanel(new GridBagLayout());
-    this.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
+    this.contentPane.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
 
-    contentPane.add(text(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 0, 0), 20, 20));
+    contentPane.add(userName(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 50, 0), 0, 0));
+    contentPane.add(twittText(), new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 50, 0), 0, 0));
+    contentPane.add(dateTwitt(), new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 50, 0), 0, 0));
 
     this.add(contentPane);
   }
@@ -95,29 +100,6 @@ public class TwittView extends JPanel
    * @return
    */
   protected JPanel twittText()
-  {
-    JPanel panel = new JPanel(new GridBagLayout());
-    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
-
-    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-    this.textLabel.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
-
-    panel.add(userName(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 50, 0), 0, 0));
-    panel.add(text(), new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 50, 0), 0, 0));
-    panel.add(dateTwitt(), new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 50, 0), 0, 0));
-
-    return panel;
-  }
-
-  /**
-   * Récupération du texte
-   * 
-   * @return
-   */
-  protected JPanel text()
   {
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
