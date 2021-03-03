@@ -3,22 +3,26 @@ package com.iup.tp.twitup.ihm.hometwitt.twittlist;
 import com.iup.tp.twitup.datamodel.IDatabaseObserver;
 import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
+import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
 
 public class TwittControllerList implements IDatabaseObserver
 {
 
   protected TwittViewList view;
 
-  public TwittControllerList(TwittViewList view)
+  protected TwittModelList model;
+
+  public TwittControllerList(TwittModelList modelList, TwittViewList view)
   {
     this.view = view;
+    this.model = modelList;
   }
 
   @Override
   public void notifyTwitAdded(Twit addedTwit)
   {
     view.contentPane.removeAll();
-
+    this.model.addTwittComponent(addedTwit, new TwittComponent(addedTwit));
     view.placeComponents();
     view.revalidate();
     view.repaint();

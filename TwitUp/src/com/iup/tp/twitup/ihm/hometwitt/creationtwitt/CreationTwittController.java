@@ -21,6 +21,7 @@ public class CreationTwittController implements ICreationTwittViewObserver
   @Override
   public void notificationCreationValidate(String text)
   {
+    System.out.println(user.getName());
     this.base.addTwit(new Twit(this.user, text));
 
   }

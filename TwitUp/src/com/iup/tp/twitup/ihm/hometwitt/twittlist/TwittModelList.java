@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.iup.tp.twitup.datamodel.Twit;
-import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittComponent;
+import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.observer.ITwittListModelObserver;
 
 public class TwittModelList
@@ -15,7 +15,7 @@ public class TwittModelList
   /**
    * Map des composants de tweets avec leurs tweets associées.
    */
-  protected Map<Twit, CreationTwittComponent> twittComponentMap;
+  protected Map<Twit, TwittComponent> twittComponentMap;
 
   /**
    * Liste des observeurs du modèle.
@@ -25,6 +25,8 @@ public class TwittModelList
   public TwittModelList()
   {
     this.twittComponentMap = new HashMap<>();
+
+    this.observers = new ArrayList<ITwittListModelObserver>();
   }
 
   /**
@@ -61,7 +63,7 @@ public class TwittModelList
    * @param twittComponent
    *          Composant de twitt ajouté.
    */
-  public void notifyTwittComponentAdded(CreationTwittComponent twittComponent)
+  public void notifyTwittComponentAdded(TwittComponent twittComponent)
   {
     List<ITwittListModelObserver> copyObservers = new ArrayList<>(this.observers);
 
@@ -79,7 +81,7 @@ public class TwittModelList
    * @param twittComponent
    *          Composant associé au twitt.
    */
-  protected void addTwittComponent(Twit twit, CreationTwittComponent twittComponent)
+  protected void addTwittComponent(Twit twit, TwittComponent twittComponent)
   {
     twittComponentMap.put(twit, twittComponent);
     this.notifyTwittComponentAdded(twittComponent);
@@ -90,9 +92,8 @@ public class TwittModelList
    * 
    * @return Liste des composants de tweets.
    */
-  public List<CreationTwittComponent> getTwittComponentList()
+  public List<TwittComponent> getTwittComponentList()
   {
-    List<CreationTwittComponent> correspondenceComponentList = new ArrayList<>(twittComponentMap.values());
-    return correspondenceComponentList;
+    return new ArrayList<>(twittComponentMap.values());
   }
 }

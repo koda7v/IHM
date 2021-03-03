@@ -10,7 +10,9 @@ public class TwittComponentList
   {
     this.modelList = new TwittModelList();
     this.viewList = new TwittViewList(modelList);
-    this.controllerList = new TwittControllerList(viewList);
+    this.controllerList = new TwittControllerList(modelList, viewList);
+
+    this.modelList.addObserver(this.viewList);
   }
 
   public TwittViewList getViewList()
@@ -18,9 +20,9 @@ public class TwittComponentList
     return viewList;
   }
 
-  public void setViewList(TwittViewList viewList)
+  public TwittControllerList getControllerList()
   {
-    this.viewList = viewList;
+    return controllerList;
   }
 
 }

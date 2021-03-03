@@ -67,6 +67,7 @@ public class TwittView extends JPanel
   public TwittView(Twit model)
   {
     this.model = model;
+    this.initContent();
   }
 
   /**
@@ -85,11 +86,11 @@ public class TwittView extends JPanel
     this.contentPane.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
 
     contentPane.add(userName(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 50, 0), 0, 0));
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     contentPane.add(twittText(), new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 50, 0), 0, 0));
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     contentPane.add(dateTwitt(), new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 50, 0), 0, 0));
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(contentPane);
   }
@@ -105,13 +106,13 @@ public class TwittView extends JPanel
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
 
     Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-    this.textLabel = new JTextArea(ConstantLoader.getInstance().getText(model.getText()));
+    this.textLabel = new JTextArea(model.getText());
     this.textLabel.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
     this.textLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
     this.textLabel.setEditable(false);
 
     panel.add(textLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 50, 0), 0, 0));
+        new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
   }
@@ -126,15 +127,15 @@ public class TwittView extends JPanel
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
 
-    this.nameLabel = new JLabel(ConstantLoader.getInstance().getText(model.getTwiter().getName()));
-    this.nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
-    this.pseudoLabel = new JLabel(ConstantLoader.getInstance().getText(model.getTwiter().getUserTag()));
-    this.pseudoLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
+    this.nameLabel = new JLabel(model.getTwiter().getName());
+    this.nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+    this.pseudoLabel = new JLabel(model.getTwiter().getUserTag());
+    this.pseudoLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 
-    panel.add(textLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 50, 0), 0, 0));
-    panel.add(pseudoLabel, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 50, 0), 0, 0));
+    panel.add(nameLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(0, 0, 0, 0), 0, 0));
+    panel.add(pseudoLabel, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
   }
@@ -152,11 +153,11 @@ public class TwittView extends JPanel
     DateFormat shortDateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
     Date date = new Date(model.getEmissionDate() * 1000);
 
-    this.dateLabel = new JLabel(ConstantLoader.getInstance().getText(shortDateFormat.format(date)));
-    this.dateLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
+    this.dateLabel = new JLabel(shortDateFormat.format(date));
+    this.dateLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 
     panel.add(dateLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 50, 0), 0, 0));
+        new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
   }

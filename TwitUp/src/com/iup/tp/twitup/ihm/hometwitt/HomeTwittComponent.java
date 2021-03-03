@@ -46,6 +46,8 @@ public class HomeTwittComponent
   public void initTwittListComponent()
   {
     this.twittComponentList = new TwittComponentList();
+    this.base.addObserver(this.twittComponentList.getControllerList());
+
   }
 
   public JPanel getTwittView()
