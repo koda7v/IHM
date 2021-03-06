@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
+import com.iup.tp.twitup.ihm.hometwitt.buttons.TwittButtonsComponent;
+import com.iup.tp.twitup.ihm.hometwitt.buttons.TwittButtonsView;
 import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.TwittComponentList;
 
@@ -20,6 +22,8 @@ public class HomeTwittComponent
 
   protected TwittComponentList twittComponentList;
 
+  protected TwittButtonsComponent twittButtonsComponent;
+
   protected IDatabase base;
 
   protected User user;
@@ -31,6 +35,7 @@ public class HomeTwittComponent
 
     this.initTwittComponent();
     this.initTwittListComponent();
+    this.initTwittButtonsComponent();
 
     this.homeTwittController = new HomeTwittController();
     this.homeTwittModel = new HomeTwittModel();
@@ -50,6 +55,11 @@ public class HomeTwittComponent
 
   }
 
+  protected void initTwittButtonsComponent()
+  {
+    this.twittButtonsComponent = new TwittButtonsComponent();
+  }
+
   public JPanel getTwittView()
   {
     return this.twittComponent.getTwittView();
@@ -63,6 +73,11 @@ public class HomeTwittComponent
   public HomeTwittView getHomeTwittView()
   {
     return homeTwittView;
+  }
+
+  public TwittButtonsView getTwittButtonsView()
+  {
+    return twittButtonsComponent.getTwittButtonsView();
   }
 
 }

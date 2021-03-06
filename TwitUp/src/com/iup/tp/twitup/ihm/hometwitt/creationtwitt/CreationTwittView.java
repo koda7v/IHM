@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm.hometwitt.creationtwitt;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -82,15 +84,16 @@ public class CreationTwittView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
+    this.contentPane.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
     this.contentPane.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 20, 20));
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 10, 10));
 
-    this.contentPane.add(this.createPanelTwitt(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.add(this.createPanelTwitt(), new GridBagConstraints(0, 1, 1, 2, 0, 0, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(this.createPanelButtons(), new GridBagConstraints(0, 2, 0, 0, 0, 0, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 20, 20));
+    this.contentPane.add(this.createPanelButtons(), new GridBagConstraints(0, 3, 0, 0, 0, 0, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 10, 10));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -151,9 +154,9 @@ public class CreationTwittView extends JPanel
 
     this.areaTwitt = new JTextArea();
     Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-    this.areaTwitt.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
+    this.areaTwitt.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 10));
     panel.add(this.areaTwitt, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 5, 5));
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 5, 5));
     return panel;
   }
 
@@ -192,9 +195,9 @@ public class CreationTwittView extends JPanel
     });
 
     panel.add(buttonValidate, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 10, 40, 10), 0, 0));
+        GridBagConstraints.BOTH, new Insets(0, 10, 10, 10), 0, 0));
     panel.add(buttonCancel, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 10, 40, 10), 0, 0));
+        new Insets(0, 10, 10, 10), 0, 0));
 
     return panel;
   }

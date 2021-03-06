@@ -1,14 +1,14 @@
 package com.iup.tp.twitup.ihm.hometwitt.twitt;
 
-import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.text.DateFormat;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -80,19 +80,21 @@ public class TwittView extends JPanel
   {
     this.setLayout(new GridBagLayout());
     this.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
-    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+//    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
     this.contentPane = new JPanel(new GridBagLayout());
-    this.contentPane.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
+    this.contentPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//    this.contentPane.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
 
-    contentPane.add(userName(), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER,
+    contentPane.add(userName(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-    contentPane.add(twittText(), new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER,
+    contentPane.add(twittText(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-    contentPane.add(dateTwitt(), new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER,
+    contentPane.add(dateTwitt(), new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.add(contentPane);
+    this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 0, 0), 0, 0));
   }
 
   /**
@@ -105,9 +107,7 @@ public class TwittView extends JPanel
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
 
-    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
     this.textLabel = new JTextArea(model.getText());
-    this.textLabel.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
     this.textLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
     this.textLabel.setEditable(false);
 
