@@ -1,5 +1,7 @@
 package com.iup.tp.twitup.ihm.hometwitt.buttons;
 
+import com.iup.tp.twitup.datamodel.User;
+
 public class TwittButtonsComponent
 {
   protected TwittButtonsController twittButtonsController;
@@ -8,11 +10,11 @@ public class TwittButtonsComponent
 
   protected TwittButtonsView twittButtonsView;
 
-  public TwittButtonsComponent()
+  public TwittButtonsComponent(User user)
   {
     this.twittButtonsController = new TwittButtonsController();
     this.twittButtonsModel = new TwittButtonsModel();
-    this.twittButtonsView = new TwittButtonsView();
+    this.twittButtonsView = new TwittButtonsView(user);
 
   }
 

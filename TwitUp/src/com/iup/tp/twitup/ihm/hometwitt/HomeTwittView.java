@@ -40,26 +40,20 @@ public class HomeTwittView extends JPanel
     this.contentPane.removeAll();
 
     this.contentPane.setBorder(BorderFactory.createLineBorder(Color.red));
-    JPanel panel1 = new JPanel(new GridBagLayout());
-    panel1.add(new JLabel("test"), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-    panel1.setBorder(BorderFactory.createLineBorder(Color.cyan));
 
     JPanel panel = new JPanel(new GridBagLayout());
     panel.add(new JLabel("test"), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     panel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-//    this.contentPane.add(this.homeTwittComponent.getTwittButtonsView(), new GridBagConstraints(0, 0, 1, 2, 1, 1,
-//        GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-    this.contentPane.add(panel1, new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.WEST,
+    this.contentPane.add(this.homeTwittComponent.getTwittButtonsView(), new GridBagConstraints(0, 0, 1, 1, 1, 1,
+        GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.contentPane.add(this.wrapPanelTwitt(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(this.wrapPanelTwitt(), new GridBagConstraints(1, 0, 2, 1, 1, 1, GridBagConstraints.NORTH,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-
-    this.contentPane.add(panel, new GridBagConstraints(3, 0, 1, 1, 1, 1, GridBagConstraints.EAST,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.add(this.homeTwittComponent.getVortexView(), new GridBagConstraints(2, 0, 1, 1, 1, 1,
+        GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
@@ -85,7 +79,22 @@ public class HomeTwittView extends JPanel
 
   public void showProfileView()
   {
+    this.contentPane.removeAll();
 
+    this.contentPane.add(this.homeTwittComponent.getTwittButtonsView(), new GridBagConstraints(0, 0, 1, 2, 1, 1,
+        GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.contentPane.add(this.homeTwittComponent.getProfileView(), new GridBagConstraints(1, 0, 2, 1, 1, 1,
+        GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.contentPane.add(this.homeTwittComponent.getBottomProfileView(), new GridBagConstraints(1, 1, 2, 1, 1, 1,
+        GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.contentPane.add(this.homeTwittComponent.getVortexView(), new GridBagConstraints(2, 0, 1, 2, 1, 1,
+        GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.contentPane.revalidate();
+    this.contentPane.repaint();
   }
 
 }
