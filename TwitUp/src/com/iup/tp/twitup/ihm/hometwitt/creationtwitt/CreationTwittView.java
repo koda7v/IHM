@@ -45,6 +45,11 @@ public class CreationTwittView extends JPanel
   protected static final String KEY_COLOR_HOME_LEFT = "KEY_COLOR_HOME_LEFT";
 
   /**
+   * Couleur de fond bleu nuancé
+   */
+  protected static final String KEY_BACKGROUND_BUTTON_HOME_COLOR = "KEY_BACKGROUND_BUTTON_HOME_COLOR";
+
+  /**
    * Couleur de fond blanche
    */
   protected static final String KEY_COLOR_HOME_RIGHT = "KEY_COLOR_HOME_RIGHT";
@@ -169,7 +174,7 @@ public class CreationTwittView extends JPanel
   protected JPanel createPanelButtons()
   {
     JPanel panel = new JPanel(new GridBagLayout());
-    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
+    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
     TwitButton buttonValidate = new TwitButton(ConstantLoader.getInstance().getText(KEY_VALIDATE_BUTTON_TITLE));
     buttonValidate.addActionListener(new ActionListener()

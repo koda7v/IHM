@@ -71,7 +71,7 @@ public class HomeTwittComponent
 
   public void initTwittListComponent()
   {
-    this.twittComponentList = new TwittComponentList();
+    this.twittComponentList = new TwittComponentList(this.base);
     this.base.addObserver(this.twittComponentList.getControllerList());
 
   }

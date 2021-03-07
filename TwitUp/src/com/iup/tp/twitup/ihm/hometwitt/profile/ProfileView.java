@@ -45,7 +45,7 @@ public class ProfileView extends JPanel
   /**
    * Couleur de fond bleu
    */
-  protected static final String KEY_COLOR_HOME_LEFT = "KEY_COLOR_HOME_LEFT";
+  protected static final String KEY_BACKGROUND_BUTTON_HOME_COLOR = "KEY_BACKGROUND_BUTTON_HOME_COLOR";
 
   /**
    * Instanciation de la Vue.
@@ -64,7 +64,7 @@ public class ProfileView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
-    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
+    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
     // Affichage de l'avatar
 
@@ -83,7 +83,7 @@ public class ProfileView extends JPanel
   protected JPanel createNamePanel()
   {
     JPanel panel = new JPanel(new GridBagLayout());
-    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
+    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
     JLabel label = new JLabel(ConstantLoader.getInstance().getText(KEY_NAME_LABEL));
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
@@ -102,7 +102,7 @@ public class ProfileView extends JPanel
   protected JPanel createTagPanel()
   {
     JPanel panel = new JPanel(new GridBagLayout());
-    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
+    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
     JLabel label = new JLabel(ConstantLoader.getInstance().getText(KEY_TAG_LABEL));
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));

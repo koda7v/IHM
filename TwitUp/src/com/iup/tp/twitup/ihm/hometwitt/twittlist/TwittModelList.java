@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.observer.ITwittListModelObserver;
@@ -17,16 +18,31 @@ public class TwittModelList
    */
   protected Map<Twit, TwittComponent> twittComponentMap;
 
+  protected IDatabase base;
+
   /**
    * Liste des observeurs du modèle.
    */
   protected List<ITwittListModelObserver> observers;
 
-  public TwittModelList()
+  public TwittModelList(IDatabase base)
   {
+    this.base = base;
     this.twittComponentMap = new HashMap<>();
+    this.initMap();
 
     this.observers = new ArrayList<ITwittListModelObserver>();
+  }
+
+  protected void initMap()
+  {
+
+    for (Twit currentTwitt : base.getTwits())
+    {
+      TwittComponent twittComponent = new TwittComponent(currentTwitt);
+      this.twittComponentMap.put(currentTwitt, twittComponent);
+    }
+
   }
 
   /**

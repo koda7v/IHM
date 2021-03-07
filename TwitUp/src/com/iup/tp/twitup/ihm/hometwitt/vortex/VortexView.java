@@ -23,7 +23,7 @@ public class VortexView extends JPanel
 
   protected static final String KEY_IMAGE_PACMAN = "KEY_IMAGE_PACMAN";
 
-  protected static final String KEY_COLOR_HOME_LEFT = "KEY_COLOR_HOME_LEFT";
+  protected static final String KEY_BACKGROUND_BUTTON_HOME_COLOR = "KEY_BACKGROUND_BUTTON_HOME_COLOR";
 
   /**
    * Panneau du composant
@@ -46,7 +46,7 @@ public class VortexView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
-    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
+    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     JPanel homePacman = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_PACMAN),

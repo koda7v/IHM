@@ -32,7 +32,7 @@ public class BottomProfileView extends JPanel
 
   protected static final String KEY_IMAGE_HOME = "KEY_IMAGE_HOME";
 
-  protected static final String KEY_COLOR_HOME_LEFT = "KEY_COLOR_HOME_LEFT";
+  protected static final String KEY_BACKGROUND_BUTTON_HOME_COLOR = "KEY_BACKGROUND_BUTTON_HOME_COLOR";
 
   /**
    * Instanciation de la Vue.
@@ -50,7 +50,7 @@ public class BottomProfileView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
-    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
+    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     JPanel homeImage = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_HOME),
