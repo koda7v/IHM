@@ -50,10 +50,10 @@ public class VortexView extends JPanel
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     JPanel homePacman = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_PACMAN),
-        new Dimension(screenSize.width / 3, screenSize.height / 3));
+        new Dimension(screenSize.width / 10, screenSize.height / 10));
 
     JPanel homeVortex = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_VORTEX),
-        new Dimension(screenSize.width / 3, screenSize.height / 3));
+        new Dimension(screenSize.width / 10, screenSize.height / 10));
 
     this.contentPane.add(homePacman, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.EAST,
         GridBagConstraints.NONE, new Insets(0, 20, 0, 0), 0, 0));

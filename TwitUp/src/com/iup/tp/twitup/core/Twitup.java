@@ -16,6 +16,7 @@ import com.iup.tp.twitup.ihm.TwitupMock;
 import com.iup.tp.twitup.ihm.home.HomeComponent;
 import com.iup.tp.twitup.ihm.home.observer.IHomeObserver;
 import com.iup.tp.twitup.ihm.hometwitt.HomeTwittComponent;
+import com.iup.tp.twitup.ihm.hometwitt.IHomeTwittControllerObserver;
 import com.iup.tp.twitup.ihm.signIn.ISignInControllerObserver;
 import com.iup.tp.twitup.ihm.signIn.SignInComponent;
 import com.iup.tp.twitup.ihm.signup.SignUpComponent;
@@ -27,7 +28,8 @@ import com.iup.tp.twitup.printer.Printer;
  * 
  * @author S.Lucas
  */
-public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUpControllerObserver
+public class Twitup
+    implements IHomeObserver, ISignInControllerObserver, ISignUpControllerObserver, IHomeTwittControllerObserver
 {
   /**
    * Base de données.
@@ -233,6 +235,7 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
   {
     this.homeTwittComponent = new HomeTwittComponent(this.mDatabase, this.userConnected);
     this.mMainView.showPanel(this.homeTwittComponent.getHomeTwittView());
+    this.homeTwittComponent.addIHomeTwittControllerObserver(this);
   }
 
   @Override
@@ -274,7 +277,22 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
   public void swapViewToHomeTwitt(String tag)
   {
     this.setUserConnected(tag);
-    System.out.println("user connected : " + this.userConnected.getName());
+    this.showHomeTwittViews();
+
+  }
+
+  @Override
+  public void logOut()
+  {
+    this.userConnected = null;
+    this.showHomeComponent();
+
+  }
+
+  @Override
+  public void notifyValidateButtonPressed(String tag)
+  {
+    this.setUserConnected(tag);
     this.showHomeTwittViews();
 
   }

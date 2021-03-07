@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JPasswordField;
 
+import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 
@@ -13,9 +14,19 @@ public class SignInController implements IObserverSignView
   protected IDatabase base;
   protected SignInModel model;
   protected List<ISignInControllerObserver> observers;
+  protected SignInView signInView;
 
-  public SignInController(IDatabase base, SignInModel model)
+  protected static final String KEY_ERROR_SIGNIN_ERROR_TITLE = "KEY_ERROR_SIGNIN_ERROR_TITLE";
+
+  protected static final String KEY_SIGNIN_NAME_MESSAGE_ERROR = "KEY_SIGNIN_NAME_MESSAGE_ERROR";
+
+  protected static final String KEY_ERROR_FORM_MESSAGE = "KEY_ERROR_FORM_MESSAGE";
+
+  protected static final String KEY_FORM_BACKGROUND_COLOR = "KEY_FORM_BACKGROUND_COLOR";
+
+  public SignInController(IDatabase base, SignInModel model, SignInView signInView)
   {
+    this.signInView = signInView;
     this.base = base;
     this.model = model;
     this.observers = new ArrayList<ISignInControllerObserver>();
@@ -55,16 +66,26 @@ public class SignInController implements IObserverSignView
     model.setPseudo(pseudo);
     model.setMdp(mdp);
 
-    if (this.formValid())
+    if (!this.isFormValid())
     {
-      System.out.println("J'ai cliqué sur le bonton Valider et c'est valide !!!");
+      String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGNIN_ERROR_TITLE);
+      String warningDescription = ConstantLoader.getInstance().getText(KEY_ERROR_FORM_MESSAGE);
+      this.signInView.showWarningMessage(warningTitle, warningDescription);
+      return;
     }
 
-    else
+    // Un utilisateur avec le même username est déjà présent dans l'application
+    if (this.isValidUser())
     {
-      System.out.println("Mince c'est pas valide :(");
+      String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGNIN_ERROR_TITLE);
+      String warningDescription = ConstantLoader.getInstance().getText(KEY_SIGNIN_NAME_MESSAGE_ERROR);
+      this.signInView.showWarningMessage(warningTitle, warningDescription);
+      return;
     }
-
+    for (ISignInControllerObserver currentObserver : observers)
+    {
+      currentObserver.notifyValidateButtonPressed(model.getPseudo());
+    }
   }
 
   @Override
@@ -79,7 +100,7 @@ public class SignInController implements IObserverSignView
 
   }
 
-  protected boolean formValid()
+  protected boolean isValidUser()
   {
     for (User user : base.getUsers())
     {
@@ -91,4 +112,13 @@ public class SignInController implements IObserverSignView
 
     return false;
   }
+
+  protected boolean isFormValid()
+  {
+    String pseudo = this.model.getPseudo();
+    JPasswordField password = this.model.getMdp();
+
+    return !(pseudo.isEmpty() || password == null);
+  }
+
 }

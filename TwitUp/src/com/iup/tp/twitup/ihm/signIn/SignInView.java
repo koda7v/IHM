@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -182,6 +183,7 @@ public class SignInView extends JPanel
   protected JPanel createPanelFormSignIn()
   {
     JPanel panel = new JPanel(new GridBagLayout());
+
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_FORM_BACKGROUND_COLOR));
 
     labelPseudo = new JLabel(ConstantLoader.getInstance().getText(KEY_TAG_BUTTON_TITLE));
@@ -262,6 +264,19 @@ public class SignInView extends JPanel
         new Insets(0, 0, 50, 0), 0, 0));
 
     return panel;
+  }
+
+  /**
+   * Affiche un popup d'avertissement indiquant un problème lors de la tentative d'ajout d'un utilisateur.
+   * 
+   * @param title
+   *          Titre du message d'avertissement.
+   * @param description
+   *          Description de l'avertissement.
+   */
+  public void showWarningMessage(String title, String description)
+  {
+    JOptionPane.showMessageDialog(null, description, title, JOptionPane.WARNING_MESSAGE);
   }
 
   public JTextField getTextFieldPseudo()

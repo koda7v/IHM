@@ -64,6 +64,7 @@ public class ProfileView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
+    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
 
     // Affichage de l'avatar
 
@@ -90,10 +91,10 @@ public class ProfileView extends JPanel
     JLabel nom = new JLabel(this.user.getName());
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 
-    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH,
-        new Insets(20, 20, 0, 30), 0, 0));
+    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(0, 70, 0, 0), 0, 0));
     panel.add(nom, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE,
-        new Insets(20, 0, 0, 20), 0, 0));
+        new Insets(0, 0, 0, 350), 0, 0));
 
     return panel;
   }
@@ -109,10 +110,10 @@ public class ProfileView extends JPanel
     JLabel nom = new JLabel(this.user.getUserTag());
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 
-    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH,
-        new Insets(20, 20, 0, 30), 0, 0));
+    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE,
+        new Insets(0, 70, 0, 0), 0, 0));
     panel.add(nom, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE,
-        new Insets(20, 0, 0, 20), 0, 0));
+        new Insets(0, 0, 0, 350), 0, 0));
 
     return panel;
   }

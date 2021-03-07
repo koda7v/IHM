@@ -1,6 +1,5 @@
 package com.iup.tp.twitup.ihm.hometwitt.twittlist;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -9,7 +8,6 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -50,7 +48,6 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
   @Override
   public void twittComponentAdded(TwittComponent twittComponent)
   {
-    System.out.println("added repaint");
     this.repaintContentPane();
   }
 
@@ -69,7 +66,7 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     scrollPane.getVerticalScrollBar().setUnitIncrement(screenSize.height / 60);
-    scrollContent.setBorder(BorderFactory.createLineBorder(Color.green));
+//    scrollContent.setBorder(BorderFactory.createLineBorder(Color.green));
     this.contentPane = new JPanel(new GridBagLayout());
     this.contentPane.setOpaque(false);
     scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,

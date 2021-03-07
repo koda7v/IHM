@@ -4,12 +4,17 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.datamodel.User;
+import com.iup.tp.twitup.ihm.hometwitt.buttons.observer.ITwittButtonsViewObserver;
 import com.iup.tp.twitup.ihm.widget.TwitButton;
 
 public class TwittButtonsView extends JPanel
@@ -34,10 +39,53 @@ public class TwittButtonsView extends JPanel
 
   protected User user;
 
+  protected List<ITwittButtonsViewObserver> observers;
+
   public TwittButtonsView(User user)
   {
     this.user = user;
+    this.observers = new ArrayList<>();
     this.initContent();
+  }
+
+  protected void addObserver(ITwittButtonsViewObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.add(observer);
+    }
+  }
+
+  protected void removeObserver(ITwittButtonsViewObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.remove(observer);
+    }
+  }
+
+  public void notifyHomeSwap()
+  {
+    for (ITwittButtonsViewObserver currentObserver : observers)
+    {
+      currentObserver.notifyHome();
+    }
+  }
+
+  public void notifyProfileSwap()
+  {
+    for (ITwittButtonsViewObserver currentObserver : observers)
+    {
+      currentObserver.notifyProfile();
+    }
+  }
+
+  public void notifyLogOut()
+  {
+    for (ITwittButtonsViewObserver currentObserver : observers)
+    {
+      currentObserver.notififyLogout();
+    }
   }
 
   protected void initContent()
@@ -61,8 +109,37 @@ public class TwittButtonsView extends JPanel
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
     TwitButton buttonHome = new TwitButton(ConstantLoader.getInstance().getText(KEY_BUTTON_HOME_TITLE_LABEL));
+    buttonHome.addActionListener(new ActionListener()
+    {
+
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        TwittButtonsView.this.notifyHomeSwap();
+      }
+    });
+
     TwitButton buttonProfile = new TwitButton(ConstantLoader.getInstance().getText(KEY_BUTTON_PROFILE_TITLE_LABEL));
+    buttonProfile.addActionListener(new ActionListener()
+    {
+
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        TwittButtonsView.this.notifyProfileSwap();
+      }
+    });
+
     TwitButton buttonLogOut = new TwitButton(ConstantLoader.getInstance().getText(KEY_BUTTON_LOGOUT_TITLE_LABEL));
+    buttonLogOut.addActionListener(new ActionListener()
+    {
+
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        TwittButtonsView.this.notifyLogOut();
+      }
+    });
 
     panel.add(buttonHome, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));

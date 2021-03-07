@@ -85,7 +85,7 @@ public class TwittView extends JPanel
 //    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
     this.contentPane = new JPanel(new GridBagLayout());
-    this.contentPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    this.contentPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 //    this.contentPane.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
 
     contentPane.add(userName(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
@@ -114,7 +114,7 @@ public class TwittView extends JPanel
     this.textLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
     this.textLabel.setEditable(false);
     this.textLabel.setLineWrap(true);
-    this.textLabel.setBorder(BorderFactory.createLineBorder(Color.yellow));
+//    this.textLabel.setBorder(BorderFactory.createLineBorder(Color.yellow));
 
     panel.add(textLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));

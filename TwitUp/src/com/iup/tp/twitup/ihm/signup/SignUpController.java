@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.swing.JPasswordField;
 
+import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.signup.observer.ISignUpControllerObserver;
@@ -18,6 +19,12 @@ public class SignUpController implements ISignUpViewObserver
   protected SignUpModel signUpModel;
 
   protected List<ISignUpControllerObserver> observers;
+
+  protected static final String KEY_ERROR_SIGN_ERROR_TITLE = "KEY_ERROR_SIGN_ERROR_TITLE";
+
+  protected static final String KEY_SIGNUP_NAME_MESSAGE_ERROR = "KEY_SIGNIN_NAME_MESSAGE_ERROR";
+
+  protected static final String KEY_ERROR_FORM_MESSAGE = "KEY_ERROR_FORM_MESSAGE";
 
   protected SignUpView signUpView;
 
@@ -70,10 +77,8 @@ public class SignUpController implements ISignUpViewObserver
 
     if (!this.isFormValid())
     {
-      // String warningTitle = LanguageLoader.getInstance().getText(KEY_ERROR_ADD_CORRESPONDENCE_TITLE);
-      // String warningDescription = LanguageLoader.getInstance().getText(KEY_ERROR_ADD_CORRESPONDENCE_MESSAGE);
-      String warningTitle = "Formulaire invalide";
-      String warningDescription = "votre formulaire est incomplet";
+      String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGN_ERROR_TITLE);
+      String warningDescription = ConstantLoader.getInstance().getText(KEY_ERROR_FORM_MESSAGE);
       this.signUpView.showWarningMessage(warningTitle, warningDescription);
       return;
     }
@@ -81,11 +86,8 @@ public class SignUpController implements ISignUpViewObserver
     // Un utilisateur avec le même username est déjà présent dans l'application
     if (this.userAlreadyExist())
     {
-      // String warningTitle = LanguageLoader.getInstance().getText(KEY_ERROR_ADD_CORRESPONDENCE_TITLE);
-      // String warningDescription = LanguageLoader.getInstance()
-      // .getText(KEY_CORRESPONDENCE_NAME_INVALID_EXISTING_MESSAGE);
-      String warningTitle = "Utlisateur existant";
-      String warningDescription = "Ce username est déjà pris";
+      String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGN_ERROR_TITLE);
+      String warningDescription = ConstantLoader.getInstance().getText(KEY_SIGNUP_NAME_MESSAGE_ERROR);
       this.signUpView.showWarningMessage(warningTitle, warningDescription);
       return;
     }

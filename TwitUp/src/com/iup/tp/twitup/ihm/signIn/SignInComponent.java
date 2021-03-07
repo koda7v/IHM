@@ -12,7 +12,7 @@ public class SignInComponent
   {
     this.model = new SignInModel();
     this.view = new SignInView();
-    this.controller = new SignInController(mDatabase, model);
+    this.controller = new SignInController(mDatabase, model, this.view);
 
     this.view.addObserver(controller);
 

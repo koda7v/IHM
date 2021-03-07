@@ -45,12 +45,23 @@ public class HomeTwittComponent
     this.base = base;
     this.user = user;
 
+    this.homeTwittView = new HomeTwittView(this);
+    this.homeTwittController = new HomeTwittController(this.homeTwittView);
+    this.homeTwittModel = new HomeTwittModel();
+
     this.initTwittButtonsComponent();
 
-    this.homeTwittController = new HomeTwittController();
-    this.homeTwittModel = new HomeTwittModel();
-    this.homeTwittView = new HomeTwittView(this);
+    this.homeTwittView.initContent();
+  }
 
+  public void addIHomeTwittControllerObserver(IHomeTwittControllerObserver observer)
+  {
+    this.homeTwittController.addObserver(observer);
+  }
+
+  public void removeIHomeTwittControllerObserver(IHomeTwittControllerObserver observer)
+  {
+    this.homeTwittController.removeObserver(observer);
   }
 
   public void initTwittComponent()
@@ -68,6 +79,7 @@ public class HomeTwittComponent
   protected void initTwittButtonsComponent()
   {
     this.twittButtonsComponent = new TwittButtonsComponent(this.user);
+    this.twittButtonsComponent.addITwittButtonsControllerObserver(this.homeTwittController);
   }
 
   public JPanel getTwittView()
