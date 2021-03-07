@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
@@ -37,7 +38,7 @@ public class SignInView extends JPanel
   /**
    * Champs à renseigner pour le mot de passe
    */
-  protected JTextField textFieldMDP;
+  protected JPasswordField textFieldMDP;
 
   /**
    * Label du pseudo
@@ -159,7 +160,7 @@ public class SignInView extends JPanel
 
     for (IObserverSignView observer : copyObservers)
     {
-      observer.notifyValidateButtonPressed(this.getTextFieldPseudo().getText(), this.getTextFieldMDP().getText());
+      observer.notifyValidateButtonPressed(this.getTextFieldPseudo().getText(), this.getTextFieldMDP());
     }
   }
 
@@ -191,7 +192,7 @@ public class SignInView extends JPanel
     labelPassword = new JLabel(ConstantLoader.getInstance().getText(KEY_PASSWORD_BUTTON_TITLE));
     labelPassword.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 
-    textFieldMDP = new JTextField(25);
+    textFieldMDP = new JPasswordField(25);
 
     panel.add(labelPseudo, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(20, 20, 0, 30), 0, 0));
@@ -273,12 +274,12 @@ public class SignInView extends JPanel
     this.textFieldPseudo = textFieldPseudo;
   }
 
-  public JTextField getTextFieldMDP()
+  public JPasswordField getTextFieldMDP()
   {
     return textFieldMDP;
   }
 
-  public void setTextFieldMDP(JTextField textFieldMDP)
+  public void setTextFieldMDP(JPasswordField textFieldMDP)
   {
     this.textFieldMDP = textFieldMDP;
   }

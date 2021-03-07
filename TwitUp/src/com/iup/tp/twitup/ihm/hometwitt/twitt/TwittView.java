@@ -1,10 +1,12 @@
 package com.iup.tp.twitup.ihm.hometwitt.twitt;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -88,7 +90,7 @@ public class TwittView extends JPanel
 
     contentPane.add(userName(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-    contentPane.add(twittText(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
+    contentPane.add(twittText(), new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     contentPane.add(dateTwitt(), new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -106,8 +108,9 @@ public class TwittView extends JPanel
   {
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
-
+    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
     this.textLabel = new JTextArea(model.getText());
+    this.textLabel.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
     this.textLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
     this.textLabel.setEditable(false);
     this.textLabel.setLineWrap(true);

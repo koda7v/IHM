@@ -3,6 +3,8 @@ package com.iup.tp.twitup.ihm.signIn;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JPasswordField;
+
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 
@@ -48,7 +50,7 @@ public class SignInController implements IObserverSignView
   }
 
   @Override
-  public void notifyValidateButtonPressed(String pseudo, String mdp)
+  public void notifyValidateButtonPressed(String pseudo, JPasswordField mdp)
   {
     model.setPseudo(pseudo);
     model.setMdp(mdp);
@@ -81,7 +83,7 @@ public class SignInController implements IObserverSignView
   {
     for (User user : base.getUsers())
     {
-      if (user.getUserTag().equals(model.getPseudo()) && user.getUserPassword().equals(model.getMdp()))
+      if (user.getUserTag().equals(model.getPseudo()) && user.getUserPassword() == model.getMdp())
       {
         return true;
       }

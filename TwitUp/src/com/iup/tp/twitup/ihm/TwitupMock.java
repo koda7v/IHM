@@ -196,7 +196,7 @@ public class TwitupMock
   {
     int randomInt = new Random().nextInt(99999);
     String userName = "MockUser" + randomInt;
-    User newUser = new User(UUID.randomUUID(), userName, "--", userName, new HashSet<String>(), "");
+    User newUser = new User(UUID.randomUUID(), userName, null, userName, new HashSet<String>(), "");
 
     return newUser;
   }

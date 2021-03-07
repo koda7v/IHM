@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.swing.JPasswordField;
+
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.signup.observer.ISignUpControllerObserver;
@@ -59,7 +61,7 @@ public class SignUpController implements ISignUpViewObserver
   }
 
   @Override
-  public void notifyValidateButton(String nom, String tag, String compteUtilisateur, String mdp)
+  public void notifyValidateButton(String nom, String tag, String compteUtilisateur, JPasswordField mdp)
   {
     this.signUpModel.setNom(nom);
     this.signUpModel.setTag(tag);
@@ -97,10 +99,10 @@ public class SignUpController implements ISignUpViewObserver
   {
     String name = this.signUpModel.getNom();
     String tag = this.signUpModel.getTag();
-    String password = this.signUpModel.getMdp();
+    JPasswordField password = this.signUpModel.getMdp();
     String account = this.signUpModel.getCompteUtilisateur();
 
-    return !(name.isEmpty() || tag.isEmpty() || password.isEmpty() || account.isEmpty());
+    return !(name.isEmpty() || tag.isEmpty() || password == null || account.isEmpty());
   }
 
   protected boolean userAlreadyExist()

@@ -311,7 +311,7 @@ public class Database implements IDatabase
   @Override
   public User getUnknowUser()
   {
-    return new User(Constants.UNKNONWN_USER_UUID, "<Inconnu>", "--", "<Inconnu>", new HashSet<String>(), "");
+    return new User(Constants.UNKNONWN_USER_UUID, "<Inconnu>", null, "<Inconnu>", new HashSet<String>(), "");
   }
 
   /**

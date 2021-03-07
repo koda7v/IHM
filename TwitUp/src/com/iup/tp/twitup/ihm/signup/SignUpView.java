@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
@@ -67,7 +68,7 @@ public class SignUpView extends JPanel
   // Mdp
   protected JLabel labelMotDePasse;
 
-  protected JTextField textMotDePasse;
+  protected JPasswordField textMotDePasse;
 
 //  // Avatar
 //  protected JLabel labelAvatar;
@@ -128,7 +129,7 @@ public class SignUpView extends JPanel
     for (ISignUpViewObserver currentObserver : observers)
     {
       currentObserver.notifyValidateButton(this.textNom.getText(), this.textTag.getText(),
-                                           this.textCompteUtilisateur.getText(), this.textMotDePasse.getText());
+                                           this.textCompteUtilisateur.getText(), this.textMotDePasse);
     }
   }
 
@@ -223,7 +224,7 @@ public class SignUpView extends JPanel
 
     this.labelMotDePasse = new JLabel(ConstantLoader.getInstance().getText(KEY_SIGNUP_MDP_LABEL));
     this.labelMotDePasse.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-    this.textMotDePasse = new JTextField();
+    this.textMotDePasse = new JPasswordField();
     this.textMotDePasse.setPreferredSize(new Dimension(200, 24));
 
     panel.add(this.labelMotDePasse, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST,

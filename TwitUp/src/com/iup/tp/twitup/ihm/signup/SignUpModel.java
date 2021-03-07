@@ -1,5 +1,7 @@
 package com.iup.tp.twitup.ihm.signup;
 
+import javax.swing.JPasswordField;
+
 public class SignUpModel
 {
 
@@ -9,14 +11,14 @@ public class SignUpModel
 
   protected String compteUtilisateur;
 
-  protected String mdp;
+  protected JPasswordField mdp;
 
   public SignUpModel()
   {
     this.nom = "";
     this.tag = "";
     this.compteUtilisateur = "";
-    this.mdp = "";
+    this.mdp = null;
   }
 
   public String getNom()
@@ -49,12 +51,12 @@ public class SignUpModel
     this.compteUtilisateur = compteUtilisateur;
   }
 
-  public String getMdp()
+  public JPasswordField getMdp()
   {
     return mdp;
   }
 
-  public void setMdp(String mdp)
+  public void setMdp(JPasswordField mdp)
   {
     this.mdp = mdp;
   }

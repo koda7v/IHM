@@ -1,9 +1,11 @@
 package com.iup.tp.twitup.ihm.signIn;
 
+import javax.swing.JPasswordField;
+
 public class SignInModel
 {
   protected String pseudo;
-  protected String mdp;
+  protected JPasswordField mdp;
 
   public SignInModel()
   {}
@@ -18,12 +20,12 @@ public class SignInModel
     this.pseudo = pseudo;
   }
 
-  public String getMdp()
+  public JPasswordField getMdp()
   {
     return mdp;
   }
 
-  public void setMdp(String mdp)
+  public void setMdp(JPasswordField mdp)
   {
     this.mdp = mdp;
   }
