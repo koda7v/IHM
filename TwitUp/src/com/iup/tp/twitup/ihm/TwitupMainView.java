@@ -163,12 +163,12 @@ public class TwitupMainView extends JFrame
    */
   public void showPanel(JPanel panel)
   {
-    contentPane.removeAll();
-    contentPane.add(panel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
-        new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.removeAll();
+    this.contentPane.add(panel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    contentPane.repaint();
-    contentPane.revalidate();
+    this.contentPane.repaint();
+    this.contentPane.revalidate();
   }
 
   /**

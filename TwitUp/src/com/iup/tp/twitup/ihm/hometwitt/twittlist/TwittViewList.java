@@ -72,10 +72,10 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
     scrollContent.setBorder(BorderFactory.createLineBorder(Color.green));
     this.contentPane = new JPanel(new GridBagLayout());
     this.contentPane.setOpaque(false);
-    scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH,
-        GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 10, 10));
+    scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 10, 10));
 
-    scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.NORTH,
+    scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 1, 0, GridBagConstraints.NORTH,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
@@ -93,7 +93,7 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
 
       TwittView twittView = twittComponentList.get(i).getTwittView();
 
-      this.contentPane.add(twittView, new GridBagConstraints(0, i, 1, 1, 1, 0, GridBagConstraints.NORTH,
+      this.contentPane.add(twittView, new GridBagConstraints(0, i, 1, 1, 1, 1, GridBagConstraints.NORTH,
           GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
     }
   }
@@ -116,11 +116,11 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
    */
   protected void repaintContentPane()
   {
-    contentPane.removeAll();
+    this.contentPane.removeAll();
 
     this.placeComponents();
 
-    this.revalidate();
-    this.repaint();
+    this.contentPane.revalidate();
+    this.contentPane.repaint();
   }
 }

@@ -110,8 +110,10 @@ public class TwittView extends JPanel
     this.textLabel = new JTextArea(model.getText());
     this.textLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
     this.textLabel.setEditable(false);
+    this.textLabel.setLineWrap(true);
+    this.textLabel.setBorder(BorderFactory.createLineBorder(Color.yellow));
 
-    panel.add(textLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+    panel.add(textLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
@@ -132,9 +134,9 @@ public class TwittView extends JPanel
     this.pseudoLabel = new JLabel(model.getTwiter().getUserTag());
     this.pseudoLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 
-    panel.add(nameLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
+    panel.add(nameLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
-    panel.add(pseudoLabel, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE,
+    panel.add(pseudoLabel, new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
@@ -151,12 +153,12 @@ public class TwittView extends JPanel
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
 
     DateFormat shortDateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
-    Date date = new Date(model.getEmissionDate() * 1000);
+    Date date = new Date(model.getEmissionDate());
 
     this.dateLabel = new JLabel(shortDateFormat.format(date));
     this.dateLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 
-    panel.add(dateLabel, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+    panel.add(dateLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;

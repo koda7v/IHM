@@ -355,4 +355,5 @@ public class Database implements IDatabase
   {
     return new HashSet<IDatabaseObserver>(this.mObservers);
   }
+
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -299,6 +300,19 @@ public class SignUpView extends JPanel
         new Insets(0, 10, 40, 10), 0, 0));
 
     return panel;
+  }
+
+  /**
+   * Affiche un popup d'avertissement indiquant un problème lors de la tentative d'ajout d'un utilisateur.
+   * 
+   * @param title
+   *          Titre du message d'avertissement.
+   * @param description
+   *          Description de l'avertissement.
+   */
+  public void showWarningMessage(String title, String description)
+  {
+    JOptionPane.showMessageDialog(null, description, title, JOptionPane.WARNING_MESSAGE);
   }
 
 }

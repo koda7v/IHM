@@ -16,7 +16,7 @@ public class SignUpComponent
     this.signUpModel = new SignUpModel();
     this.signUpView = new SignUpView();
     this.signUpController = new SignUpController(base, this.signUpModel);
-
+    this.signUpController.setSignUpView(this.signUpView);
     this.signUpView.addSignUpViewObserver(this.signUpController);
   }
 
