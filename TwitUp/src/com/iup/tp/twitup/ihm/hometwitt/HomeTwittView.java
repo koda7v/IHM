@@ -6,8 +6,6 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
-import com.iup.tp.twitup.configuration.ConstantLoader;
-
 public class HomeTwittView extends JPanel
 {
   /**
@@ -18,8 +16,6 @@ public class HomeTwittView extends JPanel
   protected JPanel contentPane;
 
   protected HomeTwittComponent homeTwittComponent;
-
-  protected static final String KEY_BACKGROUND_BUTTON_HOME_COLOR = "KEY_BACKGROUND_BUTTON_HOME_COLOR";
 
   public HomeTwittView(HomeTwittComponent homeTwittComponent)
   {
@@ -38,16 +34,15 @@ public class HomeTwittView extends JPanel
   public void showHomeTwittView()
   {
     this.contentPane.removeAll();
-    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
-    this.contentPane.add(this.homeTwittComponent.getTwittButtonsView(), new GridBagConstraints(0, 0, 1, 1, 0, 1,
-        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 60, 0, 60), 0, 0));
+    this.contentPane.add(this.homeTwittComponent.getTwittButtonsView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.contentPane.add(this.wrapPanelTwitt(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(this.homeTwittComponent.getVortexView(), new GridBagConstraints(2, 0, 1, 1, 0, 1,
-        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 60, 0, 60), 0, 0));
+    this.contentPane.add(rightPanel(), new GridBagConstraints(3, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
@@ -61,11 +56,11 @@ public class HomeTwittView extends JPanel
   {
     JPanel panel = new JPanel(new GridBagLayout());
     // Ajout de la vue du twitt
-    panel.add(this.homeTwittComponent.getTwittView(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH,
-        GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+    panel.add(this.homeTwittComponent.getTwittView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     // Ajout de la vue de la liste des twitts
     panel.add(this.homeTwittComponent.getTwittListView(), new GridBagConstraints(0, 1, 1, 1, 1, 1,
-        GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
   }

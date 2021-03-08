@@ -8,11 +8,11 @@ import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
 public class TwittControllerList implements IDatabaseObserver
 {
 
-  protected TwittViewList view;
+  protected TwittListView view;
 
-  protected TwittModelList model;
+  protected TwittListModel model;
 
-  public TwittControllerList(TwittModelList modelList, TwittViewList view)
+  public TwittControllerList(TwittListModel modelList, TwittListView view)
   {
     this.view = view;
     this.model = modelList;

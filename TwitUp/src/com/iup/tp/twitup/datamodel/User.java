@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.swing.JPasswordField;
-
 /**
  * Classe du modèle représentant un utilisateur.
  * 
@@ -27,7 +25,7 @@ public class User
   /**
    * Mot de passe de l'utilisateur.
    */
-  protected JPasswordField mUserPassword;
+  protected String mUserPassword;
 
   /**
    * Nom de l'utilisateur.
@@ -58,8 +56,7 @@ public class User
    * @param avatarPath
    *          , Chemin d'accès à l'image de l'avatar.
    */
-  public User(UUID uuid, String userTag, JPasswordField userPassword, String name, Set<String> follows,
-              String avatarPath)
+  public User(UUID uuid, String userTag, String userPassword, String name, Set<String> follows, String avatarPath)
   {
     mUuid = uuid;
     mUserTag = userTag;
@@ -106,7 +103,7 @@ public class User
   /**
    * Retourne le mot de passe de l'utilisateur.
    */
-  public JPasswordField getUserPassword()
+  public String getUserPassword()
   {
     return this.mUserPassword;
   }
@@ -116,7 +113,7 @@ public class User
    * 
    * @param userPassword
    */
-  public void setUserPassword(JPasswordField userPassword)
+  public void setUserPassword(String userPassword)
   {
     this.mUserPassword = userPassword;
   }

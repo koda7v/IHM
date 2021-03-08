@@ -146,6 +146,10 @@ public class Twitup
         this.initDirectory(this.mMainView.getDirectoryPath());
       }
     }
+    else
+    {
+      System.exit(0);
+    }
   }
 
   /**
@@ -219,7 +223,7 @@ public class Twitup
 
   public void showSignUpViews()
   {
-    this.signUpComponent = new SignUpComponent(this.mDatabase);
+    this.signUpComponent = new SignUpComponent(this.mDatabase, this.mEntityManager);
     this.mMainView.showPanel(this.signUpComponent.getSignUpView());
     this.signUpComponent.addSignUpControllerObserver(this);
   }
@@ -233,7 +237,7 @@ public class Twitup
 
   public void showHomeTwittViews()
   {
-    this.homeTwittComponent = new HomeTwittComponent(this.mDatabase, this.userConnected);
+    this.homeTwittComponent = new HomeTwittComponent(this.mDatabase, this.userConnected, this.mEntityManager);
     this.mMainView.showPanel(this.homeTwittComponent.getHomeTwittView());
     this.homeTwittComponent.addIHomeTwittControllerObserver(this);
   }

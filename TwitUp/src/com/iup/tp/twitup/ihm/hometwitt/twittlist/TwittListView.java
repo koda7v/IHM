@@ -17,7 +17,7 @@ import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittView;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.observer.ITwittListModelObserver;
 
-public class TwittViewList extends JPanel implements ITwittListModelObserver
+public class TwittListView extends JPanel implements ITwittListModelObserver
 {
 
   private static final long serialVersionUID = 4067578516539010749L;
@@ -30,7 +30,7 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
   /**
    * Modèle du composant de la liste des twitt.
    */
-  protected TwittModelList twittListModel;
+  protected TwittListModel twittListModel;
 
   /**
    * Couleur de fond bleu
@@ -39,7 +39,7 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
 
   protected static final String KEY_LIST_TWITT_TITLE_LABEL = "KEY_LIST_TWITT_TITLE_LABEL";
 
-  public TwittViewList(TwittModelList twittListModel)
+  public TwittListView(TwittListModel twittListModel)
   {
     this.twittListModel = twittListModel;
     this.initContent();

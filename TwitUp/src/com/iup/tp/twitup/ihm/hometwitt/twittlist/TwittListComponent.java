@@ -2,22 +2,22 @@ package com.iup.tp.twitup.ihm.hometwitt.twittlist;
 
 import com.iup.tp.twitup.datamodel.IDatabase;
 
-public class TwittComponentList
+public class TwittListComponent
 {
   TwittControllerList controllerList;
-  TwittModelList modelList;
-  TwittViewList viewList;
+  TwittListModel modelList;
+  TwittListView viewList;
 
-  public TwittComponentList(IDatabase base)
+  public TwittListComponent(IDatabase base)
   {
-    this.modelList = new TwittModelList(base);
-    this.viewList = new TwittViewList(modelList);
+    this.modelList = new TwittListModel(base);
+    this.viewList = new TwittListView(modelList);
     this.controllerList = new TwittControllerList(modelList, viewList);
 
     this.modelList.addObserver(this.viewList);
   }
 
-  public TwittViewList getViewList()
+  public TwittListView getViewList()
   {
     return viewList;
   }

@@ -10,7 +10,7 @@ import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.observer.ITwittListModelObserver;
 
-public class TwittModelList
+public class TwittListModel
 {
 
   /**
@@ -25,7 +25,7 @@ public class TwittModelList
    */
   protected List<ITwittListModelObserver> observers;
 
-  public TwittModelList(IDatabase base)
+  public TwittListModel(IDatabase base)
   {
     this.base = base;
     this.twittComponentMap = new HashMap<>();

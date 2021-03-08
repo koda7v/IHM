@@ -2,6 +2,7 @@ package com.iup.tp.twitup.ihm.hometwitt;
 
 import javax.swing.JPanel;
 
+import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.hometwitt.bottomprofile.BottomProfileComponent;
@@ -13,7 +14,7 @@ import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileComponent;
 import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileView;
 import com.iup.tp.twitup.ihm.hometwitt.search.SearchComponent;
 import com.iup.tp.twitup.ihm.hometwitt.search.SearchView;
-import com.iup.tp.twitup.ihm.hometwitt.twittlist.TwittComponentList;
+import com.iup.tp.twitup.ihm.hometwitt.twittlist.TwittListComponent;
 import com.iup.tp.twitup.ihm.hometwitt.vortex.VortexComponent;
 import com.iup.tp.twitup.ihm.hometwitt.vortex.VortexView;
 
@@ -28,7 +29,7 @@ public class HomeTwittComponent
 
   protected CreationTwittComponent twittComponent;
 
-  protected TwittComponentList twittComponentList;
+  protected TwittListComponent twittComponentList;
 
   protected TwittButtonsComponent twittButtonsComponent;
 
@@ -44,11 +45,13 @@ public class HomeTwittComponent
 
   protected SearchComponent searchComponent;
 
-  public HomeTwittComponent(IDatabase base, User user)
+  protected EntityManager manager;
+
+  public HomeTwittComponent(IDatabase base, User user, EntityManager manager)
   {
     this.base = base;
     this.user = user;
-
+    this.manager = manager;
     this.homeTwittView = new HomeTwittView(this);
     this.homeTwittController = new HomeTwittController(this.homeTwittView);
     this.homeTwittModel = new HomeTwittModel();
@@ -70,12 +73,12 @@ public class HomeTwittComponent
 
   public void initTwittComponent()
   {
-    this.twittComponent = new CreationTwittComponent(this.base, this.user);
+    this.twittComponent = new CreationTwittComponent(this.base, this.user, this.manager);
   }
 
   public void initTwittListComponent()
   {
-    this.twittComponentList = new TwittComponentList(this.base);
+    this.twittComponentList = new TwittListComponent(this.base);
     this.base.addObserver(this.twittComponentList.getControllerList());
 
   }

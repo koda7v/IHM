@@ -104,7 +104,8 @@ public class SignInController implements IObserverSignView
   {
     for (User user : base.getUsers())
     {
-      if (user.getUserTag().equals(model.getPseudo()) && user.getUserPassword() == model.getMdp())
+      if (user.getUserTag().equals(model.getPseudo())
+          && user.getUserPassword() == model.getMdp().getPassword().toString())
       {
         return true;
       }

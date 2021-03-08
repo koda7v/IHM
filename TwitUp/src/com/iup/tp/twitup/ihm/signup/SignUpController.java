@@ -1,12 +1,14 @@
 package com.iup.tp.twitup.ihm.signup;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
 import javax.swing.JPasswordField;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
+import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.signup.observer.ISignUpControllerObserver;
@@ -28,17 +30,22 @@ public class SignUpController implements ISignUpViewObserver
 
   protected SignUpView signUpView;
 
-  public SignUpController(IDatabase base, SignUpModel signUpModel)
+  protected EntityManager manager;
+
+  public SignUpController(IDatabase base, SignUpModel signUpModel, EntityManager manager)
   {
     this.base = base;
     this.signUpModel = signUpModel;
     this.observers = new ArrayList<>();
+    this.manager = manager;
   }
 
   public User createUser()
   {
-    return new User(UUID.randomUUID(), this.signUpModel.getTag(), this.signUpModel.getMdp(), this.signUpModel.getNom(),
-        null, null);
+    User user = new User(UUID.randomUUID(), this.signUpModel.getTag(),
+        this.signUpModel.getMdp().getPassword().toString(), this.signUpModel.getNom(), new HashSet<>(), null);
+    this.manager.sendUser(user);
+    return user;
   }
 
   public void addObserver(ISignUpControllerObserver observer)
@@ -101,10 +108,11 @@ public class SignUpController implements ISignUpViewObserver
   {
     String name = this.signUpModel.getNom();
     String tag = this.signUpModel.getTag();
-    JPasswordField password = this.signUpModel.getMdp();
+    String password = this.signUpModel.getMdp().getPassword().toString();
+
     String account = this.signUpModel.getCompteUtilisateur();
 
-    return !(name.isEmpty() || tag.isEmpty() || password == null || account.isEmpty());
+    return !(name.isEmpty() || tag.isEmpty() || password.isEmpty() || account.isEmpty());
   }
 
   protected boolean userAlreadyExist()

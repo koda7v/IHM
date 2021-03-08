@@ -10,7 +10,6 @@ package com.iup.tp.twitup.datamodel.jaxb.bean.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JPasswordField;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -56,7 +55,7 @@ public class UserXml
   @XmlElement(name = "UserTag", required = true)
   protected String userTag;
   @XmlElement(name = "UserPassword", required = true)
-  protected JPasswordField userPassword;
+  protected String userPassword;
   @XmlElement(name = "Name", required = true)
   protected String name;
   @XmlElement(name = "AvatarPath", required = true)
@@ -116,7 +115,7 @@ public class UserXml
    * @return possible object is {@link String }
    * 
    */
-  public JPasswordField getUserPassword()
+  public String getUserPassword()
   {
     return userPassword;
   }
@@ -128,7 +127,7 @@ public class UserXml
    *          allowed object is {@link String }
    * 
    */
-  public void setUserPassword(JPasswordField value)
+  public void setUserPassword(String value)
   {
     this.userPassword = value;
   }

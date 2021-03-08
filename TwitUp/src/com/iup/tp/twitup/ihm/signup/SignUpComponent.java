@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm.signup;
 
+import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.ihm.signup.observer.ISignUpControllerObserver;
 
@@ -11,11 +12,14 @@ public class SignUpComponent
 
   protected SignUpController signUpController;
 
-  public SignUpComponent(IDatabase base)
+  protected EntityManager manager;
+
+  public SignUpComponent(IDatabase base, EntityManager manager)
   {
+    this.manager = manager;
     this.signUpModel = new SignUpModel();
     this.signUpView = new SignUpView();
-    this.signUpController = new SignUpController(base, this.signUpModel);
+    this.signUpController = new SignUpController(base, this.signUpModel, this.manager);
     this.signUpController.setSignUpView(this.signUpView);
     this.signUpView.addSignUpViewObserver(this.signUpController);
   }
