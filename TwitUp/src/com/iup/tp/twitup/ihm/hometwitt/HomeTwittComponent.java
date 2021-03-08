@@ -15,6 +15,8 @@ import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileView;
 import com.iup.tp.twitup.ihm.hometwitt.search.SearchComponent;
 import com.iup.tp.twitup.ihm.hometwitt.search.SearchView;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.TwittListComponent;
+import com.iup.tp.twitup.ihm.hometwitt.userlist.UserListComponent;
+import com.iup.tp.twitup.ihm.hometwitt.usertwittlist.UserTwittListComponent;
 import com.iup.tp.twitup.ihm.hometwitt.vortex.VortexComponent;
 import com.iup.tp.twitup.ihm.hometwitt.vortex.VortexView;
 
@@ -46,6 +48,10 @@ public class HomeTwittComponent
   protected SearchComponent searchComponent;
 
   protected EntityManager manager;
+
+  protected UserListComponent userListComponent;
+
+  protected UserTwittListComponent userTwittListComponent;
 
   public HomeTwittComponent(IDatabase base, User user, EntityManager manager)
   {
@@ -81,7 +87,6 @@ public class HomeTwittComponent
     this.twittComponentList = new TwittListComponent(this.base);
     this.homeTwittController.addObserver(twittComponentList.getControllerList());
     this.base.addObserver(this.twittComponentList.getControllerList());
-
   }
 
   protected void initTwittButtonsComponent()
@@ -136,6 +141,28 @@ public class HomeTwittComponent
     this.searchComponent = new SearchComponent();
     this.searchComponent.addObserverController(homeTwittController);
     return searchComponent.getSearchView();
+  }
+
+  public void initUserListComponent()
+  {
+    this.userListComponent = new UserListComponent(this.base);
+  }
+
+  public JPanel getUserViewList()
+  {
+    this.initUserListComponent();
+    return this.userListComponent.getUserListView();
+  }
+
+  public void initUserTwittListComponent()
+  {
+    this.userTwittListComponent = new UserTwittListComponent(this.base, this.user);
+  }
+
+  public JPanel getUserTwittViewList()
+  {
+    this.initUserTwittListComponent();
+    return this.userTwittListComponent.getUserTwittListView();
   }
 
 }

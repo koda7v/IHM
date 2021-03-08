@@ -107,9 +107,9 @@ public class TwittListModel
   }
 
   /**
-   * Retourne la liste des composants de tweets contenus dans la map.
+   * Retourne la liste des composants de twitt contenus dans la map.
    * 
-   * @return Liste des composants de tweets.
+   * @return Liste des composants de twitt.
    */
   public List<TwittComponent> getTwittComponentList()
   {
