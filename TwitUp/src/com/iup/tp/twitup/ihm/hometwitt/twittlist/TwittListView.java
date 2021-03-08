@@ -106,7 +106,7 @@ public class TwittListView extends JPanel implements ITwittListModelObserver
 
     JLabel label = new JLabel(ConstantLoader.getInstance().getText(KEY_LIST_TWITT_TITLE_LABEL));
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
-    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;

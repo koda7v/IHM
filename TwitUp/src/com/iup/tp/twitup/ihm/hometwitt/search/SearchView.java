@@ -1,9 +1,11 @@
 package com.iup.tp.twitup.ihm.hometwitt.search;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -97,6 +99,7 @@ public class SearchView extends JPanel
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
     panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
 //    this.searchField = new JTextField();
 //    this.searchField.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_RIGHT));
 //    this.searchField.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -104,6 +107,9 @@ public class SearchView extends JPanel
 
     JComboBox<String> jcbx = new JComboBox<>();
     editorComponent = (JTextField) jcbx.getEditor().getEditorComponent();
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    editorComponent.setMinimumSize(new Dimension(screenSize.width / 20, screenSize.height / 50));
+    editorComponent.setMaximumSize(new Dimension(screenSize.width / 20, screenSize.height / 50));
     editorComponent.addKeyListener(new KeyListener()
     {
 

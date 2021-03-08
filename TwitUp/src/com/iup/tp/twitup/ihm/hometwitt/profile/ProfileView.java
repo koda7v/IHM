@@ -80,12 +80,14 @@ public class ProfileView extends JPanel
 
     this.contentPane = new JPanel(new GridBagLayout());
     this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
-
+    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+    this.contentPane.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
+    this.contentPane.setMinimumSize(new Dimension(screensize.width / 3, screensize.height / 15));
     // Affichage de l'avatar
     try
     {
       this.contentPane.add(this.createAvatarPanel(), new GridBagConstraints(0, 0, 1, 2, 1, 1, GridBagConstraints.CENTER,
-          GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+          GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     }
     catch (IOException e)
     {
@@ -94,11 +96,11 @@ public class ProfileView extends JPanel
     }
 
     // Affichage du nom
-    this.contentPane.add(this.createTagPanel(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
+    this.contentPane.add(this.createTagPanel(), new GridBagConstraints(1, 0, 1, 1, 0, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     // Affichage du tag
-    this.contentPane.add(this.createNamePanel(), new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
+    this.contentPane.add(this.createNamePanel(), new GridBagConstraints(1, 1, 1, 1, 0, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
@@ -124,6 +126,7 @@ public class ProfileView extends JPanel
       homePacman = new ImagePanel(image, new Dimension(screenSize.width / 8, screenSize.height / 8));
     }
 
+    homePacman.setMinimumSize(new Dimension(screenSize.width / 8, screenSize.height / 8));
     panel.add(homePacman, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 

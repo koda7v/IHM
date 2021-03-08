@@ -91,7 +91,6 @@ public class TwittListController implements IDatabaseObserver, IHomeTwittControl
   @Override
   public void updateListWithSearch(String text)
   {
-    System.out.println("la");
 //    Set<Twit> twits = new HashSet<>();
 //    if (text.contains("@"))
 //    {

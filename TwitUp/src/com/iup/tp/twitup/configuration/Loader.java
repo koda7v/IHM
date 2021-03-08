@@ -66,7 +66,7 @@ public abstract class Loader
     }
     else
     {
-      System.out.println("Problème sur le chargement de la clef pour un text");
+      System.out.println("Problème sur le chargement de la clef pour un text " + key);
       text = key;
     }
 
