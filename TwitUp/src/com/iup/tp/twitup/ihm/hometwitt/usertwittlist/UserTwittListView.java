@@ -36,7 +36,7 @@ public class UserTwittListView extends JPanel
    */
   protected static final String KEY_COLOR_HOME_LEFT = "KEY_COLOR_HOME_LEFT";
 
-  protected static final String KEY_LIST_TWITT_TITLE_LABEL = "KEY_LIST_TWITT_TITLE_LABEL";
+  protected static final String KEY_TWIT_LIST_USER_TITLE_LABEL = "KEY_TWIT_LIST_USER_TITLE_LABEL";
 
   public UserTwittListView(UserTwittListModel userTwittListModel)
   {
@@ -66,7 +66,7 @@ public class UserTwittListView extends JPanel
     scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,
         GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 10, 10));
 
-    scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 1, 0, GridBagConstraints.CENTER,
+    scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 1, 0, GridBagConstraints.NORTH,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     JPanel panel = new JPanel(new GridBagLayout());
@@ -104,8 +104,7 @@ public class UserTwittListView extends JPanel
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
 
-    JLabel label = new JLabel(
-        ConstantLoader.getInstance().getText(ConstantLoader.getInstance().getText(KEY_LIST_TWITT_TITLE_LABEL)));
+    JLabel label = new JLabel(ConstantLoader.getInstance().getText(KEY_TWIT_LIST_USER_TITLE_LABEL));
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
     panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));

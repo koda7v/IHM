@@ -6,5 +6,7 @@ public interface ITwittButtonsControllerObserver
 
   public void swapViewToProfile();
 
+  public void swapViewToUser();
+
   public void logOut();
 }

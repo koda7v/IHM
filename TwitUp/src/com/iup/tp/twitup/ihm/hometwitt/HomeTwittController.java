@@ -68,4 +68,11 @@ public class HomeTwittController implements ITwittButtonsControllerObserver, ISe
 
   }
 
+  @Override
+  public void swapViewToUser()
+  {
+    this.homeTwittView.showListUserView();
+
+  }
+
 }

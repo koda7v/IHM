@@ -19,6 +19,11 @@ public interface ITwittButtonsViewObserver
   public void notifyProfile();
 
   /**
+   * Notifie un changement de vue vers la gestion sur des utilisateurs.
+   */
+  public void notifyUser();
+
+  /**
    * Notifie une deconnexion.
    */
   public void notififyLogout();

@@ -61,4 +61,14 @@ public class TwittButtonsController implements ITwittButtonsViewObserver
 
   }
 
+  @Override
+  public void notifyUser()
+  {
+    for (ITwittButtonsControllerObserver currentObserver : observers)
+    {
+      currentObserver.swapViewToUser();
+    }
+
+  }
+
 }

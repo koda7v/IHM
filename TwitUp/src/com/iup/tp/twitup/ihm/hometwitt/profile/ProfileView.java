@@ -1,6 +1,5 @@
 package com.iup.tp.twitup.ihm.hometwitt.profile;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -12,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -81,13 +79,13 @@ public class ProfileView extends JPanel
     this.contentPane = new JPanel(new GridBagLayout());
     this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
     Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-    this.contentPane.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
-    this.contentPane.setMinimumSize(new Dimension(screensize.width / 3, screensize.height / 15));
+//    this.contentPane.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
+//    this.contentPane.setMinimumSize(new Dimension(screensize.width / 3, screensize.height / 15));
     // Affichage de l'avatar
     try
     {
       this.contentPane.add(this.createAvatarPanel(), new GridBagConstraints(0, 0, 1, 2, 1, 1, GridBagConstraints.CENTER,
-          GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+          GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
     }
     catch (IOException e)
     {
@@ -96,12 +94,12 @@ public class ProfileView extends JPanel
     }
 
     // Affichage du nom
-    this.contentPane.add(this.createTagPanel(), new GridBagConstraints(1, 0, 1, 1, 0, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.add(this.createTagPanel(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
+        GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 
     // Affichage du tag
-    this.contentPane.add(this.createNamePanel(), new GridBagConstraints(1, 1, 1, 1, 0, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.add(this.createNamePanel(), new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
+        GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -110,23 +108,24 @@ public class ProfileView extends JPanel
   protected JPanel createAvatarPanel() throws IOException
   {
     JPanel panel = new JPanel();
-    panel.setBorder(BorderFactory.createLineBorder(Color.black));
+    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
+//    panel.setBorder(BorderFactory.createLineBorder(Color.black));
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     JPanel homePacman;
 
     if (this.user.getAvatarPath() == null)
     {
       homePacman = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_VORTEX),
-          new Dimension(screenSize.width / 8, screenSize.height / 8));
+          new Dimension(screenSize.width / 10, screenSize.height / 10));
     }
     else
     {
       File pathToFile = new File(this.user.getAvatarPath());
       Image image = ImageIO.read(pathToFile);
-      homePacman = new ImagePanel(image, new Dimension(screenSize.width / 8, screenSize.height / 8));
+      homePacman = new ImagePanel(image, new Dimension(screenSize.width / 10, screenSize.height / 10));
     }
 
-    homePacman.setMinimumSize(new Dimension(screenSize.width / 8, screenSize.height / 8));
+//    homePacman.setMinimumSize(new Dimension(screenSize.width / 8, screenSize.height / 8));
     panel.add(homePacman, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 

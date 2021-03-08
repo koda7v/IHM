@@ -36,7 +36,7 @@ public class UserListView extends JPanel
    */
   protected static final String KEY_COLOR_HOME_LEFT = "KEY_COLOR_HOME_LEFT";
 
-  protected static final String KEY_LIST_TWITT_TITLE_LABEL = "KEY_LIST_TWITT_TITLE_LABEL";
+  protected static final String KEY_LIST_USER_TITLE_LABEL = "KEY_LIST_USER_TITLE_LABEL";
 
   public UserListView(UserListModel userListModel)
   {
@@ -101,9 +101,9 @@ public class UserListView extends JPanel
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
 
-    JLabel label = new JLabel(ConstantLoader.getInstance().getText("Ma liste de users connectés"));
+    JLabel label = new JLabel(ConstantLoader.getInstance().getText(KEY_LIST_USER_TITLE_LABEL));
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
-    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;

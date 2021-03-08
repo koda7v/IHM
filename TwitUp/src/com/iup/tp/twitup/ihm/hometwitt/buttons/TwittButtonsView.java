@@ -31,6 +31,8 @@ public class TwittButtonsView extends JPanel
 
   protected static final String KEY_BUTTON_PROFILE_TITLE_LABEL = "KEY_BUTTON_PROFILE_TITLE_LABEL";
 
+  protected static final String KEY_BUTTON_USER_TITLE_LABEL = "KEY_BUTTON_USER_TITLE_LABEL";
+
   protected static final String KEY_BUTTON_LOGOUT_TITLE_LABEL = "KEY_BUTTON_LOGOUT_TITLE_LABEL";
 
   protected static final String KEY_BACKGROUND_BUTTON_HOME_COLOR = "KEY_BACKGROUND_BUTTON_HOME_COLOR";
@@ -77,6 +79,14 @@ public class TwittButtonsView extends JPanel
     for (ITwittButtonsViewObserver currentObserver : observers)
     {
       currentObserver.notifyProfile();
+    }
+  }
+
+  public void notifyUserSwap()
+  {
+    for (ITwittButtonsViewObserver currentObserver : observers)
+    {
+      currentObserver.notifyUser();
     }
   }
 
@@ -131,6 +141,17 @@ public class TwittButtonsView extends JPanel
       }
     });
 
+    TwitButton buttonUser = new TwitButton(ConstantLoader.getInstance().getText(KEY_BUTTON_USER_TITLE_LABEL));
+    buttonUser.addActionListener(new ActionListener()
+    {
+
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        TwittButtonsView.this.notifyUserSwap();
+      }
+    });
+
     TwitButton buttonLogOut = new TwitButton(ConstantLoader.getInstance().getText(KEY_BUTTON_LOGOUT_TITLE_LABEL));
     buttonLogOut.addActionListener(new ActionListener()
     {
@@ -142,12 +163,14 @@ public class TwittButtonsView extends JPanel
       }
     });
 
-    panel.add(buttonHome, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.SOUTH, GridBagConstraints.NONE,
+    panel.add(buttonHome, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));
     panel.add(buttonProfile, new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-    panel.add(buttonLogOut, new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.NONE,
-        new Insets(0, 0, 0, 0), 0, 0));
+        GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
+    panel.add(buttonUser, new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+        new Insets(40, 0, 0, 0), 0, 0));
+    panel.add(buttonLogOut, new GridBagConstraints(0, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+        new Insets(40, 0, 0, 0), 0, 0));
 
     return panel;
   }

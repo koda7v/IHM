@@ -61,11 +61,19 @@ public class HomeTwittView extends JPanel
     this.contentPane.add(this.wrapPanelUser(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(this.homeTwittComponent.getUserViewList(), new GridBagConstraints(2, 0, 1, 1, 1, 1,
+    this.contentPane.revalidate();
+    this.contentPane.repaint();
+  }
+
+  public void showListUserView()
+  {
+    this.contentPane.removeAll();
+
+    this.contentPane.add(this.homeTwittComponent.getTwittButtonsView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
         GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.add(this.homeTwittComponent.getUserViewList(), new GridBagConstraints(1, 0, 1, 1, 1, 1,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.contentPane.revalidate();
     this.contentPane.repaint();
@@ -87,7 +95,7 @@ public class HomeTwittView extends JPanel
   protected JPanel wrapPanelUser()
   {
     JPanel panel = new JPanel(new GridBagLayout());
-    panel.add(this.homeTwittComponent.getProfileView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
+    panel.add(this.homeTwittComponent.getProfileView(), new GridBagConstraints(0, 0, 1, 1, 1, 1,
         GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     panel.add(this.homeTwittComponent.getUserTwittViewList(), new GridBagConstraints(0, 1, 1, 1, 1, 1,
