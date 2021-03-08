@@ -11,6 +11,8 @@ import com.iup.tp.twitup.ihm.hometwitt.buttons.TwittButtonsView;
 import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileComponent;
 import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileView;
+import com.iup.tp.twitup.ihm.hometwitt.search.SearchComponent;
+import com.iup.tp.twitup.ihm.hometwitt.search.SearchView;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.TwittComponentList;
 import com.iup.tp.twitup.ihm.hometwitt.vortex.VortexComponent;
 import com.iup.tp.twitup.ihm.hometwitt.vortex.VortexView;
@@ -39,6 +41,8 @@ public class HomeTwittComponent
   protected IDatabase base;
 
   protected User user;
+
+  protected SearchComponent searchComponent;
 
   public HomeTwittComponent(IDatabase base, User user)
   {
@@ -120,6 +124,12 @@ public class HomeTwittComponent
   {
     this.bottomProfileComponent = new BottomProfileComponent();
     return bottomProfileComponent.getBottomProfileView();
+  }
+
+  public SearchView getSearchView()
+  {
+    this.searchComponent = new SearchComponent();
+    return searchComponent.getSearchView();
   }
 
 }

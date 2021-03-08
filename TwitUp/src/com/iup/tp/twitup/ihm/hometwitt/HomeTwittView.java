@@ -35,14 +35,14 @@ public class HomeTwittView extends JPanel
   {
     this.contentPane.removeAll();
 
-    this.contentPane.add(this.homeTwittComponent.getTwittButtonsView(), new GridBagConstraints(0, 0, 1, 1, 1, 1,
-        GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.add(this.homeTwittComponent.getTwittButtonsView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(this.wrapPanelTwitt(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,
+    this.contentPane.add(this.wrapPanelTwitt(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(this.homeTwittComponent.getVortexView(), new GridBagConstraints(2, 0, 1, 1, 1, 1,
-        GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.add(leftPanel(), new GridBagConstraints(3, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
@@ -56,12 +56,24 @@ public class HomeTwittView extends JPanel
   {
     JPanel panel = new JPanel(new GridBagLayout());
     // Ajout de la vue du twitt
-    panel.add(this.homeTwittComponent.getTwittView(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH,
-        GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+    panel.add(this.homeTwittComponent.getTwittView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     // Ajout de la vue de la liste des twitts
-    panel.add(this.homeTwittComponent.getTwittListView(), new GridBagConstraints(0, 1, 1, 1, 0, 1,
-        GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+    panel.add(this.homeTwittComponent.getTwittListView(), new GridBagConstraints(0, 1, 1, 1, 1, 1,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
+    return panel;
+  }
+
+  protected JPanel leftPanel()
+  {
+
+    JPanel panel = new JPanel(new GridBagLayout());
+    panel.add(this.homeTwittComponent.getSearchView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+    panel.add(this.homeTwittComponent.getVortexView(), new GridBagConstraints(0, 1, 1, 1, 1, 1,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     return panel;
   }
 

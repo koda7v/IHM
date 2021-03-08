@@ -75,7 +75,11 @@ public class TwittViewList extends JPanel implements ITwittListModelObserver
     scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 1, 0, GridBagConstraints.NORTH,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
+    JPanel panel = new JPanel(new GridBagLayout());
+    panel.add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 0, 0), 0, 0));
+
+    this.add(panel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
   }
 

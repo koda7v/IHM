@@ -21,11 +21,11 @@ public class TwittControllerList implements IDatabaseObserver
   @Override
   public void notifyTwitAdded(Twit addedTwit)
   {
-    view.contentPane.removeAll();
+    this.view.contentPane.removeAll();
     this.model.addTwittComponent(addedTwit, new TwittComponent(addedTwit));
-    view.placeComponents();
-    view.revalidate();
-    view.repaint();
+    this.view.placeComponents();
+    this.view.revalidate();
+    this.view.repaint();
 
   }
 
