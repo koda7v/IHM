@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.Twit;
@@ -18,6 +19,8 @@ public class TwittListModel
    */
   protected Map<Twit, TwittComponent> twittComponentMap;
 
+  protected Set<Twit> twitts;
+
   protected IDatabase base;
 
   /**
@@ -28,7 +31,7 @@ public class TwittListModel
   public TwittListModel(IDatabase base)
   {
     this.base = base;
-    this.twittComponentMap = new HashMap<>();
+    this.twitts = base.getTwits();
     this.initMap();
 
     this.observers = new ArrayList<ITwittListModelObserver>();
@@ -36,8 +39,8 @@ public class TwittListModel
 
   protected void initMap()
   {
-
-    for (Twit currentTwitt : base.getTwits())
+    this.twittComponentMap = new HashMap<>();
+    for (Twit currentTwitt : this.twitts)
     {
       TwittComponent twittComponent = new TwittComponent(currentTwitt);
       this.twittComponentMap.put(currentTwitt, twittComponent);
@@ -112,4 +115,30 @@ public class TwittListModel
   {
     return new ArrayList<>(twittComponentMap.values());
   }
+
+  public IDatabase getBase()
+  {
+    return base;
+  }
+
+  public void setBase(IDatabase base)
+  {
+    this.base = base;
+  }
+
+  public Set<Twit> getTwitts()
+  {
+    return twitts;
+  }
+
+  public void setTwitts(Set<Twit> twitts)
+  {
+    this.twitts = twitts;
+    this.initMap();
+    for (ITwittListModelObserver currentObserver : this.observers)
+    {
+      currentObserver.twittSearch(this);
+    }
+  }
+
 }

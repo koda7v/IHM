@@ -111,7 +111,6 @@ public class ProfileView extends JPanel
     panel.setBorder(BorderFactory.createLineBorder(Color.black));
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     JPanel homePacman;
-    System.out.println(this.user.getAvatarPath());
 
     if (this.user.getAvatarPath() == null)
     {

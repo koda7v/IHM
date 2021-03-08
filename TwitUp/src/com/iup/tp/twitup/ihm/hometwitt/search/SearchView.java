@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxEditor;
@@ -16,6 +20,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
+import com.iup.tp.twitup.ihm.hometwitt.search.observer.ISearchViewObserver;
 
 public class SearchView extends JPanel
 {
@@ -49,9 +54,30 @@ public class SearchView extends JPanel
    */
   protected static final String KEY_COLOR_HOME_RIGHT = "KEY_COLOR_HOME_RIGHT";
 
+  protected List<ISearchViewObserver> observers;
+
+  protected JTextField editorComponent;
+
   public SearchView()
   {
+    this.observers = new ArrayList<>();
     this.initContent();
+  }
+
+  public void addISearchViewObserver(ISearchViewObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.add(observer);
+    }
+  }
+
+  public void removeISearchViewObserver(ISearchViewObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.remove(observer);
+    }
   }
 
   public void initContent()
@@ -77,14 +103,36 @@ public class SearchView extends JPanel
 //    this.searchField.setBorder(BorderFactory.createLineBorder(Color.PINK));
 
     JComboBox<String> jcbx = new JComboBox<>();
-    JTextField editorComponent = (JTextField) jcbx.getEditor().getEditorComponent();
+    editorComponent = (JTextField) jcbx.getEditor().getEditorComponent();
+    editorComponent.addKeyListener(new KeyListener()
+    {
+
+      @Override
+      public void keyTyped(KeyEvent e)
+      {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void keyReleased(KeyEvent e)
+      {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void keyPressed(KeyEvent e)
+      {
+        SearchView.this.search(e);
+
+      }
+    });
     jcbx.setEditable(true);
 
     Border outer = editorComponent.getBorder();
     Border search = new MatteBorder(0, 16, 0, 0, new ImageIcon(ConstantLoader.getInstance().getImage(KEY_IMAGE_LOUPE)));
     editorComponent.setBorder(new CompoundBorder(outer, search));
-
-    System.out.println(search);
 
 //    panel.add(searchField, new GridBagConstraints(0, 0, 0, 0, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
 //        new Insets(0, 0, 0, 0), 0, 0));
@@ -92,6 +140,17 @@ public class SearchView extends JPanel
     panel.add(editorComponent, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     return panel;
+  }
+
+  public void search(KeyEvent e)
+  {
+    if (e.getKeyCode() == KeyEvent.VK_ENTER)
+    {
+      for (ISearchViewObserver currentObserver : observers)
+      {
+        currentObserver.notifySearch(this.editorComponent.getText());
+      }
+    }
   }
 
 }

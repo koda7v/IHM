@@ -79,6 +79,7 @@ public class HomeTwittComponent
   public void initTwittListComponent()
   {
     this.twittComponentList = new TwittListComponent(this.base);
+    this.homeTwittController.addObserver(twittComponentList.getControllerList());
     this.base.addObserver(this.twittComponentList.getControllerList());
 
   }
@@ -98,6 +99,7 @@ public class HomeTwittComponent
   public JPanel getTwittListView()
   {
     this.initTwittListComponent();
+
     return this.twittComponentList.getViewList();
   }
 
@@ -132,6 +134,7 @@ public class HomeTwittComponent
   public SearchView getSearchView()
   {
     this.searchComponent = new SearchComponent();
+    this.searchComponent.addObserverController(homeTwittController);
     return searchComponent.getSearchView();
   }
 

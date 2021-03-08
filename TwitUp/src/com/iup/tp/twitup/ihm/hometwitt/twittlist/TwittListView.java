@@ -124,4 +124,12 @@ public class TwittListView extends JPanel implements ITwittListModelObserver
     this.contentPane.revalidate();
     this.contentPane.repaint();
   }
+
+  @Override
+  public void twittSearch(TwittListModel twittListModel)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
 }
