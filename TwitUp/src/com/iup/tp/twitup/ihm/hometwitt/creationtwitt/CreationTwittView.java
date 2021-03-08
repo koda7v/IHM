@@ -92,7 +92,7 @@ public class CreationTwittView extends JPanel
     this.contentPane.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
     this.contentPane.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 10, 10));
+        GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 10, 10));
 
     this.contentPane.add(this.createPanelTwitt(), new GridBagConstraints(0, 1, 1, 2, 0, 0, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -160,6 +160,7 @@ public class CreationTwittView extends JPanel
     this.areaTwitt = new JTextArea();
     Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
     this.areaTwitt.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
+    this.areaTwitt.setMinimumSize(new Dimension(screensize.width / 3, screensize.height / 15));
     this.areaTwitt.setLineWrap(true);
     panel.add(this.areaTwitt, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 5, 5));

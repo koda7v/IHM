@@ -50,16 +50,18 @@ public class VortexView extends JPanel
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     JPanel homePacman = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_PACMAN),
-        new Dimension(screenSize.width / 10, screenSize.height / 10));
+        new Dimension(screenSize.width / 8, screenSize.height / 8));
+    homePacman.setMinimumSize(new Dimension(screenSize.width / 8, screenSize.height / 8));
 
     JPanel homeVortex = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_VORTEX),
-        new Dimension(screenSize.width / 10, screenSize.height / 10));
+        new Dimension(screenSize.width / 8, screenSize.height / 8));
+    homeVortex.setMinimumSize(new Dimension(screenSize.width / 8, screenSize.height / 8));
 
-    this.contentPane.add(homePacman, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.EAST,
-        GridBagConstraints.NONE, new Insets(0, 20, 0, 0), 0, 0));
+    this.contentPane.add(homePacman, new GridBagConstraints(0, 0, 1, 1, 0, 1, GridBagConstraints.CENTER,
+        GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(homeVortex, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.WEST,
-        GridBagConstraints.NONE, new Insets(0, 0, 0, 20), 0, 0));
+    this.contentPane.add(homeVortex, new GridBagConstraints(1, 0, 1, 1, 0, 1, GridBagConstraints.CENTER,
+        GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));

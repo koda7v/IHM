@@ -46,6 +46,8 @@ public class TwitButton extends JButton
   {
     this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width / 10,
         Toolkit.getDefaultToolkit().getScreenSize().height / 20));
+    this.setMinimumSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width / 10,
+        Toolkit.getDefaultToolkit().getScreenSize().height / 20));
     this.setText(title);
     this.setContentAreaFilled(false);
     this.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_COLOR));

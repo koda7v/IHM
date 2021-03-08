@@ -88,7 +88,7 @@ public class SearchView extends JPanel
 //    panel.add(searchField, new GridBagConstraints(0, 0, 0, 0, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
 //        new Insets(0, 0, 0, 0), 0, 0));
 
-    panel.add(editorComponent, new GridBagConstraints(0, 1, 0, 0, 1, 1, GridBagConstraints.NORTH,
+    panel.add(editorComponent, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     return panel;
   }

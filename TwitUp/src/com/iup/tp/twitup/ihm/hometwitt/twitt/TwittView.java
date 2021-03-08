@@ -90,7 +90,7 @@ public class TwittView extends JPanel
 
     contentPane.add(userName(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-    contentPane.add(twittText(), new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.CENTER,
+    contentPane.add(twittText(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     contentPane.add(dateTwitt(), new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -111,6 +111,7 @@ public class TwittView extends JPanel
     Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
     this.textLabel = new JTextArea(model.getText());
     this.textLabel.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
+    this.textLabel.setMinimumSize(new Dimension(screensize.width / 3, screensize.height / 15));
     this.textLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
     this.textLabel.setEditable(false);
     this.textLabel.setLineWrap(true);

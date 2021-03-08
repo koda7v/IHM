@@ -93,10 +93,11 @@ public class TwittButtonsView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
+    this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
-    this.contentPane.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH,
-        GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
-    this.contentPane.add(this.createPanelHome(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
+    this.contentPane.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH,
+        GridBagConstraints.HORIZONTAL, new Insets(40, 0, 0, 0), 0, 0));
+    this.contentPane.add(this.createPanelHome(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
@@ -141,12 +142,12 @@ public class TwittButtonsView extends JPanel
       }
     });
 
-    panel.add(buttonHome, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+    panel.add(buttonHome, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.SOUTH, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));
-    panel.add(buttonProfile, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.CENTER,
-        GridBagConstraints.NONE, new Insets(40, 0, 0, 0), 0, 0));
-    panel.add(buttonLogOut, new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
-        new Insets(40, 0, 0, 0), 0, 0));
+    panel.add(buttonProfile, new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
+        GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+    panel.add(buttonLogOut, new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.NONE,
+        new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
   }
@@ -157,13 +158,13 @@ public class TwittButtonsView extends JPanel
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
     JLabel labelName = new JLabel(ConstantLoader.getInstance().getText(KEY_BUTTON_HOME_TITLE_USER_LABEL));
-    labelName.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
+    labelName.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
     JLabel nameUser = new JLabel(this.user.getName());
-    nameUser.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
+    nameUser.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 
-    panel.add(labelName, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+    panel.add(labelName, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));
-    panel.add(nameUser, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+    panel.add(nameUser, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
