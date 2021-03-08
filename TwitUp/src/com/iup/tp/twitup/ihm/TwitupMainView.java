@@ -140,7 +140,7 @@ public class TwitupMainView extends JFrame
 
   public JFileChooser chooser()
   {
-    JFileChooser chooser = new JFileChooser();
+    JFileChooser chooser = new JFileChooser("D:\\Stephane\\IHM\\Echange");
     chooser.setDialogTitle(ConstantLoader.getInstance().getText(Constant.KEY_FILECHOOSER_TITLE));
     chooser.setAcceptAllFileFilterUsed(true);
     chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

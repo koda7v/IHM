@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.ihm.signup.observer.ISignUpViewObserver;
 import com.iup.tp.twitup.ihm.widget.TwitButton;
+import com.iup.tp.twitup.ihm.widget.FileChooser.FileChooserView;
 
 public class SignUpView extends JPanel
 {
@@ -70,13 +71,16 @@ public class SignUpView extends JPanel
 
   protected JPasswordField textMotDePasse;
 
-//  // Avatar
-//  protected JLabel labelAvatar;
+  protected FileChooserView fileChooserView;
+
+  // Avatar
+  protected JLabel labelAvatar;
 
   protected List<ISignUpViewObserver> observers;
 
-  public SignUpView()
+  public SignUpView(FileChooserView fileChooserView)
   {
+    this.fileChooserView = fileChooserView;
     this.initContent();
     this.observers = new ArrayList<>();
   }
@@ -93,7 +97,9 @@ public class SignUpView extends JPanel
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 20, 20));
     this.contentPane.add(this.createFormPanel(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-    this.contentPane.add(this.createButtons(), new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER,
+    this.contentPane.add(this.createPanelAvatar(), new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    this.contentPane.add(this.createButtons(), new GridBagConstraints(0, 3, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 100));
 
     this.add(this.contentPane);
@@ -235,20 +241,20 @@ public class SignUpView extends JPanel
     return panel;
   }
 
-//  protected JPanel createPanelAvatar()
-//  {
-//    JPanel panel = new JPanel(new GridBagLayout());
-//    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_FORM_BACKGROUND_COLOR));
-//
-//    this.labelAvatar = new JLabel(ConstantLoader.getInstance().getText(KEY_SIGNUP_AVATAR_LABEL));
-//    this.labelAvatar.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-//    panel.add(this.labelAvatar, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST,
-//        GridBagConstraints.BOTH, new Insets(20, 20, 0, 30), 0, 0));
-//    panel.add(avatarCombobox, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE,
-//        new Insets(20, 0, 0, 20), 0, 0));
-//
-//    return panel;
-//  }
+  protected JPanel createPanelAvatar()
+  {
+    JPanel panel = new JPanel(new GridBagLayout());
+    panel.setBackground(ConstantLoader.getInstance().getColor(KEY_FORM_BACKGROUND_COLOR));
+
+    this.labelAvatar = new JLabel(ConstantLoader.getInstance().getText(KEY_SIGNUP_AVATAR_LABEL));
+    this.labelAvatar.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+    panel.add(this.labelAvatar, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST,
+        GridBagConstraints.BOTH, new Insets(20, 20, 0, 30), 0, 0));
+    panel.add(this.fileChooserView, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.EAST,
+        GridBagConstraints.NONE, new Insets(20, 0, 0, 20), 0, 0));
+
+    return panel;
+  }
 
 //  /**
 //   * Initialise les FileChooser.

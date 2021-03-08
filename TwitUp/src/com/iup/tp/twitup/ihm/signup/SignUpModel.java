@@ -13,12 +13,15 @@ public class SignUpModel
 
   protected JPasswordField mdp;
 
+  protected String pathAvatar;
+
   public SignUpModel()
   {
     this.nom = "";
     this.tag = "";
     this.compteUtilisateur = "";
     this.mdp = null;
+    this.pathAvatar = null;
   }
 
   public String getNom()
@@ -59,6 +62,16 @@ public class SignUpModel
   public void setMdp(JPasswordField mdp)
   {
     this.mdp = mdp;
+  }
+
+  public String getPathAvatar()
+  {
+    return pathAvatar;
+  }
+
+  public void setPathAvatar(String pathAvatar)
+  {
+    this.pathAvatar = pathAvatar;
   }
 
 }

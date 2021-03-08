@@ -10,7 +10,7 @@ public class Printer implements IDatabaseObserver
   @Override
   public void notifyTwitAdded(Twit addedTwit)
   {
-    System.out.println("Twit Added");
+//    System.out.println("Twit Added");
 
   }
 
@@ -31,7 +31,7 @@ public class Printer implements IDatabaseObserver
   @Override
   public void notifyUserAdded(User addedUser)
   {
-    System.out.println("User Added");
+//    System.out.println("User Added");
 
   }
 

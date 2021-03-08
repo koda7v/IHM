@@ -1,6 +1,5 @@
-package com.iup.tp.twitup.ihm.signup.widget;
+package com.iup.tp.twitup.ihm.widget.FileChooser;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class FileChooserModel implements Serializable
   /**
    * Fichier sélectionné.
    */
-  protected File file;
+  protected String file;
 
   /**
    * Liste des observeurs du modèle.
@@ -76,12 +75,12 @@ public class FileChooserModel implements Serializable
     }
   }
 
-  public File getFile()
+  public String getFile()
   {
     return file;
   }
 
-  public void setFile(File file)
+  public void setFile(String file)
   {
     this.file = file;
     this.notifyObservers();

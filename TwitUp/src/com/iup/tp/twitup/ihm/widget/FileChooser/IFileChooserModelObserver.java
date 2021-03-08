@@ -1,6 +1,4 @@
-package com.iup.tp.twitup.ihm.signup.widget;
-
-import java.io.File;
+package com.iup.tp.twitup.ihm.widget.FileChooser;
 
 /**
  * Interface observeur du modèle de FileChooser.
@@ -17,5 +15,5 @@ public interface IFileChooserModelObserver
    * @param file
    *          Fichier modifié.
    */
-  public void updateSelectedFile(File file);
+  public void updateSelectedFile(String file);
 }

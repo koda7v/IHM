@@ -1,6 +1,5 @@
-package com.iup.tp.twitup.ihm.signup.widget;
+package com.iup.tp.twitup.ihm.widget.FileChooser;
 
-import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -33,8 +32,9 @@ public class FileChooserController implements Serializable
   /**
    * Clic sur le bouton parcourir du FileChooser.
    */
-  public void click(File file)
+  public void click(String file)
   {
     model.setFile(file);
   }
+
 }

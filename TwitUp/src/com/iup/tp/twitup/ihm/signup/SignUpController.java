@@ -13,8 +13,9 @@ import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.signup.observer.ISignUpControllerObserver;
 import com.iup.tp.twitup.ihm.signup.observer.ISignUpViewObserver;
+import com.iup.tp.twitup.ihm.widget.FileChooser.IFileChooserModelObserver;
 
-public class SignUpController implements ISignUpViewObserver
+public class SignUpController implements ISignUpViewObserver, IFileChooserModelObserver
 {
   protected IDatabase base;
 
@@ -43,7 +44,8 @@ public class SignUpController implements ISignUpViewObserver
   public User createUser()
   {
     User user = new User(UUID.randomUUID(), this.signUpModel.getTag(),
-        this.signUpModel.getMdp().getPassword().toString(), this.signUpModel.getNom(), new HashSet<>(), null);
+        this.signUpModel.getMdp().getPassword().toString(), this.signUpModel.getNom(), new HashSet<>(),
+        this.signUpModel.getPathAvatar());
     this.manager.sendUser(user);
     return user;
   }
@@ -140,6 +142,13 @@ public class SignUpController implements ISignUpViewObserver
   public void setSignUpView(SignUpView signUpView)
   {
     this.signUpView = signUpView;
+  }
+
+  @Override
+  public void updateSelectedFile(String file)
+  {
+    this.signUpModel.setPathAvatar(file);
+
   }
 
 }

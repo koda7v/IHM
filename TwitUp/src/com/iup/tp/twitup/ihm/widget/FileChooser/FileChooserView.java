@@ -1,4 +1,4 @@
-package com.iup.tp.twitup.ihm.signup.widget;
+package com.iup.tp.twitup.ihm.widget.FileChooser;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -7,7 +7,6 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -24,7 +23,7 @@ import com.iup.tp.twitup.utils.FileUtils;
  * @author Edispa2020
  *
  */
-public class FileChooserGraphic extends JPanel implements IFileChooserModelObserver
+public class FileChooserView extends JPanel implements IFileChooserModelObserver
 {
 
   private static final long serialVersionUID = -8328101182107218988L;
@@ -61,7 +60,7 @@ public class FileChooserGraphic extends JPanel implements IFileChooserModelObser
    * @param fileChooserController
    *          Contrôleur du composant.
    */
-  public FileChooserGraphic(JFileChooser fileChooser, FileChooserController fileChooserController)
+  public FileChooserView(JFileChooser fileChooser, FileChooserController fileChooserController)
   {
     this.fileChooser = fileChooser;
     this.fileChooserController = fileChooserController;
@@ -113,12 +112,12 @@ public class FileChooserGraphic extends JPanel implements IFileChooserModelObser
 
     if (response == JFileChooser.APPROVE_OPTION)
     {
-      fileChooserController.click(fileChooser.getSelectedFile());
+      fileChooserController.click(fileChooser.getSelectedFile().getPath());
     }
   }
 
   @Override
-  public void updateSelectedFile(File file)
+  public void updateSelectedFile(String file)
   {
     if (file == null)
     {
