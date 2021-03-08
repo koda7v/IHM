@@ -35,7 +35,7 @@ public class SearchView extends JPanel
    */
   protected JTextField searchField;
 
-  protected static final String KEY_IMAGE_APROPOS_LITTLE = "KEY_IMAGE_APROPOS_LITTLE";
+  protected static final String KEY_IMAGE_LOUPE = "KEY_IMAGE_LOUPE";
 
   protected ComboBoxEditor comboBox;
 
@@ -81,9 +81,10 @@ public class SearchView extends JPanel
     jcbx.setEditable(true);
 
     Border outer = editorComponent.getBorder();
-    Border search = new MatteBorder(0, 16, 0, 0,
-        new ImageIcon(ConstantLoader.getInstance().getImage(KEY_IMAGE_APROPOS_LITTLE)));
+    Border search = new MatteBorder(0, 16, 0, 0, new ImageIcon(ConstantLoader.getInstance().getImage(KEY_IMAGE_LOUPE)));
     editorComponent.setBorder(new CompoundBorder(outer, search));
+
+    System.out.println(search);
 
 //    panel.add(searchField, new GridBagConstraints(0, 0, 0, 0, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.BOTH,
 //        new Insets(0, 0, 0, 0), 0, 0));

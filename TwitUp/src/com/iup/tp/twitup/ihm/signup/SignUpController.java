@@ -24,7 +24,7 @@ public class SignUpController implements ISignUpViewObserver
 
   protected static final String KEY_ERROR_SIGN_ERROR_TITLE = "KEY_ERROR_SIGN_ERROR_TITLE";
 
-  protected static final String KEY_SIGNUP_NAME_MESSAGE_ERROR = "KEY_SIGNIN_NAME_MESSAGE_ERROR";
+  protected static final String KEY_SIGNUP_NAME_MESSAGE_ERROR = "KEY_SIGNUP_NAME_MESSAGE_ERROR";
 
   protected static final String KEY_ERROR_FORM_MESSAGE = "KEY_ERROR_FORM_MESSAGE";
 

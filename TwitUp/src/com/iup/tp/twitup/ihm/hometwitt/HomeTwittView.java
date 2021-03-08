@@ -41,7 +41,7 @@ public class HomeTwittView extends JPanel
     this.contentPane.add(this.wrapPanelTwitt(), new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(rightPanel(), new GridBagConstraints(3, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
+    this.contentPane.add(rightPanel(), new GridBagConstraints(2, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,

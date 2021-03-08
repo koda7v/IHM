@@ -4,7 +4,7 @@ import com.iup.tp.twitup.datamodel.IDatabase;
 
 public class TwittListComponent
 {
-  TwittControllerList controllerList;
+  TwittListController controllerList;
   TwittListModel modelList;
   TwittListView viewList;
 
@@ -12,7 +12,7 @@ public class TwittListComponent
   {
     this.modelList = new TwittListModel(base);
     this.viewList = new TwittListView(modelList);
-    this.controllerList = new TwittControllerList(modelList, viewList);
+    this.controllerList = new TwittListController(modelList, viewList);
 
     this.modelList.addObserver(this.viewList);
   }
@@ -22,7 +22,7 @@ public class TwittListComponent
     return viewList;
   }
 
-  public TwittControllerList getControllerList()
+  public TwittListController getControllerList()
   {
     return controllerList;
   }

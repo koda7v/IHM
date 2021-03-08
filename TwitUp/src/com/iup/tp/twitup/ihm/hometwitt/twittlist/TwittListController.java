@@ -5,14 +5,14 @@ import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
 
-public class TwittControllerList implements IDatabaseObserver
+public class TwittListController implements IDatabaseObserver
 {
 
   protected TwittListView view;
 
   protected TwittListModel model;
 
-  public TwittControllerList(TwittListModel modelList, TwittListView view)
+  public TwittListController(TwittListModel modelList, TwittListView view)
   {
     this.view = view;
     this.model = modelList;
@@ -21,12 +21,7 @@ public class TwittControllerList implements IDatabaseObserver
   @Override
   public void notifyTwitAdded(Twit addedTwit)
   {
-    this.view.contentPane.removeAll();
     this.model.addTwittComponent(addedTwit, new TwittComponent(addedTwit));
-    this.view.placeComponents();
-    this.view.revalidate();
-    this.view.repaint();
-
   }
 
   @Override

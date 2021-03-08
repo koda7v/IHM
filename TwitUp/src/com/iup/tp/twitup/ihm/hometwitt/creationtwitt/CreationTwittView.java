@@ -9,6 +9,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +77,10 @@ public class CreationTwittView extends JPanel
 
   protected List<ICreationTwittViewObserver> observers;
 
+  protected JLabel labelCaracters;
+
+  protected JPanel panelCaracteres;
+
   public CreationTwittView()
   {
     this.observers = new ArrayList<>();
@@ -91,13 +97,16 @@ public class CreationTwittView extends JPanel
     this.contentPane = new JPanel(new GridBagLayout());
     this.contentPane.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
-    this.contentPane.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
+    this.contentPane.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 2, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 10, 10));
 
-    this.contentPane.add(this.createPanelTwitt(), new GridBagConstraints(0, 1, 1, 2, 0, 0, GridBagConstraints.CENTER,
+    this.contentPane.add(this.createPanelTwitt(), new GridBagConstraints(0, 1, 2, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-    this.contentPane.add(this.createPanelButtons(), new GridBagConstraints(0, 3, 0, 0, 0, 0, GridBagConstraints.CENTER,
+    this.contentPane.add(this.countCaracters(), new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.contentPane.add(this.createPanelButtons(), new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 10, 10));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
@@ -162,9 +171,41 @@ public class CreationTwittView extends JPanel
     this.areaTwitt.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
     this.areaTwitt.setMinimumSize(new Dimension(screensize.width / 3, screensize.height / 15));
     this.areaTwitt.setLineWrap(true);
+
+    areaTwitt.addKeyListener(new KeyAdapter()
+    {
+      @Override
+      public void keyTyped(KeyEvent e)
+      {
+        refreshPanel(e);
+      }
+    });
+
     panel.add(this.areaTwitt, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 5, 5));
     return panel;
+  }
+
+  protected void refreshPanel(KeyEvent e)
+  {
+
+    if (areaTwitt.getText().length() + 1 >= 250)
+      e.consume();
+    this.labelCaracters.setText(Integer.toString(areaTwitt.getText().length() + 1) + "/250");
+    panelCaracteres.revalidate();
+    panelCaracteres.repaint();
+  }
+
+  protected JPanel countCaracters()
+  {
+    panelCaracteres = new JPanel(new GridBagLayout());
+    panelCaracteres.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
+    this.labelCaracters = new JLabel();
+    this.labelCaracters.setText(Integer.toString(areaTwitt.getText().length()) + "/250");
+    panelCaracteres.add(labelCaracters, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 50, 0, 0), 0, 0));
+    return panelCaracteres;
+
   }
 
   /**

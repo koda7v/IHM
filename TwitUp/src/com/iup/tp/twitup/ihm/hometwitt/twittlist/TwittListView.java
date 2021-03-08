@@ -72,7 +72,7 @@ public class TwittListView extends JPanel implements ITwittListModelObserver
     scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
         GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 10, 10));
 
-    scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.NORTH,
+    scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     JPanel panel = new JPanel(new GridBagLayout());
@@ -106,7 +106,7 @@ public class TwittListView extends JPanel implements ITwittListModelObserver
 
     JLabel label = new JLabel(ConstantLoader.getInstance().getText(KEY_LIST_TWITT_TITLE_LABEL));
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
-    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.NORTH, GridBagConstraints.NONE,
+    panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
