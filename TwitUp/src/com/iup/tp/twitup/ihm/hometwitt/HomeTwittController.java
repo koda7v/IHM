@@ -59,19 +59,29 @@ public class HomeTwittController implements ITwittButtonsControllerObserver, ISe
   }
 
   @Override
-  public void notifySearch(String text)
+  public void swapViewToUser()
+  {
+    this.homeTwittView.showListUserView();
+
+  }
+
+  @Override
+  public void notifySearchTwit(String text)
   {
     for (IHomeTwittControllerObserver currentObserver : observers)
     {
-      currentObserver.updateListWithSearch(text);
+      currentObserver.updateListTwitWithSearch(text);
     }
 
   }
 
   @Override
-  public void swapViewToUser()
+  public void notifySearchUser(String text)
   {
-    this.homeTwittView.showListUserView();
+    for (IHomeTwittControllerObserver currentObserver : observers)
+    {
+      currentObserver.updateListUserWithSearch(text);
+    }
 
   }
 

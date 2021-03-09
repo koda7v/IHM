@@ -1,4 +1,4 @@
-package com.iup.tp.twitup.ihm.hometwitt.search;
+package com.iup.tp.twitup.ihm.hometwitt.search.twit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,12 @@ import java.util.List;
 import com.iup.tp.twitup.ihm.hometwitt.search.observer.ISearchControllerObserver;
 import com.iup.tp.twitup.ihm.hometwitt.search.observer.ISearchViewObserver;
 
-public class SearchController implements ISearchViewObserver
+public class SearchControllerTwit implements ISearchViewObserver
 {
 
   protected List<ISearchControllerObserver> observers;
 
-  public SearchController()
+  public SearchControllerTwit()
   {
     this.observers = new ArrayList<>();
   }
@@ -37,7 +37,7 @@ public class SearchController implements ISearchViewObserver
   {
     for (ISearchControllerObserver currentObserver : observers)
     {
-      currentObserver.notifySearch(text);
+      currentObserver.notifySearchTwit(text);
     }
 
   }

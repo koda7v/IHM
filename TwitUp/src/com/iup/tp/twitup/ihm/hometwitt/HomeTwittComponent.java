@@ -12,8 +12,10 @@ import com.iup.tp.twitup.ihm.hometwitt.buttons.TwittButtonsView;
 import com.iup.tp.twitup.ihm.hometwitt.creationtwitt.CreationTwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileComponent;
 import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileView;
-import com.iup.tp.twitup.ihm.hometwitt.search.SearchComponent;
-import com.iup.tp.twitup.ihm.hometwitt.search.SearchView;
+import com.iup.tp.twitup.ihm.hometwitt.search.twit.SearchComponentTwit;
+import com.iup.tp.twitup.ihm.hometwitt.search.twit.SearchViewTwit;
+import com.iup.tp.twitup.ihm.hometwitt.search.user.SearchComponentUser;
+import com.iup.tp.twitup.ihm.hometwitt.search.user.SearchViewUser;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.TwittListComponent;
 import com.iup.tp.twitup.ihm.hometwitt.userlist.UserListComponent;
 import com.iup.tp.twitup.ihm.hometwitt.usertwittlist.UserTwittListComponent;
@@ -45,7 +47,9 @@ public class HomeTwittComponent
 
   protected User user;
 
-  protected SearchComponent searchComponent;
+  protected SearchComponentTwit searchComponentList;
+
+  protected SearchComponentUser searchComponentUser;
 
   protected EntityManager manager;
 
@@ -136,16 +140,24 @@ public class HomeTwittComponent
     return bottomProfileComponent.getBottomProfileView();
   }
 
-  public SearchView getSearchView()
+  public SearchViewTwit getSearchListTwitView()
   {
-    this.searchComponent = new SearchComponent();
-    this.searchComponent.addObserverController(homeTwittController);
-    return searchComponent.getSearchView();
+    this.searchComponentList = new SearchComponentTwit();
+    this.searchComponentList.addObserverController(homeTwittController);
+    return searchComponentList.getSearchView();
+  }
+
+  public SearchViewUser getSearchListUserView()
+  {
+    this.searchComponentUser = new SearchComponentUser();
+    this.searchComponentUser.addObserverController(homeTwittController);
+    return searchComponentUser.getSearchViewUser();
   }
 
   public void initUserListComponent()
   {
     this.userListComponent = new UserListComponent(this.base);
+    this.homeTwittController.addObserver(userListComponent.getUserListController());
   }
 
   public JPanel getUserViewList()

@@ -1,4 +1,4 @@
-package com.iup.tp.twitup.ihm.hometwitt.search;
+package com.iup.tp.twitup.ihm.hometwitt.search.user;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +24,7 @@ import javax.swing.border.MatteBorder;
 import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.ihm.hometwitt.search.observer.ISearchViewObserver;
 
-public class SearchView extends JPanel
+public class SearchViewUser extends JPanel
 {
 
   /**
@@ -60,7 +60,7 @@ public class SearchView extends JPanel
 
   protected JTextField editorComponent;
 
-  public SearchView()
+  public SearchViewUser()
   {
     this.observers = new ArrayList<>();
     this.initContent();
@@ -130,7 +130,7 @@ public class SearchView extends JPanel
       @Override
       public void keyPressed(KeyEvent e)
       {
-        SearchView.this.search(e);
+        SearchViewUser.this.search(e);
 
       }
     });

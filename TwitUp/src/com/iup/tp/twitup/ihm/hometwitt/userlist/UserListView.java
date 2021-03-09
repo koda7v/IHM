@@ -109,4 +109,14 @@ public class UserListView extends JPanel
     return panel;
   }
 
+  protected void repaintContentPane()
+  {
+    this.contentPane.removeAll();
+
+    this.placeComponents();
+
+    this.contentPane.revalidate();
+    this.contentPane.repaint();
+  }
+
 }

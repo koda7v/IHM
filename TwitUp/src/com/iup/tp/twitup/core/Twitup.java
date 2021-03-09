@@ -307,7 +307,7 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
   }
 
   @Override
-  public void updateListWithSearch(String text)
+  public void updateListTwitWithSearch(String text)
   {
     // TODO Auto-generated method stub
 
@@ -356,6 +356,13 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
 
   @Override
   public void notifyUserModified(User modifiedUser)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void updateListUserWithSearch(String text)
   {
     // TODO Auto-generated method stub
 

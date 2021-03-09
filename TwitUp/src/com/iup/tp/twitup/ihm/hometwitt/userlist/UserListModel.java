@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
@@ -17,6 +18,8 @@ public class UserListModel
    */
   protected Map<User, ProfileComponent> userComponentMap;
 
+  protected Set<User> users;
+
   protected IDatabase base;
 
   /**
@@ -27,6 +30,7 @@ public class UserListModel
   public UserListModel(IDatabase base)
   {
     this.base = base;
+    this.users = base.getUsers();
     this.initMap();
 
     // this.observers = new ArrayList<IUserListModelObserver>();
@@ -35,12 +39,22 @@ public class UserListModel
   protected void initMap()
   {
     this.userComponentMap = new HashMap<>();
-    for (User currentUser : base.getUsers())
+    for (User currentUser : this.users)
     {
       ProfileComponent userComponent = new ProfileComponent(currentUser);
       this.userComponentMap.put(currentUser, userComponent);
     }
 
+  }
+
+  public IDatabase getBase()
+  {
+    return base;
+  }
+
+  public void setBase(IDatabase base)
+  {
+    this.base = base;
   }
 
   /**
@@ -100,6 +114,16 @@ public class UserListModel
 //    twittComponentMap.put(twit, twittComponent);
 //    this.notifyTwittComponentAdded(twittComponent);
 //  }
+
+  public Set<User> getUsers()
+  {
+    return users;
+  }
+
+  public void setUsers(Set<User> users)
+  {
+    this.users = users;
+  }
 
   /**
    * Retourne la liste des composants de tweets contenus dans la map.

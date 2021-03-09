@@ -1,18 +1,18 @@
-package com.iup.tp.twitup.ihm.hometwitt.search;
+package com.iup.tp.twitup.ihm.hometwitt.search.twit;
 
 import com.iup.tp.twitup.ihm.hometwitt.search.observer.ISearchControllerObserver;
 
-public class SearchComponent
+public class SearchComponentTwit
 {
-  protected SearchView view;
-  protected SearchController controller;
-  protected SearchModel model;
+  protected SearchViewTwit view;
+  protected SearchControllerTwit controller;
+  protected SearchModelTwit model;
 
-  public SearchComponent()
+  public SearchComponentTwit()
   {
-    this.controller = new SearchController();
-    this.model = new SearchModel();
-    this.view = new SearchView();
+    this.controller = new SearchControllerTwit();
+    this.model = new SearchModelTwit();
+    this.view = new SearchViewTwit();
 
     this.view.addISearchViewObserver(this.controller);
   }
@@ -27,12 +27,12 @@ public class SearchComponent
     this.controller.removeISearchControllerObserver(observer);
   }
 
-  public SearchView getSearchView()
+  public SearchViewTwit getSearchView()
   {
     return view;
   }
 
-  public void setSearchView(SearchView view)
+  public void setSearchView(SearchViewTwit view)
   {
     this.view = view;
   }

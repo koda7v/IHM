@@ -4,5 +4,7 @@ public interface IHomeTwittControllerObserver
 {
   public void logOut();
 
-  public void updateListWithSearch(String text);
+  public void updateListTwitWithSearch(String text);
+
+  public void updateListUserWithSearch(String text);
 }

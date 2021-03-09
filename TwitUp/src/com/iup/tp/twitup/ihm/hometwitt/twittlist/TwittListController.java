@@ -89,7 +89,7 @@ public class TwittListController implements IDatabaseObserver, IHomeTwittControl
   }
 
   @Override
-  public void updateListWithSearch(String text)
+  public void updateListTwitWithSearch(String text)
   {
 //    Set<Twit> twits = new HashSet<>();
 //    if (text.contains("@"))
@@ -117,6 +117,13 @@ public class TwittListController implements IDatabaseObserver, IHomeTwittControl
     }
     this.model.setTwitts(newTwits);
     this.view.repaintContentPane();
+
+  }
+
+  @Override
+  public void updateListUserWithSearch(String text)
+  {
+    // TODO Auto-generated method stub
 
   }
 

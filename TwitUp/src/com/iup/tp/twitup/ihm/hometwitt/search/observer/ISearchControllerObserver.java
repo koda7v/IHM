@@ -2,5 +2,7 @@ package com.iup.tp.twitup.ihm.hometwitt.search.observer;
 
 public interface ISearchControllerObserver
 {
-  public void notifySearch(String text);
+  public void notifySearchTwit(String text);
+
+  public void notifySearchUser(String text);
 }
