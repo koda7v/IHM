@@ -103,8 +103,7 @@ public class UserTwittListView extends JPanel
     JPanel panel = new JPanel(new GridBagLayout());
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
 
-    JLabel label = new JLabel(
-        ConstantLoader.getInstance().getText(ConstantLoader.getInstance().getText(KEY_LIST_TWITT_TITLE_LABEL_USER)));
+    JLabel label = new JLabel(ConstantLoader.getInstance().getText(KEY_LIST_TWITT_TITLE_LABEL_USER));
     label.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
     panel.add(label, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));

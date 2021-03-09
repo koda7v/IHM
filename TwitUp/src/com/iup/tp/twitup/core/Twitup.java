@@ -8,6 +8,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.iup.tp.twitup.datamodel.Database;
 import com.iup.tp.twitup.datamodel.IDatabase;
+import com.iup.tp.twitup.datamodel.IDatabaseObserver;
+import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.events.file.IWatchableDirectory;
 import com.iup.tp.twitup.events.file.WatchableDirectory;
@@ -28,8 +30,8 @@ import com.iup.tp.twitup.printer.Printer;
  * 
  * @author S.Lucas
  */
-public class Twitup
-    implements IHomeObserver, ISignInControllerObserver, ISignUpControllerObserver, IHomeTwittControllerObserver
+public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUpControllerObserver,
+    IHomeTwittControllerObserver, IDatabaseObserver
 {
   /**
    * Base de données.
@@ -80,6 +82,8 @@ public class Twitup
   protected HomeTwittComponent homeTwittComponent;
 
   protected User userConnected;
+
+  protected String tagLastUser;
 
   /**
    * Constructeur.
@@ -180,6 +184,7 @@ public class Twitup
   protected void initDatabase()
   {
     mDatabase = new Database();
+    mDatabase.addObserver(this);
     mEntityManager = new EntityManager(mDatabase);
   }
 
@@ -198,7 +203,7 @@ public class Twitup
     mWatchableDirectory.addObserver(mEntityManager);
   }
 
-  protected void setUserConnected(String tag)
+  public void setUserConnected(String tag)
   {
     for (User currentUser : this.mDatabase.getUsers())
     {
@@ -280,15 +285,15 @@ public class Twitup
   @Override
   public void swapViewToHomeTwitt(String tag)
   {
-    this.setUserConnected(tag);
-    this.showHomeTwittViews();
-
+    this.tagLastUser = tag;
+    this.showSignInViews();
   }
 
   @Override
   public void logOut()
   {
     this.userConnected = null;
+    this.tagLastUser = null;
     this.showHomeComponent();
 
   }
@@ -303,6 +308,54 @@ public class Twitup
 
   @Override
   public void updateListWithSearch(String text)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void notifyTwitAdded(Twit addedTwit)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void notifyTwitDeleted(Twit deletedTwit)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void notifyTwitModified(Twit modifiedTwit)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void notifyUserAdded(User addedUser)
+  {
+    if (this.tagLastUser != null)
+    {
+      if (this.tagLastUser.equals(addedUser.getUserTag()))
+      {
+        this.userConnected = addedUser;
+        this.showHomeTwittViews();
+      }
+    }
+  }
+
+  @Override
+  public void notifyUserDeleted(User deletedUser)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void notifyUserModified(User modifiedUser)
   {
     // TODO Auto-generated method stub
 

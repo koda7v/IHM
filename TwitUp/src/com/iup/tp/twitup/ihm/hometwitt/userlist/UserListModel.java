@@ -27,7 +27,6 @@ public class UserListModel
   public UserListModel(IDatabase base)
   {
     this.base = base;
-    this.userComponentMap = new HashMap<>();
     this.initMap();
 
     // this.observers = new ArrayList<IUserListModelObserver>();
@@ -35,7 +34,7 @@ public class UserListModel
 
   protected void initMap()
   {
-
+    this.userComponentMap = new HashMap<>();
     for (User currentUser : base.getUsers())
     {
       ProfileComponent userComponent = new ProfileComponent(currentUser);

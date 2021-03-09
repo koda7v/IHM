@@ -99,8 +99,7 @@ public class SignUpController implements ISignUpViewObserver, IFileChooserModelO
       this.signUpView.showWarningMessage(warningTitle, warningDescription);
       return;
     }
-
-    this.base.addUser(this.createUser());
+    this.createUser();
     this.notifySwapViewToHomeTwitt();
 
   }

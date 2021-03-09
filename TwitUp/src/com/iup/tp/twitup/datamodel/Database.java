@@ -1,6 +1,8 @@
 package com.iup.tp.twitup.datamodel;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.iup.tp.twitup.common.Constants;
@@ -114,9 +116,10 @@ public class Database implements IDatabase
   {
     // Ajout de l'utilisateur
     this.mUsers.add(userToAdd);
-
     // Notification des observateurs
-    for (IDatabaseObserver observer : mObservers)
+
+    List<IDatabaseObserver> copy = new ArrayList<>(mObservers);
+    for (IDatabaseObserver observer : copy)
     {
       observer.notifyUserAdded(userToAdd);
     }
