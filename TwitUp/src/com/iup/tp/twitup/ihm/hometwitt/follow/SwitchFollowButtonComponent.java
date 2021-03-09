@@ -33,7 +33,7 @@ public class SwitchFollowButtonComponent implements Serializable, ISwitchFollowB
   protected List<ISwitchFollowButtonComponentObserver> observers;
 
   /**
-   * Créer le composant graphique du bouton switch ON/OFF.
+   * Créer le composant graphique du bouton switch follow et unfollow.
    * 
    * @param switchFollowButtonModel
    *          Modèle du bouton.
@@ -59,16 +59,16 @@ public class SwitchFollowButtonComponent implements Serializable, ISwitchFollowB
    * @param dimension
    *          Dimension du bouton.
    * @param tooltipON
-   *          Information quand le bouton est en mode activé.
+   *          Information quand le bouton est en mode follow.
    * @param tooltipOFF
-   *          Information quand le bouton est en mode désactivé.
+   *          Information quand le bouton est en mode unfollow.
    */
   public SwitchFollowButtonComponent(SwitchFollowButtonModel switchFollowButtonModel, Dimension dimension,
                                      String tooltipON, String tooltipOFF)
   {
-    this(switchFollowButtonModel, dimension);
-    this.followButtonView.setTooltipON(tooltipON);
-    this.followButtonView.setTooltipOFF(tooltipOFF);
+//    this(switchFollowButtonModel, dimension);
+//    this.followButtonView.setTooltipON(tooltipON);
+//    this.followButtonView.setTooltipOFF(tooltipOFF);
   }
 
   @Override
@@ -109,7 +109,7 @@ public class SwitchFollowButtonComponent implements Serializable, ISwitchFollowB
   }
 
   /**
-   * Notifie les observeurs qu'il faut changer l'état d'activation du bouton switch.
+   * Notifie les observeurs qu'il faut changer l'état du bouton switch.
    * 
    * @param model
    *          Modèle du switch.

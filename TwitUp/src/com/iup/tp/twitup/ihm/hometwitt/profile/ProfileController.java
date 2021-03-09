@@ -11,10 +11,9 @@ import com.iup.tp.twitup.ihm.hometwitt.follow.SwitchFollowButtonModel;
 import com.iup.tp.twitup.ihm.hometwitt.follow.observers.ISwitchFollowButtonComponentObserver;
 
 /**
- * Permet aux boutons switch et à la liste des correspondances d'interagir. Utilisée pour la synchronisation automatique
- * d'une correspondance.
+ * Permet aux boutons switch et à la liste des users d'interagir. Utilisée pour le follow et unfollow d'un user.
  * 
- * @author Edispa2020
+ * @author yann
  *
  */
 public class ProfileController implements Serializable, IUserObserver, ISwitchFollowButtonComponentObserver
@@ -23,12 +22,12 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
   private static final long serialVersionUID = 4868883826324988463L;
 
   /**
-   * Map permettant la liaison entre les correspondances et les boutons switch.
+   * Map permettant la liaison entre les users et les boutons switch.
    */
   protected Map<User, SwitchFollowButtonModel> userSwitchMap;
 
   /**
-   * Créer un nouveau contrôleur pour la synchronisation automatique d'une correspondance.
+   * Créer un nouveau contrôleur pour le changement des follow unfollow.
    */
   public ProfileController()
   {

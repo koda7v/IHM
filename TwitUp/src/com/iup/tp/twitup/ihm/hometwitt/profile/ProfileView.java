@@ -97,11 +97,11 @@ public class ProfileView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
-    this.initSwitchButtonComponent();
+
+    initSwitchButtonComponent();
+
     this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
-    // Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-//    this.contentPane.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
-//    this.contentPane.setMinimumSize(new Dimension(screensize.width / 3, screensize.height / 15));
+
     // Affichage de l'avatar
     try
     {
@@ -133,7 +133,6 @@ public class ProfileView extends JPanel
   {
     JPanel panel = new JPanel();
     panel.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
-//    panel.setBorder(BorderFactory.createLineBorder(Color.black));
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     JPanel homePacman;
 
@@ -149,7 +148,6 @@ public class ProfileView extends JPanel
       homePacman = new ImagePanel(image, new Dimension(screenSize.width / 10, screenSize.height / 10));
     }
 
-//    homePacman.setMinimumSize(new Dimension(screenSize.width / 8, screenSize.height / 8));
     panel.add(homePacman, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 
@@ -199,18 +197,17 @@ public class ProfileView extends JPanel
    */
   protected void initSwitchButtonComponent()
   {
+
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     SwitchFollowButtonModel switchButtonModel = new SwitchFollowButtonModel(this.user.isFollowActivated());
 
-    String tooltipON = ConstantLoader.getInstance().getText(KEY_USER_AUTOMATIC_SYNC_TOOLTIP_FOLLOW);
-    String tooltipOFF = ConstantLoader.getInstance().getText(KEY_USER_AUTOMATIC_SYNC_TOOLTIP_UNFOLLOW);
-
     this.switchFollowButtonComponent = new SwitchFollowButtonComponent(switchButtonModel,
-        new Dimension(screenSize.width * 2 / 100, screenSize.width * 2 / 100), tooltipON, tooltipOFF);
+        new Dimension(screenSize.width * 2 / 100, screenSize.width * 2 / 100));
     this.profileController.addSwitchButton(user, switchButtonModel);
     user.addObserver(this.profileController);
     this.switchFollowButtonComponent.addObserver(this.profileController);
+
   }
 
 }
