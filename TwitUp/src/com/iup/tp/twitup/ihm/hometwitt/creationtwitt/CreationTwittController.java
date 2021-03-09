@@ -26,7 +26,6 @@ public class CreationTwittController implements ICreationTwittViewObserver
   public void notificationCreationValidate(String text)
   {
     Twit twit = new Twit(this.user, text);
-    this.base.addTwit(twit);
     this.manager.sendTwit(twit);
   }
 

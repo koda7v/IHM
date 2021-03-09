@@ -72,10 +72,14 @@ public class TwittListController implements IDatabaseObserver, IHomeTwittControl
 
   public void twitsWithUser(String text, Set<Twit> twits)
   {
-    Set<Twit> newTwits = this.model.getBase().getTwitsWithUserTag(text);
+    Set<Twit> newTwits = this.model.getBase().getTwits();
     for (Twit twit : newTwits)
     {
-      twits.add(twit);
+      if (twit.getTwiter().getUserTag().equals(text))
+      {
+        twits.add(twit);
+      }
+
     }
   }
 
@@ -91,30 +95,30 @@ public class TwittListController implements IDatabaseObserver, IHomeTwittControl
   @Override
   public void updateListTwitWithSearch(String text)
   {
-//    Set<Twit> twits = new HashSet<>();
-//    if (text.contains("@"))
-//    {
-//      this.twitsWithUser(text, twits);
-//    }
-//    else if (text.contains("#"))
-//    {
-//      this.twitsWithTag(text, twits);
-//    }
-//    else
-//    {
-//      this.twitsWithTag(text, twits);
-//      this.twitsWithUser(text, twits);
-//    }
-
-    Set<Twit> twits = this.model.getBase().getTwits();
     Set<Twit> newTwits = new HashSet<Twit>();
-    for (Twit twit : twits)
+
+    if (text.contains("@"))
     {
-      if (twit.getText().contains(text))
+      text = text.substring(1, text.length());
+      this.twitsWithUser(text, newTwits);
+    }
+    else if (text.contains("#"))
+    {
+      text = text.substring(1, text.length());
+      this.twitsWithTag(text, newTwits);
+    }
+    else
+    {
+      Set<Twit> twits = this.model.getBase().getTwits();
+      for (Twit twit : twits)
       {
-        newTwits.add(twit);
+        if (twit.getText().contains(text))
+        {
+          newTwits.add(twit);
+        }
       }
     }
+
     this.model.setTwitts(newTwits);
     this.view.repaintContentPane();
 

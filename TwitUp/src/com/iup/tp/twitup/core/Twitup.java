@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.core;
 
+import java.awt.AWTException;
 import java.io.File;
 
 import javax.swing.JFileChooser;
@@ -23,6 +24,7 @@ import com.iup.tp.twitup.ihm.signIn.ISignInControllerObserver;
 import com.iup.tp.twitup.ihm.signIn.SignInComponent;
 import com.iup.tp.twitup.ihm.signup.SignUpComponent;
 import com.iup.tp.twitup.ihm.signup.observer.ISignUpControllerObserver;
+import com.iup.tp.twitup.ihm.widget.TrayNotification;
 import com.iup.tp.twitup.printer.Printer;
 
 /**
@@ -247,6 +249,24 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
     this.homeTwittComponent.addIHomeTwittControllerObserver(this);
   }
 
+  public void notifyTwitFromFollower(Twit twit)
+  {
+//    if (this.userConnected.getFollows().contains(twit.getTwiter().getUserTag()))
+//    {
+    TrayNotification tn = new TrayNotification(twit.getText(), twit.getTwiter().getUserTag(),
+        twit.getTwiter().getAvatarPath());
+    try
+    {
+      tn.displayTray();
+    }
+    catch (AWTException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+//    }
+  }
+
   @Override
   public void notificationSwapView(Integer value)
   {
@@ -316,8 +336,10 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
   @Override
   public void notifyTwitAdded(Twit addedTwit)
   {
-    // TODO Auto-generated method stub
-
+    if (this.userConnected != null)
+    {
+      this.notifyTwitFromFollower(addedTwit);
+    }
   }
 
   @Override

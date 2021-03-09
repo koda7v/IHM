@@ -136,6 +136,7 @@ public class CreationTwittView extends JPanel
       currentObserver.notificationCreationValidate(this.areaTwitt.getText());
     }
     this.cleanTwitt();
+
   }
 
   public void notificatioCancel()
@@ -145,8 +146,11 @@ public class CreationTwittView extends JPanel
 
   protected void cleanTwitt()
   {
+    panelCaracteres.revalidate();
+    panelCaracteres.repaint();
     this.areaTwitt.selectAll();
     this.areaTwitt.replaceSelection("");
+    this.labelCaracters.setText(Integer.toString(areaTwitt.getText().length()) + "/250");
   }
 
   protected JPanel createPanelTitle()
