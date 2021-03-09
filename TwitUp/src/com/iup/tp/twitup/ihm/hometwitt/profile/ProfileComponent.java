@@ -32,7 +32,7 @@ public class ProfileComponent
   {
     this.profileController = new ProfileController();
     this.profileModel = new ProfileModel();
-    this.profileView = new ProfileView(user);
+    this.profileView = new ProfileView(user, profileController);
 
   }
 

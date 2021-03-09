@@ -1,6 +1,8 @@
 package com.iup.tp.twitup.datamodel;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -43,6 +45,20 @@ public class User
   protected String mAvatarPath;
 
   /**
+   * Liste des observers d'un user
+   */
+  protected List<IUserObserver> observers;
+
+  /**
+   * Définit si le user est follow pour la current user.<br>
+   * Un user est activé si le current user l'a follow. <br>
+   * Un user est desactivé si le current user ne l'a pas encore follow l'a unfollow.<br>
+   * <br>
+   * Pour activé ce booléen, il faut follow un user.
+   */
+  protected boolean changeFollow;
+
+  /**
    * Constructeur.
    * 
    * @param uuid
@@ -64,6 +80,52 @@ public class User
     mName = name;
     mFollows = follows;
     mAvatarPath = avatarPath;
+    this.observers = new ArrayList<IUserObserver>();
+    this.changeFollow = false;
+  }
+
+  /**
+   * Ajoute l'observeur en paramètre dans la liste des observeurs.
+   * 
+   * @param observer
+   *          Observeur à ajouter.
+   */
+  public void addObserver(IUserObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.add(observer);
+    }
+  }
+
+  /**
+   * Enlève l'observeur en paramètre de la liste des observeurs.
+   * 
+   * @param observer
+   *          Observeur à enlever.
+   */
+  public void removeObserver(IUserObserver observer)
+  {
+    if (observer != null)
+    {
+      this.observers.remove(observer);
+    }
+  }
+
+  /**
+   * Notifie les observeurs qu'il faut changer l'état d'activation du bouton switch.
+   * 
+   * @param model
+   *          Modèle du switch.
+   */
+  public void notifyFollowActivationChanged()
+  {
+    List<IUserObserver> copyObservers = new ArrayList<>(this.observers);
+
+    for (IUserObserver observer : copyObservers)
+    {
+      observer.changeFollowActivation(this.changeFollow, this);
+    }
   }
 
   /**
@@ -188,6 +250,17 @@ public class User
 //
 //		return hashCode;
 //	}
+
+  public boolean isFollowActivated()
+  {
+    return changeFollow;
+  }
+
+  public void setFollowActivated(boolean followActivated)
+  {
+    this.changeFollow = followActivated;
+    this.notifyFollowActivationChanged();
+  }
 
   /**
    * @{inheritDoc

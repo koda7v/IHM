@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.ImagePanel;
+import com.iup.tp.twitup.ihm.hometwitt.follow.SwitchFollowButtonComponent;
+import com.iup.tp.twitup.ihm.hometwitt.follow.SwitchFollowButtonModel;
 
 /**
  * La vue du composant Profile.
@@ -57,13 +59,31 @@ public class ProfileView extends JPanel
   protected static final String KEY_IMAGE_VORTEX = "KEY_IMAGE_VORTEX";
 
   /**
+   * Clé pour le tooltip switch ON.
+   */
+  protected static final String KEY_USER_AUTOMATIC_SYNC_TOOLTIP_FOLLOW = "KEY_USER_AUTOMATIC_SYNC_TOOLTIP_FOLLOW";
+
+  /**
+   * Clé pour le tooltip switch OFF.
+   */
+  protected static final String KEY_USER_AUTOMATIC_SYNC_TOOLTIP_UNFOLLOW = "KEY_USER_AUTOMATIC_SYNC_TOOLTIP_UNFOLLOW";
+
+  /**
+   * Widget qui permet la modification du statut de la synchronisation automatique.
+   */
+  protected SwitchFollowButtonComponent switchFollowButtonComponent;
+
+  protected ProfileController profileController;
+
+  /**
    * Instanciation de la Vue.
    * 
    * @throws IOException
    */
-  public ProfileView(User user)
+  public ProfileView(User user, ProfileController profileController)
   {
     this.user = user;
+    this.profileController = profileController;
     this.initContent();
   }
 
@@ -77,8 +97,9 @@ public class ProfileView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
+    this.initSwitchButtonComponent();
     this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
-    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+    // Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 //    this.contentPane.setPreferredSize(new Dimension(screensize.width / 3, screensize.height / 15));
 //    this.contentPane.setMinimumSize(new Dimension(screensize.width / 3, screensize.height / 15));
     // Affichage de l'avatar
@@ -100,6 +121,9 @@ public class ProfileView extends JPanel
     // Affichage du tag
     this.contentPane.add(this.createNamePanel(), new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.contentPane.add(switchFollowButtonComponent.getSwitchFollowButtonView(), new GridBagConstraints(2, 0, 1, 1, 1,
+        1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -168,6 +192,25 @@ public class ProfileView extends JPanel
         new Insets(0, 0, 0, 350), 0, 0));
 
     return panel;
+  }
+
+  /**
+   * Initialisation du composant bouton switch lié au follow ou unfollow d'un user
+   */
+  protected void initSwitchButtonComponent()
+  {
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    SwitchFollowButtonModel switchButtonModel = new SwitchFollowButtonModel(this.user.isFollowActivated());
+
+    String tooltipON = ConstantLoader.getInstance().getText(KEY_USER_AUTOMATIC_SYNC_TOOLTIP_FOLLOW);
+    String tooltipOFF = ConstantLoader.getInstance().getText(KEY_USER_AUTOMATIC_SYNC_TOOLTIP_UNFOLLOW);
+
+    this.switchFollowButtonComponent = new SwitchFollowButtonComponent(switchButtonModel,
+        new Dimension(screenSize.width * 2 / 100, screenSize.width * 2 / 100), tooltipON, tooltipOFF);
+    this.profileController.addSwitchButton(user, switchButtonModel);
+    user.addObserver(this.profileController);
+    this.switchFollowButtonComponent.addObserver(this.profileController);
   }
 
 }
