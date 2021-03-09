@@ -62,7 +62,7 @@ public class UserTwittListView extends JPanel
     scrollPane.getVerticalScrollBar().setUnitIncrement(screenSize.height / 60);
     this.contentPane = new JPanel(new GridBagLayout());
     this.contentPane.setOpaque(false);
-    scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH,
+    scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
         GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 10, 10));
 
     scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.NORTH,

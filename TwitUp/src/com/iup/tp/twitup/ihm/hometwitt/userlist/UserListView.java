@@ -65,8 +65,8 @@ public class UserListView extends JPanel
     scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
         GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 10, 10));
 
-    scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    scrollContent.add(contentPane, new GridBagConstraints(0, 1, 1, 1, 0, 1, GridBagConstraints.NORTH,
+        GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 
     JPanel panel = new JPanel(new GridBagLayout());
     panel.add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,

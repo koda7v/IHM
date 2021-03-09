@@ -1,6 +1,5 @@
 package com.iup.tp.twitup.ihm.hometwitt.twittlist;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -9,7 +8,6 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -70,7 +68,6 @@ public class TwittListView extends JPanel implements ITwittListModelObserver
     scrollPane.getVerticalScrollBar().setUnitIncrement(screenSize.height / 60);
     this.contentPane = new JPanel(new GridBagLayout());
     this.contentPane.setOpaque(false);
-    this.contentPane.setBorder(BorderFactory.createLineBorder(Color.red));
     scrollContent.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
         GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 10, 10));
 
@@ -98,7 +95,7 @@ public class TwittListView extends JPanel implements ITwittListModelObserver
       TwittView twittView = twittComponentList.get(i).getTwittView();
 
       this.contentPane.add(twittView, new GridBagConstraints(0, i, 1, 1, 1, 0, GridBagConstraints.CENTER,
-          GridBagConstraints.BOTH, new Insets(5, 5, 0, 5), 0, 0));
+          GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
     }
   }
 
