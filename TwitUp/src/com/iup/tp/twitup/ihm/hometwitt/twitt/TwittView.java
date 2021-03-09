@@ -81,12 +81,9 @@ public class TwittView extends JPanel
   protected void initContent()
   {
     this.setLayout(new GridBagLayout());
-    this.setBackground(ConstantLoader.getInstance().getColor(KEY_COLOR_HOME_LEFT));
-//    Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 
     this.contentPane = new JPanel(new GridBagLayout());
     this.contentPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-//    this.contentPane.setPreferredSize(new Dimension(screensize.width / 5, screensize.height / 10));
 
     contentPane.add(userName(), new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -115,7 +112,6 @@ public class TwittView extends JPanel
     this.textLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
     this.textLabel.setEditable(false);
     this.textLabel.setLineWrap(true);
-//    this.textLabel.setBorder(BorderFactory.createLineBorder(Color.yellow));
 
     panel.add(textLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
@@ -138,9 +134,9 @@ public class TwittView extends JPanel
     this.pseudoLabel = new JLabel(model.getTwiter().getUserTag());
     this.pseudoLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 
-    panel.add(nameLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH,
+    panel.add(nameLabel, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
-    panel.add(pseudoLabel, new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.BOTH,
+    panel.add(pseudoLabel, new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;

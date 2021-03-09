@@ -1,6 +1,7 @@
 package com.iup.tp.twitup.ihm.signIn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JPasswordField;
@@ -75,7 +76,7 @@ public class SignInController implements IObserverSignView
     }
 
     // Un utilisateur avec le même username est déjà présent dans l'application
-    if (this.isValidUser())
+    if (!this.isValidUser())
     {
       String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGNIN_ERROR_TITLE);
       String warningDescription = ConstantLoader.getInstance().getText(KEY_SIGNIN_NAME_MESSAGE_ERROR);
@@ -104,9 +105,17 @@ public class SignInController implements IObserverSignView
   {
     for (User user : base.getUsers())
     {
+//      System.out.println(new String(user.getUserPassword().toString()));
+//      System.out.println(model.getMdp().getPassword());
+//      System.out.println(user.getUserPassword().toCharArray());
+      char[] p = model.getMdp().getPassword();
+      System.out.println(user.getUserPassword());
+      System.out.println(p);
+//      System.out.println(p.toString().toCharArray().toString());
       if (user.getUserTag().equals(model.getPseudo())
-          && user.getUserPassword() == model.getMdp().getPassword().toString())
+          && Arrays.equals(model.getMdp().getPassword(), user.getUserPassword()))
       {
+        Arrays.fill(user.getUserPassword(), '0');
         return true;
       }
     }

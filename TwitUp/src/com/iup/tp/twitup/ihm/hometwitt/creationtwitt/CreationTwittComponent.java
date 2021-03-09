@@ -19,7 +19,7 @@ public class CreationTwittComponent
     this.view.addCreationViewObserver(this.controller);
   }
 
-  public CreationTwittView getTwittView()
+  public CreationTwittView getCreationTwittView()
   {
     return view;
   }

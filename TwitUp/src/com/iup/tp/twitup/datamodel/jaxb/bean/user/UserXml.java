@@ -55,7 +55,7 @@ public class UserXml
   @XmlElement(name = "UserTag", required = true)
   protected String userTag;
   @XmlElement(name = "UserPassword", required = true)
-  protected String userPassword;
+  protected char[] userPassword;
   @XmlElement(name = "Name", required = true)
   protected String name;
   @XmlElement(name = "AvatarPath", required = true)
@@ -115,7 +115,7 @@ public class UserXml
    * @return possible object is {@link String }
    * 
    */
-  public String getUserPassword()
+  public char[] getUserPassword()
   {
     return userPassword;
   }
@@ -127,7 +127,7 @@ public class UserXml
    *          allowed object is {@link String }
    * 
    */
-  public void setUserPassword(String value)
+  public void setUserPassword(char[] value)
   {
     this.userPassword = value;
   }

@@ -203,7 +203,7 @@ public class CreationTwittView extends JPanel
     this.labelCaracters = new JLabel();
     this.labelCaracters.setText(Integer.toString(areaTwitt.getText().length()) + "/250");
     panelCaracteres.add(labelCaracters, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 50, 0, 0), 0, 0));
+        GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
     return panelCaracteres;
 
   }

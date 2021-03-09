@@ -95,10 +95,10 @@ public class HomeTwittComponent
     this.twittButtonsComponent.addITwittButtonsControllerObserver(this.homeTwittController);
   }
 
-  public JPanel getTwittView()
+  public JPanel getCreationTwittView()
   {
     this.initTwittComponent();
-    return this.twittComponent.getTwittView();
+    return this.twittComponent.getCreationTwittView();
   }
 
   public JPanel getTwittListView()

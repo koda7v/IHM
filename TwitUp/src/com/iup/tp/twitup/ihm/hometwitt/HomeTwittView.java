@@ -26,8 +26,6 @@ public class HomeTwittView extends JPanel
   {
     this.setLayout(new GridBagLayout());
     this.contentPane = new JPanel(new GridBagLayout());
-    this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 0, 0), 0, 0));
 
     this.showHomeTwittView();
 
@@ -45,6 +43,9 @@ public class HomeTwittView extends JPanel
 
     this.contentPane.add(rightPanel(), new GridBagConstraints(2, 0, 1, 1, 1, 0, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.add(contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 0, 0), 0, 0));
 
     this.contentPane.revalidate();
     this.contentPane.repaint();
@@ -83,7 +84,7 @@ public class HomeTwittView extends JPanel
   {
     JPanel panel = new JPanel(new GridBagLayout());
     // Ajout de la vue du twitt
-    panel.add(this.homeTwittComponent.getTwittView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
+    panel.add(this.homeTwittComponent.getCreationTwittView(), new GridBagConstraints(0, 0, 1, 1, 1, 0,
         GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     // Ajout de la vue de la liste des twitts
     panel.add(this.homeTwittComponent.getTwittListView(), new GridBagConstraints(0, 1, 1, 1, 1, 1,

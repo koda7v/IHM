@@ -25,7 +25,7 @@ public class User
   /**
    * Mot de passe de l'utilisateur.
    */
-  protected String mUserPassword;
+  protected char[] mUserPassword;
 
   /**
    * Nom de l'utilisateur.
@@ -56,7 +56,7 @@ public class User
    * @param avatarPath
    *          , Chemin d'accès à l'image de l'avatar.
    */
-  public User(UUID uuid, String userTag, String userPassword, String name, Set<String> follows, String avatarPath)
+  public User(UUID uuid, String userTag, char[] userPassword, String name, Set<String> follows, String avatarPath)
   {
     mUuid = uuid;
     mUserTag = userTag;
@@ -103,7 +103,7 @@ public class User
   /**
    * Retourne le mot de passe de l'utilisateur.
    */
-  public String getUserPassword()
+  public char[] getUserPassword()
   {
     return this.mUserPassword;
   }
@@ -113,7 +113,7 @@ public class User
    * 
    * @param userPassword
    */
-  public void setUserPassword(String userPassword)
+  public void setUserPassword(char[] userPassword)
   {
     this.mUserPassword = userPassword;
   }

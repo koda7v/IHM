@@ -43,6 +43,8 @@ public class TwitupMainView extends JFrame
    */
   protected JPanel contentPane;
 
+  protected static final String EXCHANGE_DIRECTORY = "EXCHANGE_DIRECTORY";
+
   public TwitupMainView()
   {
     this.initGUI();
@@ -140,7 +142,7 @@ public class TwitupMainView extends JFrame
 
   public JFileChooser chooser()
   {
-    JFileChooser chooser = new JFileChooser("D:\\Stephane\\IHM\\Echange");
+    JFileChooser chooser = new JFileChooser(ConstantLoader.getInstance().getText(EXCHANGE_DIRECTORY));
     chooser.setDialogTitle(ConstantLoader.getInstance().getText(Constant.KEY_FILECHOOSER_TITLE));
     chooser.setAcceptAllFileFilterUsed(true);
     chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

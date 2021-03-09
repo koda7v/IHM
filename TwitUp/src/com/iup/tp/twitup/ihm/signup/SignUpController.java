@@ -43,9 +43,8 @@ public class SignUpController implements ISignUpViewObserver, IFileChooserModelO
 
   public User createUser()
   {
-    User user = new User(UUID.randomUUID(), this.signUpModel.getTag(),
-        this.signUpModel.getMdp().getPassword().toString(), this.signUpModel.getNom(), new HashSet<>(),
-        this.signUpModel.getPathAvatar());
+    User user = new User(UUID.randomUUID(), this.signUpModel.getTag(), this.signUpModel.getMdp().getPassword(),
+        this.signUpModel.getNom(), new HashSet<>(), this.signUpModel.getPathAvatar());
     this.manager.sendUser(user);
     return user;
   }
