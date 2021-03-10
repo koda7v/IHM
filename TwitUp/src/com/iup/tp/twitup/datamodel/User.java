@@ -124,7 +124,7 @@ public class User
 
     for (IUserObserver observer : copyObservers)
     {
-      observer.changeFollowActivation(this.changeFollow, this);
+      observer.changeFollowActivation(this.changeFollow);
     }
   }
 
@@ -240,20 +240,18 @@ public class User
   /**
    * {@inheritDoc}
    */
-//	-> A activer... pourquoi ?
-//	public int hashCode() {
-//		int hashCode = 0;
-//
-//		if (this.mUuid != null) {
-//			hashCode = this.mUuid.hashCode();
-//		}
-//
-//		return hashCode;
-//	}
-
-  public boolean isFollowActivated()
+  // pour redéfinir le hashCode car on à modifier le equals et qu'on utilise un hashSet
+  @Override
+  public int hashCode()
   {
-    return changeFollow;
+    int hashCode = 0;
+
+    if (this.mUuid != null)
+    {
+      hashCode = this.mUuid.hashCode();
+    }
+
+    return hashCode;
   }
 
   public void setFollowActivated(boolean followActivated)

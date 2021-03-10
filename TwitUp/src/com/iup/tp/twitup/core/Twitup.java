@@ -212,6 +212,7 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
       if (currentUser.getUserTag().equals(tag))
       {
         this.userConnected = currentUser;
+        return;
       }
     }
   }

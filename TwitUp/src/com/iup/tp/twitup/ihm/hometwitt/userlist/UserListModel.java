@@ -22,10 +22,13 @@ public class UserListModel
 
   protected IDatabase base;
 
-  public UserListModel(IDatabase base)
+  protected User userConnected;
+
+  public UserListModel(IDatabase base, User userConnected)
   {
     this.base = base;
     this.users = base.getUsers();
+    this.userConnected = userConnected;
     this.initMap();
 
   }
@@ -35,8 +38,11 @@ public class UserListModel
     this.userComponentMap = new HashMap<>();
     for (User currentUser : this.users)
     {
-      ProfileComponent userComponent = new ProfileComponent(currentUser);
-      this.userComponentMap.put(currentUser, userComponent);
+      if (!currentUser.getUserTag().equals(userConnected.getUserTag()))
+      {
+        ProfileComponent userComponent = new ProfileComponent(currentUser, userConnected);
+        this.userComponentMap.put(currentUser, userComponent);
+      }
     }
 
   }

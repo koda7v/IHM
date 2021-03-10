@@ -156,7 +156,7 @@ public class HomeTwittComponent
 
   public void initUserListComponent()
   {
-    this.userListComponent = new UserListComponent(this.base);
+    this.userListComponent = new UserListComponent(this.base, this.user);
     this.homeTwittController.addObserver(userListComponent.getUserListController());
   }
 

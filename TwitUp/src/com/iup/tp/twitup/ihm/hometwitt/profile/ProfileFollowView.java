@@ -37,9 +37,14 @@ public class ProfileFollowView extends JPanel
   protected JPanel contentPane;
 
   /**
-   * Utilisateur connecté.
+   * Utilisateur à suivre.
    */
   protected User user;
+
+  /**
+   * Utilisateur connecté.
+   */
+  protected User userConnected;
 
   /**
    * Label pour le nom d'utilisateur.
@@ -78,11 +83,14 @@ public class ProfileFollowView extends JPanel
   /**
    * Instanciation de la Vue.
    * 
+   * @param userConnected
+   * 
    * @throws IOException
    */
-  public ProfileFollowView(User user, ProfileController profileController)
+  public ProfileFollowView(User user, User userConnected, ProfileController profileController)
   {
     this.user = user;
+    this.userConnected = userConnected;
     this.profileController = profileController;
     this.initContent();
   }
@@ -200,11 +208,11 @@ public class ProfileFollowView extends JPanel
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    SwitchFollowButtonModel switchButtonModel = new SwitchFollowButtonModel(this.user.isFollowActivated());
+    SwitchFollowButtonModel switchButtonModel = new SwitchFollowButtonModel(this.userConnected.isFollowing(user));
 
     this.switchFollowButtonComponent = new SwitchFollowButtonComponent(switchButtonModel,
         new Dimension(screenSize.width * 2 / 100, screenSize.width * 2 / 100));
-    this.profileController.addSwitchButton(user, switchButtonModel);
+    this.profileController.addSwitchButton(switchButtonModel);
     user.addObserver(this.profileController);
     this.switchFollowButtonComponent.addObserver(this.profileController);
 

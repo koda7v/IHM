@@ -32,13 +32,23 @@ public class ProfileComponent
 
   /**
    * Instanciation du MVC du composant Profile.
+   * 
+   * @param userConnected
+   * @param userConnected2
    */
+  public ProfileComponent(User user, User userConnected)
+  {
+    this.profileController = new ProfileController(user, userConnected);
+    this.profileModel = new ProfileModel();
+    this.profileFollowView = new ProfileFollowView(user, userConnected, profileController);
+
+  }
+
   public ProfileComponent(User user)
   {
     this.profileController = new ProfileController(user);
     this.profileModel = new ProfileModel();
     this.profileView = new ProfileView(user, profileController);
-    this.profileFollowView = new ProfileFollowView(user, profileController);
 
   }
 

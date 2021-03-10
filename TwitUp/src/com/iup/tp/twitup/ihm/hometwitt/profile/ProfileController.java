@@ -27,16 +27,30 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
   protected Map<User, SwitchFollowButtonModel> userSwitchMap;
 
   /**
-   * currentUser
+   * Utilisateur connecté.
    */
-  protected User currentUser;
+  protected User userConnected;
+
+  /**
+   * Utilisateur à afficher.
+   */
+  protected User user;
 
   /**
    * Créer un nouveau contrôleur pour le changement des follow unfollow.
+   * 
+   * @param userConnected
    */
-  public ProfileController(User currentUser)
+  public ProfileController(User user, User userConnected)
   {
-    this.currentUser = currentUser;
+    this.userConnected = userConnected;
+    this.user = user;
+    this.userSwitchMap = new HashMap<>();
+  }
+
+  public ProfileController(User user)
+  {
+    this.user = user;
     this.userSwitchMap = new HashMap<>();
   }
 
@@ -48,16 +62,16 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
    * @param switchButtonModel
    *          Modèle du bouton switch à ajouter.
    */
-  public void addSwitchButton(User user, SwitchFollowButtonModel switchFollowButtonModel)
+  public void addSwitchButton(SwitchFollowButtonModel switchFollowButtonModel)
   {
     this.userSwitchMap.put(user, switchFollowButtonModel);
   }
 
   @Override
-  public void changeFollowActivation(boolean changeFollow, User user)
+  public void changeFollowActivation(boolean changeFollow)
   {
     this.userSwitchMap.get(user).setActivated(changeFollow);
-    this.changeFollow(changeFollow, user);
+    this.changeFollow(changeFollow);
 
   }
 
@@ -75,15 +89,15 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
 
   }
 
-  public void changeFollow(boolean change, User user)
+  public void changeFollow(boolean change)
   {
     if (change)
     {
-      currentUser.addFollowing(user.getUserTag());
+      this.userConnected.addFollowing(user.getUserTag());
     }
     else
     {
-      currentUser.removeFollowing(user.getUserTag());
+      this.userConnected.removeFollowing(user.getUserTag());
     }
 
   }
