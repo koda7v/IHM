@@ -23,9 +23,11 @@ public class SignUpController implements ISignUpViewObserver, IFileChooserModelO
 
   protected List<ISignUpControllerObserver> observers;
 
-  protected static final String KEY_ERROR_SIGN_ERROR_TITLE = "KEY_ERROR_SIGN_ERROR_TITLE";
+  protected static final String KEY_ERROR_SIGNUP_ERROR_TITLE = "KEY_ERROR_SIGNUP_ERROR_TITLE";
 
   protected static final String KEY_SIGNUP_NAME_MESSAGE_ERROR = "KEY_SIGNUP_NAME_MESSAGE_ERROR";
+
+  protected static final String KEY_ERROR_SIGNUP_ERROR_TITLE_EXIST = "KEY_ERROR_SIGNUP_ERROR_TITLE_EXIST";
 
   protected static final String KEY_ERROR_FORM_MESSAGE = "KEY_ERROR_FORM_MESSAGE";
 
@@ -85,7 +87,7 @@ public class SignUpController implements ISignUpViewObserver, IFileChooserModelO
 
     if (!this.isFormValid())
     {
-      String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGN_ERROR_TITLE);
+      String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGNUP_ERROR_TITLE);
       String warningDescription = ConstantLoader.getInstance().getText(KEY_ERROR_FORM_MESSAGE);
       this.signUpView.showWarningMessage(warningTitle, warningDescription);
       return;
@@ -94,7 +96,7 @@ public class SignUpController implements ISignUpViewObserver, IFileChooserModelO
     // Un utilisateur avec le même username est déjà présent dans l'application
     if (this.userAlreadyExist())
     {
-      String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGN_ERROR_TITLE);
+      String warningTitle = ConstantLoader.getInstance().getText(KEY_ERROR_SIGNUP_ERROR_TITLE_EXIST);
       String warningDescription = ConstantLoader.getInstance().getText(KEY_SIGNUP_NAME_MESSAGE_ERROR);
       this.signUpView.showWarningMessage(warningTitle, warningDescription);
       return;
