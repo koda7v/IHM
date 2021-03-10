@@ -26,13 +26,19 @@ public class ProfileComponent
   protected ProfileView profileView;
 
   /**
+   * La vue du composant profile avec les follow
+   */
+  protected ProfileFollowView profileFollowView;
+
+  /**
    * Instanciation du MVC du composant Profile.
    */
   public ProfileComponent(User user)
   {
-    this.profileController = new ProfileController();
+    this.profileController = new ProfileController(user);
     this.profileModel = new ProfileModel();
     this.profileView = new ProfileView(user, profileController);
+    this.profileFollowView = new ProfileFollowView(user, profileController);
 
   }
 
@@ -44,6 +50,14 @@ public class ProfileComponent
   public ProfileView getProfileView()
   {
     return profileView;
+  }
+
+  /**
+   * Récupération de la vue du composant Profile avec Follow
+   */
+  public ProfileFollowView getProfileFollowView()
+  {
+    return profileFollowView;
   }
 
 }

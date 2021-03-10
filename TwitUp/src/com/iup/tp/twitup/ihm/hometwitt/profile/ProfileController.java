@@ -27,10 +27,16 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
   protected Map<User, SwitchFollowButtonModel> userSwitchMap;
 
   /**
+   * currentUser
+   */
+  protected User currentUser;
+
+  /**
    * Créer un nouveau contrôleur pour le changement des follow unfollow.
    */
-  public ProfileController()
+  public ProfileController(User currentUser)
   {
+    this.currentUser = currentUser;
     this.userSwitchMap = new HashMap<>();
   }
 
@@ -51,7 +57,7 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
   public void changeFollowActivation(boolean changeFollow, User user)
   {
     this.userSwitchMap.get(user).setActivated(changeFollow);
-    ;
+    this.changeFollow(changeFollow, user);
 
   }
 
@@ -65,6 +71,19 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
         currentEntry.getKey().setFollowActivated(!model.isActivated());
         break;
       }
+    }
+
+  }
+
+  public void changeFollow(boolean change, User user)
+  {
+    if (change)
+    {
+      currentUser.addFollowing(user.getUserTag());
+    }
+    else
+    {
+      currentUser.removeFollowing(user.getUserTag());
     }
 
   }

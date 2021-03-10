@@ -18,6 +18,7 @@ import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.ImagePanel;
 import com.iup.tp.twitup.ihm.hometwitt.follow.SwitchFollowButtonComponent;
+import com.iup.tp.twitup.ihm.hometwitt.follow.SwitchFollowButtonModel;
 
 /**
  * La vue du composant Profile.
@@ -25,7 +26,7 @@ import com.iup.tp.twitup.ihm.hometwitt.follow.SwitchFollowButtonComponent;
  * @author EPE
  *
  */
-public class ProfileView extends JPanel
+public class ProfileFollowView extends JPanel
 {
 
   private static final long serialVersionUID = -955525150669306640L;
@@ -79,7 +80,7 @@ public class ProfileView extends JPanel
    * 
    * @throws IOException
    */
-  public ProfileView(User user, ProfileController profileController)
+  public ProfileFollowView(User user, ProfileController profileController)
   {
     this.user = user;
     this.profileController = profileController;
@@ -96,6 +97,8 @@ public class ProfileView extends JPanel
     this.setLayout(new GridBagLayout());
 
     this.contentPane = new JPanel(new GridBagLayout());
+
+    initSwitchButtonComponent();
 
     this.contentPane.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_HOME_COLOR));
 
@@ -118,6 +121,9 @@ public class ProfileView extends JPanel
     // Affichage du tag
     this.contentPane.add(this.createNamePanel(), new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+
+    this.contentPane.add(switchFollowButtonComponent.getSwitchFollowButtonView(), new GridBagConstraints(2, 0, 1, 1, 1,
+        1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -184,6 +190,24 @@ public class ProfileView extends JPanel
         new Insets(0, 0, 0, 350), 0, 0));
 
     return panel;
+  }
+
+  /**
+   * Initialisation du composant bouton switch lié au follow ou unfollow d'un user
+   */
+  protected void initSwitchButtonComponent()
+  {
+
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    SwitchFollowButtonModel switchButtonModel = new SwitchFollowButtonModel(this.user.isFollowActivated());
+
+    this.switchFollowButtonComponent = new SwitchFollowButtonComponent(switchButtonModel,
+        new Dimension(screenSize.width * 2 / 100, screenSize.width * 2 / 100));
+    this.profileController.addSwitchButton(user, switchButtonModel);
+    user.addObserver(this.profileController);
+    this.switchFollowButtonComponent.addObserver(this.profileController);
+
   }
 
 }

@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
 import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileComponent;
-import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileView;
+import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileFollowView;
 
 public class UserListView extends JPanel
 {
@@ -86,7 +86,7 @@ public class UserListView extends JPanel
     for (int i = 0; i < userComponentList.size(); i++)
     {
 
-      ProfileView userView = userComponentList.get(i).getProfileView();
+      ProfileFollowView userView = userComponentList.get(i).getProfileFollowView();
 
       this.contentPane.add(userView, new GridBagConstraints(0, i, 1, 1, 1, 1, GridBagConstraints.NORTH,
           GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
