@@ -1,7 +1,6 @@
 package com.iup.tp.twitup.ihm.widget;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -24,6 +23,8 @@ public class TwitButton extends JButton
    * Arrière-plan du bouton sur un survole de la souris.
    */
   protected static final String KEY_BACKGROUND_BUTTON_COLOR_HOVER = "KEY_BACKGROUND_BUTTON_COLOR_HOVER";
+
+  protected static final String KEY_COLOR_HOME_RIGHT = "KEY_COLOR_HOME_RIGHT";
 
   /**
    * Constructeur.
@@ -52,8 +53,6 @@ public class TwitButton extends JButton
     this.setContentAreaFilled(false);
     this.setBackground(ConstantLoader.getInstance().getColor(KEY_BACKGROUND_BUTTON_COLOR));
     this.setOpaque(true);
-    this.setBorder(new LineBorder(Color.black));
-    this.setCursor(new Cursor(Cursor.HAND_CURSOR));
     this.addMouseListener(new MouseAdapter()
     {
       @Override
@@ -68,6 +67,8 @@ public class TwitButton extends JButton
         backgroundNoHover();
       }
     });
+    this.setBorder(new LineBorder(Color.black));
+
   }
 
   /**

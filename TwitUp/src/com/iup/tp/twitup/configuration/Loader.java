@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
  * 
  * Les différentes méthodes permettant l'utilisation des loaders.
  * 
- * @author Edispa2020
+ * @author EPE
  *
  */
 public abstract class Loader

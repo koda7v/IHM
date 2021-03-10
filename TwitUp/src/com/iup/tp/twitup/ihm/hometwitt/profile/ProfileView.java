@@ -131,6 +131,7 @@ public class ProfileView extends JPanel
     {
       homePacman = new ImagePanel(ConstantLoader.getInstance().getImage(KEY_IMAGE_VORTEX),
           new Dimension(screenSize.width / 10, screenSize.height / 10));
+      homePacman.setMinimumSize(new Dimension(screenSize.width / 10, screenSize.height / 10));
     }
     else
     {

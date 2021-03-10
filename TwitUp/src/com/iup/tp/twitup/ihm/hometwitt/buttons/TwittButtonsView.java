@@ -108,7 +108,7 @@ public class TwittButtonsView extends JPanel
     this.contentPane.add(this.createPanelTitle(), new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.NORTH,
         GridBagConstraints.HORIZONTAL, new Insets(40, 0, 0, 0), 0, 0));
     this.contentPane.add(this.createPanelHome(), new GridBagConstraints(0, 1, 1, 1, 1, 1, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
     this.add(this.contentPane, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER,
         GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
@@ -185,9 +185,9 @@ public class TwittButtonsView extends JPanel
     JLabel nameUser = new JLabel(this.user.getName());
     nameUser.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 
-    panel.add(labelName, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
-        new Insets(0, 0, 0, 0), 0, 0));
-    panel.add(nameUser, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE,
+    panel.add(labelName, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE,
+        new Insets(0, 0, 0, 10), 0, 0));
+    panel.add(nameUser, new GridBagConstraints(1, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE,
         new Insets(0, 0, 0, 0), 0, 0));
 
     return panel;
