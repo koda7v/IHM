@@ -1,6 +1,5 @@
 package com.iup.tp.twitup.ihm.hometwitt.profile;
 
-import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.datamodel.User;
 
 /**
@@ -27,29 +26,15 @@ public class ProfileComponent
   protected ProfileView profileView;
 
   /**
-   * La vue du composant profile avec les follow
-   */
-  protected ProfileFollowView profileFollowView;
-
-  /**
    * Instanciation du MVC du composant Profile.
    * 
-   * @param userConnected
-   * @param userConnected2
+   * @param user
    */
-  public ProfileComponent(User user, User userConnected, EntityManager manager)
-  {
-    this.profileController = new ProfileController(user, userConnected, manager);
-    this.profileModel = new ProfileModel();
-    this.profileFollowView = new ProfileFollowView(user, userConnected, profileController);
-
-  }
-
   public ProfileComponent(User user)
   {
-    this.profileController = new ProfileController(user);
+    this.profileController = new ProfileController();
     this.profileModel = new ProfileModel();
-    this.profileView = new ProfileView(user, profileController);
+    this.profileView = new ProfileView(user);
 
   }
 
@@ -61,14 +46,6 @@ public class ProfileComponent
   public ProfileView getProfileView()
   {
     return profileView;
-  }
-
-  /**
-   * Récupération de la vue du composant Profile avec Follow
-   */
-  public ProfileFollowView getProfileFollowView()
-  {
-    return profileFollowView;
   }
 
 }

@@ -83,8 +83,8 @@ public class SwitchFollowButtonView extends JPanel implements ISwitchFollowButto
   public SwitchFollowButtonView(SwitchFollowButtonController followSwitchButtonController,
                                 SwitchFollowButtonModel followSwitchButtonModel, Dimension dimension)
   {
-    // this.tooltipON = ConstantLoader.getInstance().getText(KEY_WIDGET_SWITCH_FOLLOW_TOOLTIP);
-    // this.tooltipOFF = ConstantLoader.getInstance().getText(KEY_WIDGET_SWITCH_UNFOLLOW_TOOLTIP);
+    this.tooltipON = ConstantLoader.getInstance().getText(KEY_WIDGET_SWITCH_FOLLOW_TOOLTIP);
+    this.tooltipOFF = ConstantLoader.getInstance().getText(KEY_WIDGET_SWITCH_UNFOLLOW_TOOLTIP);
     this.followSwitchButtonController = followSwitchButtonController;
     this.followSwitchButtonModel = followSwitchButtonModel;
     this.dimension = dimension;
@@ -95,30 +95,28 @@ public class SwitchFollowButtonView extends JPanel implements ISwitchFollowButto
   @Override
   public void updateFollowActivation(boolean state)
   {
-    // String tooltip = "";
+    String tooltip = "";
 
     if (state)
     {
       switchButtonImage = ConstantLoader.getInstance().getImage(KEY_WIDGET_FOLLOW_IMAGE);
-      System.out.println("abonné");
-      // tooltip = tooltipON;
+      tooltip = tooltipON;
     }
     else
     {
       switchButtonImage = ConstantLoader.getInstance().getImage(KEY_WIDGET_UNFOLLOW_IMAGE);
-      System.out.println("désabonné");
-      // tooltip = tooltipOFF;
+      tooltip = tooltipOFF;
     }
 
     this.updateDisplay(switchButtonImage);
-    // this.setToolTipText(tooltip);
+    this.setToolTipText(tooltip);
   }
 
-  /**
-   * Met en place l'information lors que le bouton est en mode activé.
-   * 
-   * @param tooltipON
-   */
+//  /**
+//   * Met en place l'information lors que le bouton est en mode activé.
+//   * 
+//   * @param tooltipON
+//   */
 //  public void setTooltipON(String tooltipON)
 //  {
 //    this.tooltipON = tooltipON;

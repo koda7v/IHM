@@ -1,4 +1,4 @@
-package com.iup.tp.twitup.ihm.hometwitt.profile;
+package com.iup.tp.twitup.ihm.hometwitt.profilefollow;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -78,7 +78,7 @@ public class ProfileFollowView extends JPanel
    */
   protected SwitchFollowButtonComponent switchFollowButtonComponent;
 
-  protected ProfileController profileController;
+  protected ProfileFollowController profileFollowController;
 
   /**
    * Instanciation de la Vue.
@@ -87,11 +87,11 @@ public class ProfileFollowView extends JPanel
    * 
    * @throws IOException
    */
-  public ProfileFollowView(User user, User userConnected, ProfileController profileController)
+  public ProfileFollowView(User user, User userConnected, ProfileFollowController profileFollowController)
   {
     this.user = user;
     this.userConnected = userConnected;
-    this.profileController = profileController;
+    this.profileFollowController = profileFollowController;
     this.initContent();
   }
 
@@ -212,9 +212,9 @@ public class ProfileFollowView extends JPanel
 
     this.switchFollowButtonComponent = new SwitchFollowButtonComponent(switchButtonModel,
         new Dimension(screenSize.width * 2 / 100, screenSize.width * 2 / 100));
-    this.profileController.addSwitchButton(switchButtonModel);
-    user.addObserver(this.profileController);
-    this.switchFollowButtonComponent.addObserver(this.profileController);
+    this.profileFollowController.addSwitchButton(switchButtonModel);
+    user.addObserver(this.profileFollowController);
+    this.switchFollowButtonComponent.addObserver(this.profileFollowController);
 
   }
 

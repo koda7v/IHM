@@ -9,7 +9,7 @@ import java.util.Set;
 import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
-import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileComponent;
+import com.iup.tp.twitup.ihm.hometwitt.profilefollow.ProfileFollowComponent;
 
 public class UserListModel
 {
@@ -17,7 +17,7 @@ public class UserListModel
   /**
    * Map des composants de users avec leurs users associées.
    */
-  protected Map<User, ProfileComponent> userComponentMap;
+  protected Map<User, ProfileFollowComponent> userComponentMap;
 
   protected Set<User> users;
 
@@ -44,7 +44,7 @@ public class UserListModel
     {
       if (!currentUser.getUserTag().equals(userConnected.getUserTag()))
       {
-        ProfileComponent userComponent = new ProfileComponent(currentUser, userConnected, this.manager);
+        ProfileFollowComponent userComponent = new ProfileFollowComponent(currentUser, userConnected, this.manager);
         this.userComponentMap.put(currentUser, userComponent);
       }
     }
@@ -76,7 +76,7 @@ public class UserListModel
    * 
    * @return Liste des composants de tweets.
    */
-  public List<ProfileComponent> getUserListComponent()
+  public List<ProfileFollowComponent> getUserListComponent()
   {
     return new ArrayList<>(userComponentMap.values());
   }

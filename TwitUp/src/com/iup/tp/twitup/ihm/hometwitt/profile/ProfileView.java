@@ -72,17 +72,14 @@ public class ProfileView extends JPanel
    */
   protected SwitchFollowButtonComponent switchFollowButtonComponent;
 
-  protected ProfileController profileController;
-
   /**
    * Instanciation de la Vue.
    * 
    * @throws IOException
    */
-  public ProfileView(User user, ProfileController profileController)
+  public ProfileView(User user)
   {
     this.user = user;
-    this.profileController = profileController;
     this.initContent();
   }
 

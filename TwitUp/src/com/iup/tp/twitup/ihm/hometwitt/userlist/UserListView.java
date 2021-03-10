@@ -13,8 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import com.iup.tp.twitup.configuration.ConstantLoader;
-import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileComponent;
-import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileFollowView;
+import com.iup.tp.twitup.ihm.hometwitt.profilefollow.ProfileFollowComponent;
+import com.iup.tp.twitup.ihm.hometwitt.profilefollow.ProfileFollowView;
 
 public class UserListView extends JPanel
 {
@@ -82,7 +82,7 @@ public class UserListView extends JPanel
   protected void placeComponents()
   {
     this.contentPane.removeAll();
-    List<ProfileComponent> userComponentList = userListModel.getUserListComponent();
+    List<ProfileFollowComponent> userComponentList = userListModel.getUserListComponent();
     for (int i = 0; i < userComponentList.size(); i++)
     {
 
