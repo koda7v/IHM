@@ -3,9 +3,11 @@ package com.iup.tp.twitup.ihm.hometwitt.follow;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.iup.tp.twitup.datamodel.IUserObserver;
+import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.hometwitt.follow.observers.ISwitchFollowButtonControllerObserver;
 
-public class SwitchFollowButtonController
+public class SwitchFollowButtonController implements IUserObserver
 {
 
   /**
@@ -13,11 +15,16 @@ public class SwitchFollowButtonController
    */
   protected List<ISwitchFollowButtonControllerObserver> observers;
 
+  protected SwitchFollowButtonModel switchFollowButtonModel;
+
   /**
    * Créer un contrôleur pour le bouton switch ON/OFF.
+   * 
+   * @param switchFollowButtonModel
    */
-  public SwitchFollowButtonController()
+  public SwitchFollowButtonController(SwitchFollowButtonModel switchFollowButtonModel)
   {
+    this.switchFollowButtonModel = switchFollowButtonModel;
     this.observers = new ArrayList<>();
   }
 
@@ -73,5 +80,14 @@ public class SwitchFollowButtonController
     {
       observer.changeActivation(model);
     }
+  }
+
+  @Override
+  public void changeFollowActivation()
+  {
+    User user = this.switchFollowButtonModel.getUser();
+    User userConnected = this.switchFollowButtonModel.getUserConnected();
+    this.switchFollowButtonModel.setActivated(userConnected.isFollowing(user));
+
   }
 }

@@ -91,9 +91,9 @@ public class UserListView extends JPanel
       this.contentPane.add(userView, new GridBagConstraints(0, i, 1, 1, 1, 1, GridBagConstraints.NORTH,
           GridBagConstraints.HORIZONTAL, new Insets(5, 5, 0, 5), 0, 0));
 
-      this.contentPane.revalidate();
-      this.contentPane.repaint();
     }
+    this.contentPane.revalidate();
+    this.contentPane.repaint();
   }
 
   protected JPanel createPanelTitle()

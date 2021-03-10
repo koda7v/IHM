@@ -117,13 +117,13 @@ public class User
    * @param model
    *          Modèle du switch.
    */
-  public void notifyFollowActivationChanged(boolean bool)
+  public void notifyFollowActivationChanged()
   {
     List<IUserObserver> copyObservers = new ArrayList<>(this.observers);
 
     for (IUserObserver observer : copyObservers)
     {
-      observer.changeFollowActivation(bool);
+      observer.changeFollowActivation();
     }
   }
 
@@ -197,6 +197,7 @@ public class User
   public void removeFollowing(String tagToRemove)
   {
     this.mFollows.remove(tagToRemove);
+    this.notifyFollowActivationChanged();
   }
 
   /**
@@ -208,6 +209,7 @@ public class User
   public void addFollowing(String tagToFollow)
   {
     this.mFollows.add(tagToFollow);
+    this.notifyFollowActivationChanged();
   }
 
   /**
@@ -253,10 +255,10 @@ public class User
     return hashCode;
   }
 
-  public void setFollowActivated(boolean followActivated)
-  {
-    this.notifyFollowActivationChanged(followActivated);
-  }
+//  public void setFollowActivated(boolean followActivated)
+//  {
+//    this.notifyFollowActivationChanged(followActivated);
+//  }
 
   /**
    * @{inheritDoc

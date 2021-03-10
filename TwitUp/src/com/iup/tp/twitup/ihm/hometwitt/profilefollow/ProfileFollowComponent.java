@@ -33,6 +33,7 @@ public class ProfileFollowComponent
     this.profileFollowModel = new ProfileFollowModel();
     this.profileFollowView = new ProfileFollowView(user, userConnected, profileFollowController);
 
+//    userConnected.addObserver(profileFollowController);
   }
 
   /**

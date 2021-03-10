@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.hometwitt.follow.observers.ISwitchFollowButtonModelObserver;
 
 public class SwitchFollowButtonModel implements Serializable
@@ -16,6 +17,10 @@ public class SwitchFollowButtonModel implements Serializable
    */
   protected boolean activated;
 
+  protected User user;
+
+  protected User userConnected;
+
   /**
    * Liste des observeurs du modèle du bouton switch.
    */
@@ -27,9 +32,11 @@ public class SwitchFollowButtonModel implements Serializable
    * @param activated
    *          État d'activation du switch.
    */
-  public SwitchFollowButtonModel(boolean activated)
+  public SwitchFollowButtonModel(boolean activated, User user, User userConnected)
   {
     this.activated = activated;
+    this.user = user;
+    this.userConnected = userConnected;
     this.observers = new ArrayList<>();
   }
 
@@ -99,4 +106,25 @@ public class SwitchFollowButtonModel implements Serializable
     this.activated = activated;
     this.notifyActivationChanged(activated);
   }
+
+  public User getUser()
+  {
+    return user;
+  }
+
+  public void setUser(User user)
+  {
+    this.user = user;
+  }
+
+  public User getUserConnected()
+  {
+    return userConnected;
+  }
+
+  public void setUserConnected(User userConnected)
+  {
+    this.userConnected = userConnected;
+  }
+
 }

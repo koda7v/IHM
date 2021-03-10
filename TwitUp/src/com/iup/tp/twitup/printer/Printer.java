@@ -45,7 +45,7 @@ public class Printer implements IDatabaseObserver
   @Override
   public void notifyUserModified(User modifiedUser)
   {
-    System.out.println("User Modified");
+    System.out.println("User Modified " + modifiedUser.getUserTag());
 
   }
 

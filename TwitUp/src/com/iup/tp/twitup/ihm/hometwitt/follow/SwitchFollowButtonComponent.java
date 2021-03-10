@@ -15,7 +15,7 @@ public class SwitchFollowButtonComponent implements Serializable, ISwitchFollowB
   /**
    * Contrôleur commun des boutons switch follow/unfollow.
    */
-  protected static SwitchFollowButtonController followButtonControler;
+  protected SwitchFollowButtonController followButtonControler;
 
   /**
    * Modèle du composant du bouton follow.
@@ -42,8 +42,8 @@ public class SwitchFollowButtonComponent implements Serializable, ISwitchFollowB
    */
   public SwitchFollowButtonComponent(SwitchFollowButtonModel switchFollowButtonModel, Dimension dimension)
   {
-    initSwitchButtonController();
     this.followButtonModel = switchFollowButtonModel;
+    this.followButtonControler = new SwitchFollowButtonController(switchFollowButtonModel);
     this.followButtonView = new SwitchFollowButtonView(followButtonControler, switchFollowButtonModel, dimension);
     this.observers = new ArrayList<>();
 
@@ -132,17 +132,6 @@ public class SwitchFollowButtonComponent implements Serializable, ISwitchFollowB
     this.followButtonModel.removeObserver(this.followButtonView);
   }
 
-  /**
-   * Si le contrôleur du switch bouton est <i>null</i>, instancie le contrôleur.
-   */
-  protected void initSwitchButtonController()
-  {
-    if (followButtonControler == null)
-    {
-      followButtonControler = new SwitchFollowButtonController();
-    }
-  }
-
   public SwitchFollowButtonModel getSwitchFollowFButtonModel()
   {
     return followButtonModel;
@@ -152,4 +141,15 @@ public class SwitchFollowButtonComponent implements Serializable, ISwitchFollowB
   {
     return followButtonView;
   }
+
+  public SwitchFollowButtonController getFollowButtonControler()
+  {
+    return followButtonControler;
+  }
+
+  public void setFollowButtonControler(SwitchFollowButtonController followButtonControler)
+  {
+    this.followButtonControler = followButtonControler;
+  }
+
 }

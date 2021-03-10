@@ -6,12 +6,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.iup.tp.twitup.core.EntityManager;
-import com.iup.tp.twitup.datamodel.IUserObserver;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.hometwitt.follow.SwitchFollowButtonModel;
 import com.iup.tp.twitup.ihm.hometwitt.follow.observers.ISwitchFollowButtonComponentObserver;
 
-public class ProfileFollowController implements Serializable, IUserObserver, ISwitchFollowButtonComponentObserver
+public class ProfileFollowController implements Serializable, ISwitchFollowButtonComponentObserver
 {
 
   private static final long serialVersionUID = 4868883826324988463L;
@@ -63,21 +62,13 @@ public class ProfileFollowController implements Serializable, IUserObserver, ISw
   }
 
   @Override
-  public void changeFollowActivation(boolean changeFollow)
-  {
-    this.userSwitchMap.get(user).setActivated(changeFollow);
-    this.changeFollow(changeFollow);
-
-  }
-
-  @Override
   public void updateSwitchFollowActivation(SwitchFollowButtonModel model)
   {
     for (Entry<User, SwitchFollowButtonModel> currentEntry : userSwitchMap.entrySet())
     {
       if (currentEntry.getValue().equals(model))
       {
-        currentEntry.getKey().setFollowActivated(!model.isActivated());
+        this.changeFollow(model.getUserConnected().isFollowing(model.getUser()));
         break;
       }
     }
@@ -88,13 +79,12 @@ public class ProfileFollowController implements Serializable, IUserObserver, ISw
   {
     if (change)
     {
-      this.userConnected.addFollowing(user.getUserTag());
+      this.userConnected.removeFollowing(user.getUserTag());
       this.manager.sendUser(userConnected);
-
     }
     else
     {
-      this.userConnected.removeFollowing(user.getUserTag());
+      this.userConnected.addFollowing(user.getUserTag());
       this.manager.sendUser(userConnected);
     }
 

@@ -208,12 +208,13 @@ public class ProfileFollowView extends JPanel
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    SwitchFollowButtonModel switchButtonModel = new SwitchFollowButtonModel(this.userConnected.isFollowing(user));
+    SwitchFollowButtonModel switchButtonModel = new SwitchFollowButtonModel(this.userConnected.isFollowing(user), user,
+        userConnected);
 
     this.switchFollowButtonComponent = new SwitchFollowButtonComponent(switchButtonModel,
         new Dimension(screenSize.width * 2 / 100, screenSize.width * 2 / 100));
     this.profileFollowController.addSwitchButton(switchButtonModel);
-    user.addObserver(this.profileFollowController);
+    userConnected.addObserver(this.switchFollowButtonComponent.getFollowButtonControler());
     this.switchFollowButtonComponent.addObserver(this.profileFollowController);
 
   }
