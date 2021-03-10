@@ -25,4 +25,14 @@ public class TwittComponent
     this.view = view;
   }
 
+  public Twit getModel()
+  {
+    return model;
+  }
+
+  public void setModel(Twit model)
+  {
+    this.model = model;
+  }
+
 }

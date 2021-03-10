@@ -212,7 +212,7 @@ public class ProfileFollowView extends JPanel
         userConnected);
 
     this.switchFollowButtonComponent = new SwitchFollowButtonComponent(switchButtonModel,
-        new Dimension(screenSize.width * 2 / 100, screenSize.width * 2 / 100));
+        new Dimension(screenSize.width * 2 / 30, screenSize.width * 2 / 30));
     this.profileFollowController.addSwitchButton(switchButtonModel);
     userConnected.addObserver(this.switchFollowButtonComponent.getFollowButtonControler());
     this.switchFollowButtonComponent.addObserver(this.profileFollowController);

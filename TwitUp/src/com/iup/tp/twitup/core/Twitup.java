@@ -252,20 +252,20 @@ public class Twitup implements IHomeObserver, ISignInControllerObserver, ISignUp
 
   public void notifyTwitFromFollower(Twit twit)
   {
-//    if (this.userConnected.getFollows().contains(twit.getTwiter().getUserTag()))
-//    {
-    TrayNotification tn = new TrayNotification(twit.getText(), twit.getTwiter().getUserTag(),
-        twit.getTwiter().getAvatarPath());
-    try
+    if (this.userConnected.getFollows().contains(twit.getTwiter().getUserTag()))
     {
-      tn.displayTray();
+      TrayNotification tn = new TrayNotification(twit.getText(), twit.getTwiter().getUserTag(),
+          twit.getTwiter().getAvatarPath());
+      try
+      {
+        tn.displayTray();
+      }
+      catch (AWTException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
     }
-    catch (AWTException e)
-    {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-//    }
   }
 
   @Override

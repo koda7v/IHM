@@ -1,6 +1,7 @@
 package com.iup.tp.twitup.ihm.hometwitt.twittlist;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.Twit;
 import com.iup.tp.twitup.ihm.hometwitt.twitt.TwittComponent;
 import com.iup.tp.twitup.ihm.hometwitt.twittlist.observer.ITwittListModelObserver;
+import com.iup.tp.twitup.utils.TwittComponentComparator;
 
 public class TwittListModel
 {
@@ -113,7 +115,9 @@ public class TwittListModel
    */
   public List<TwittComponent> getTwittComponentList()
   {
-    return new ArrayList<>(twittComponentMap.values());
+    List<TwittComponent> correspondenceComponentList = new ArrayList<>(twittComponentMap.values());
+    Collections.sort(correspondenceComponentList, new TwittComponentComparator());
+    return correspondenceComponentList;
   }
 
   public IDatabase getBase()
