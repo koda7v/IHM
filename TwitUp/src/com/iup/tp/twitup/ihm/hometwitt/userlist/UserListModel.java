@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.datamodel.IDatabase;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.hometwitt.profile.ProfileComponent;
@@ -24,9 +25,12 @@ public class UserListModel
 
   protected User userConnected;
 
-  public UserListModel(IDatabase base, User userConnected)
+  protected EntityManager manager;
+
+  public UserListModel(IDatabase base, User userConnected, EntityManager manager)
   {
     this.base = base;
+    this.manager = manager;
     this.users = base.getUsers();
     this.userConnected = userConnected;
     this.initMap();
@@ -40,7 +44,7 @@ public class UserListModel
     {
       if (!currentUser.getUserTag().equals(userConnected.getUserTag()))
       {
-        ProfileComponent userComponent = new ProfileComponent(currentUser, userConnected);
+        ProfileComponent userComponent = new ProfileComponent(currentUser, userConnected, this.manager);
         this.userComponentMap.put(currentUser, userComponent);
       }
     }

@@ -1,5 +1,6 @@
 package com.iup.tp.twitup.ihm.hometwitt.profile;
 
+import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.datamodel.User;
 
 /**
@@ -36,9 +37,9 @@ public class ProfileComponent
    * @param userConnected
    * @param userConnected2
    */
-  public ProfileComponent(User user, User userConnected)
+  public ProfileComponent(User user, User userConnected, EntityManager manager)
   {
-    this.profileController = new ProfileController(user, userConnected);
+    this.profileController = new ProfileController(user, userConnected, manager);
     this.profileModel = new ProfileModel();
     this.profileFollowView = new ProfileFollowView(user, userConnected, profileController);
 

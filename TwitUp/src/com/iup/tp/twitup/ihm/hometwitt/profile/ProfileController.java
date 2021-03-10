@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.iup.tp.twitup.core.EntityManager;
 import com.iup.tp.twitup.datamodel.IUserObserver;
 import com.iup.tp.twitup.datamodel.User;
 import com.iup.tp.twitup.ihm.hometwitt.follow.SwitchFollowButtonModel;
@@ -37,12 +38,18 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
   protected User user;
 
   /**
+   * base de donnée
+   */
+  protected EntityManager manager;
+
+  /**
    * Créer un nouveau contrôleur pour le changement des follow unfollow.
    * 
    * @param userConnected
    */
-  public ProfileController(User user, User userConnected)
+  public ProfileController(User user, User userConnected, EntityManager manager)
   {
+    this.manager = manager;
     this.userConnected = userConnected;
     this.user = user;
     this.userSwitchMap = new HashMap<>();
@@ -94,10 +101,13 @@ public class ProfileController implements Serializable, IUserObserver, ISwitchFo
     if (change)
     {
       this.userConnected.addFollowing(user.getUserTag());
+      this.manager.sendUser(userConnected);
+
     }
     else
     {
       this.userConnected.removeFollowing(user.getUserTag());
+      this.manager.sendUser(userConnected);
     }
 
   }
