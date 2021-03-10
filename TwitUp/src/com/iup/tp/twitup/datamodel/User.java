@@ -81,7 +81,6 @@ public class User
     mFollows = follows;
     mAvatarPath = avatarPath;
     this.observers = new ArrayList<IUserObserver>();
-    this.changeFollow = false;
   }
 
   /**
@@ -118,13 +117,13 @@ public class User
    * @param model
    *          Modèle du switch.
    */
-  public void notifyFollowActivationChanged()
+  public void notifyFollowActivationChanged(boolean bool)
   {
     List<IUserObserver> copyObservers = new ArrayList<>(this.observers);
 
     for (IUserObserver observer : copyObservers)
     {
-      observer.changeFollowActivation(this.changeFollow);
+      observer.changeFollowActivation(bool);
     }
   }
 
@@ -256,8 +255,7 @@ public class User
 
   public void setFollowActivated(boolean followActivated)
   {
-    this.changeFollow = followActivated;
-    this.notifyFollowActivationChanged();
+    this.notifyFollowActivationChanged(followActivated);
   }
 
   /**
